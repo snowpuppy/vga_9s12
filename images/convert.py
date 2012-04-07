@@ -13,7 +13,32 @@
 # let's do binary first and then convert binary to hex.
 
 
-# SUDO CODE:
+# Functions:
+def getColor(pixel):
+    red1 = pixel[0]
+    grn1 = pixel[1]
+    blu1 = pixel[2]
+    color1 = 0
+
+    # test to make sure the pixel is valid
+    if not (red1 == 255 or red1 == 0) or not (grn1 == 255 or grn1 == 0) or not (blu1 == 255 or blu1 == 0):
+        if (red1 != 128 and blu1 != 64 and grn1 != 0):
+            print "There is an invalid pixel value in this picture r = %3i g = %3i b = %3i" % (red1, grn1, blu1)
+            exit()
+
+    # extract the color values
+    if red1 == 255:
+        color1 = color1 + 1
+    if grn1 == 255:
+        color1 = color1 + 2
+    if blu1 == 255:
+        color1 = color1 + 4
+    if red1 == 128 and blu1 == 64 and grn1 == 0:
+        color1 = 3
+
+    return color1
+
+    
 
 # sys used for argument passing
 import sys
@@ -38,32 +63,25 @@ imwidth = theimage.size[0]
 imheigh = theimage.size[1]
 
 for h in range(0,imheigh):
-    for w in range(0,imwidth):
+    for w in range(0,imwidth,2):
 
-        red = pixels[w,h][0]
-        grn = pixels[w,h][1]
-        blu = pixels[w,h][2]
-        color = 0
+        color1 = 0
+        color2 = 0
+        sumcolor = 0
 
-        # test to make sure the pixel is valid
-        if not (red == 255 or red == 0) or not (grn == 255 or grn == 0) or not (blu == 255 or blu == 0):
-            if (red != 128 and blu != 64 and grn != 0):
-                print "There is an invalid pixel value in this picture r = %3i g = %3i b = %3i" % (red, grn, blu)
-                exit()
+        color1 = getColor(pixels[w,h])
+        color2 = getColor(pixels[w+1,h])
 
-        # extract the color values
-        if red == 255:
-            color = color + 1
-        if grn == 255:
-            color = color + 2
-        if blu == 255:
-            color = color + 4
-        if red == 128 and blu == 64 and grn == 0:
-            color = 3
+        # shift color1 and color2 to the right locations
+        # [c1 c1 c1 c2 c2 c2 0 0]
+        color1 = color1*0x20
+        color2 = color2*0x4
+        sumcolor = color1 + color2
 
         # print the hex value to our output file
-        pcolor = "%02x" % color
+        pcolor = "%02x" % sumcolor
         outfile.write(pcolor)
+
     outfile.write('\n')
 
 outfile.close()
