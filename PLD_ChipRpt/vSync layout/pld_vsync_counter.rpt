@@ -1,0 +1,298 @@
+
+
+                                                                      Page 1
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:02 2012
+
+pld_vsync_counter
+
+
+
+--------------------------------------------------------------------------------
+
+Module                   : 'pld_vsync_counter'
+
+--------------------------------------------------------------------------------
+
+Input files:
+
+    ABEL PLA file        : pld_vsync_counter.tt3
+    Device library       : P26CV12.dev
+
+Output files:
+
+    Report file          : pld_vsync_counter.rpt
+    Programmer load file : pld_vsync_counter.jed
+
+--------------------------------------------------------------------------------
+
+
+                                                                      Page 2
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:02 2012
+
+pld_vsync_counter
+
+P26CV12 Programmed Logic:
+--------------------------------------------------------------------------------
+
+
+
+vSync     = !(  !reg9.PIN & reg8.PIN & reg7.PIN & reg6.PIN & reg5.PIN 
+               & !reg4.PIN & reg3.PIN & reg2.PIN & !reg1.PIN );
+
+reset     = (  reg9.PIN & !reg8.PIN & !reg7.PIN & !reg6.PIN & !reg5.PIN 
+               & !reg4.PIN & reg3.PIN & reg2.PIN & !reg1.PIN & reg0.PIN );
+
+reg0.D   = (  !reg0.PIN ); " ISTYPE 'BUFFER'
+reg0.C   = (  Hsync );
+reg0.AR  = (  reset.PIN );
+
+reg1.D   = (  !reg1.PIN & reg0.PIN 
+            #   reg1.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg1.C   = (  Hsync );
+reg1.AR  = (  reset.PIN );
+
+reg2.D   = (  reg2.PIN & !reg1.PIN 
+            #   !reg2.PIN & reg1.PIN & reg0.PIN 
+            #   reg2.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg2.C   = (  Hsync );
+reg2.AR  = (  reset.PIN );
+
+reg3.D   = (  reg3.PIN & !reg2.PIN 
+            #   reg3.PIN & !reg1.PIN 
+            #   !reg3.PIN & reg2.PIN & reg1.PIN & reg0.PIN 
+            #   reg3.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg3.C   = (  Hsync );
+reg3.AR  = (  reset.PIN );
+
+reg4.D   = (  reg4.PIN & !reg3.PIN 
+            #   reg4.PIN & !reg2.PIN 
+            #   reg4.PIN & !reg1.PIN 
+            #   !reg4.PIN & reg3.PIN & reg2.PIN & reg1.PIN & reg0.PIN 
+            #   reg4.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg4.C   = (  Hsync );
+reg4.AR  = (  reset.PIN );
+
+reg5.D   = (  reg5.PIN & !reg4.PIN 
+            #   reg5.PIN & !reg3.PIN 
+            #   reg5.PIN & !reg2.PIN 
+            #   reg5.PIN & !reg1.PIN 
+            #   !reg5.PIN & reg4.PIN & reg3.PIN & reg2.PIN & reg1.PIN & reg0.PIN 
+            #   reg5.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg5.C   = (  Hsync );
+reg5.AR  = (  reset.PIN );
+
+reg6.D   = (  reg6.PIN & !reg5.PIN 
+            #   reg6.PIN & !reg4.PIN 
+            #   reg6.PIN & !reg3.PIN 
+            #   reg6.PIN & !reg2.PIN 
+            #   reg6.PIN & !reg1.PIN 
+
+
+                                                                      Page 3
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:02 2012
+
+pld_vsync_counter
+
+P26CV12 Programmed Logic:
+--------------------------------------------------------------------------------
+
+
+
+            #   !reg6.PIN & reg5.PIN & reg4.PIN & reg3.PIN & reg2.PIN & reg1.PIN 
+              & reg0.PIN 
+            #   reg6.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg6.C   = (  Hsync );
+reg6.AR  = (  reset.PIN );
+
+reg7.D   = (  reg7.PIN & !reg6.PIN 
+            #   reg7.PIN & !reg5.PIN 
+            #   reg7.PIN & !reg4.PIN 
+            #   reg7.PIN & !reg3.PIN 
+            #   reg7.PIN & !reg2.PIN 
+            #   reg7.PIN & !reg1.PIN 
+            #   !reg7.PIN & reg6.PIN & reg5.PIN & reg4.PIN & reg3.PIN & reg2.PIN 
+              & reg1.PIN & reg0.PIN 
+            #   reg7.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg7.C   = (  Hsync );
+reg7.AR  = (  reset.PIN );
+
+reg8.D   = (  reg8.PIN & !reg7.PIN 
+            #   reg8.PIN & !reg6.PIN 
+            #   reg8.PIN & !reg5.PIN 
+            #   reg8.PIN & !reg4.PIN 
+            #   reg8.PIN & !reg3.PIN 
+            #   reg8.PIN & !reg2.PIN 
+            #   reg8.PIN & !reg1.PIN 
+            #   !reg8.PIN & reg7.PIN & reg6.PIN & reg5.PIN & reg4.PIN & reg3.PIN 
+              & reg2.PIN & reg1.PIN & reg0.PIN 
+            #   reg8.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg8.C   = (  Hsync );
+reg8.AR  = (  reset.PIN );
+
+reg9.D   = (  reg9.PIN & !reg8.PIN 
+            #   reg9.PIN & !reg7.PIN 
+            #   reg9.PIN & !reg6.PIN 
+            #   reg9.PIN & !reg5.PIN 
+            #   reg9.PIN & !reg4.PIN 
+            #   reg9.PIN & !reg3.PIN 
+            #   reg9.PIN & !reg2.PIN 
+            #   reg9.PIN & !reg1.PIN 
+            #   !reg9.PIN & reg8.PIN & reg7.PIN & reg6.PIN & reg5.PIN & reg4.PIN 
+              & reg3.PIN & reg2.PIN & reg1.PIN & reg0.PIN 
+            #   reg9.PIN & !reg0.PIN ); " ISTYPE 'BUFFER'
+reg9.C   = (  Hsync );
+reg9.AR  = (  reset.PIN );
+
+
+
+                                                                      Page 4
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:03 2012
+
+pld_vsync_counter
+
+P26CV12 Chip Diagram:
+--------------------------------------------------------------------------------
+
+
+
+
+                                   P26CV12
+
+                         +---------\       /---------+
+                         |          \     /          |
+                         |           -----           |
+                   Hsync |  1                    28  |                         
+                         |                           |
+                         |  2                    27  | reg7                    
+                         |                           |
+                         |  3                    26  | reg6                    
+                         |                           |
+                         |  4                    25  | reg5                    
+                         |                           |
+                         |  5                    24  | reg4                    
+                         |                           |
+                         |  6                    23  | reg9                    
+                         |                           |
+                     Vcc |  7                    22  | reset                   
+                         |                           |
+                         |  8                    21  | GND                     
+                         |                           |
+                         |  9                    20  | !vSync                  
+                         |                           |
+                         | 10                    19  | reg8                    
+                         |                           |
+                         | 11                    18  | reg3                    
+                         |                           |
+                         | 12                    17  | reg2                    
+                         |                           |
+                         | 13                    16  | reg1                    
+                         |                           |
+                         | 14                    15  | reg0                    
+                         |                           |
+                         |                           |
+                         `---------------------------'
+
+                        SIGNATURE: N/A
+
+
+                                                                      Page 5
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:03 2012
+
+pld_vsync_counter
+
+P26CV12 Resource Allocations:
+--------------------------------------------------------------------------------
+
+
+
+        Device        | Resource  |   Design    |
+       Resources      | Available | Requirement | Unused
+======================|===========|=============|==============
+                      |           |             |
+Input Pins:           |           |             |
+                      |           |             |
+          Input:      |     14    |      1      |   13 ( 92 %)
+                      |           |             |
+Output Pins:          |           |             |
+                      |           |             |
+          In/Out:     |     12    |     12      |    0 (  0 %)
+          Output:     |      -    |      -      |    -
+                      |           |             |
+Buried Nodes:         |           |             |
+                      |           |             |
+          Input Reg:  |      -    |      -      |    -
+          Pin Reg:    |     12    |     10      |    2 ( 16 %)
+          Buried Reg: |      -    |      -      |    -
+
+
+                                                                      Page 6
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:03 2012
+
+pld_vsync_counter
+
+P26CV12 Product Terms Distribution:
+--------------------------------------------------------------------------------
+
+
+
+            Signal                       |    Pin   | Terms | Terms | Terms
+             Name                        | Assigned | Used  |  Max  | Unused
+=========================================|==========|=======|=======|=======
+vSync                                    |   20     |   1   |  12   |  11
+reset                                    |   22     |   1   |  12   |  11
+reg0.D                                   |   15     |   1   |   8   |   7
+reg1.D                                   |   16     |   2   |   8   |   6
+reg2.D                                   |   17     |   3   |   8   |   5
+reg3.D                                   |   18     |   4   |   8   |   4
+reg4.D                                   |   24     |   5   |   8   |   3
+reg5.D                                   |   25     |   6   |   8   |   2
+reg6.D                                   |   26     |   7   |   8   |   1
+reg7.D                                   |   27     |   8   |   8   |   0
+reg8.D                                   |   19     |   9   |  10   |   1
+reg9.D                                   |   23     |  10   |  10   |   0
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                              | Pin      | Pin Type
+=========================================|==========|=========
+reg9.PIN                                 |   23     | COMB FB
+reg8.PIN                                 |   19     | COMB FB
+reg7.PIN                                 |   27     | COMB FB
+reg6.PIN                                 |   26     | COMB FB
+reg5.PIN                                 |   25     | COMB FB
+reg4.PIN                                 |   24     | COMB FB
+reg3.PIN                                 |   18     | COMB FB
+reg2.PIN                                 |   17     | COMB FB
+reg1.PIN                                 |   16     | COMB FB
+reg0.PIN                                 |   15     | COMB FB
+Hsync                                    |    1     | CLK/IN
+reset.PIN                                |   22     | COMB FB
+
+
+                                                                      Page 7
+ispLEVER 3.0  -  Device Utilization Chart         Sat Mar 31 17:10:03 2012
+
+pld_vsync_counter
+
+P26CV12 Unused Resources:
+--------------------------------------------------------------------------------
+
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+    2  |  INPUT |      -      |    -   
+    3  |  INPUT |      -      |    -   
+    4  |  INPUT |      -      |    -   
+    5  |  INPUT |      -      |    -   
+    6  |  INPUT |      -      |    -   
+    8  |  INPUT |      -      |    -   
+    9  |  INPUT |      -      |    -   
+   10  |  INPUT |      -      |    -   
+   11  |  INPUT |      -      |    -   
+   12  |  INPUT |      -      |    -   
+   13  |  INPUT |      -      |    -   
+   14  |  INPUT |      -      |    -   
+   28  |  INPUT |      -      |    -   
