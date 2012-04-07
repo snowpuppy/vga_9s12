@@ -45,11 +45,11 @@
 ;
 ;***********************************************************************
 ;
-;  Date code started: < ? >
+;  Date code started: 3/23/2012
 ;
 ;  Update history (add an entry every time a significant change is made):
 ;
-;  Date: < ? >  Name: < ? >   Update: < ? >
+;  Date: 3/31/2012  Name: Thor Smith   Update: Added Menu Logic. Started gameplay logic.
 ;
 ;  Date: < ? >  Name: < ? >   Update: < ? >
 ;
@@ -61,26 +61,41 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include <mc9s12c32.h>
 
+// Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
+#define USESCIDEBUGGING 1
 
 // Define threshold voltages
-#define THRESHVERTUP 3.5
-#define THRESHVERTDO 1.5
+#define JOYTHRESH 1.5
+#define BASETHRESH .5
+#define THRESHUP ( 2.5 + JOYTHRESH)
+#define THRESHDO ( 2.5 - JOYTHRESH)
+
+// define button layouts/masks
+#define LEFTPB 0x06
 
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
 void displaySplash(void);
+void displayMenu(char selection);
+char checkMenuInputs(char joyin);
 
 
 // Variable declarations  	   			 		  			 		       
 // GLOBAL SCREEN BUFFER (2304 pixels)
 char screen[1152];
 
-// GLOBAL ANALOG INPUTS
+// GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 char joy0hor = 0;
 char joy1hor = 0;
 char joy0vert = 0;
 char joy1vert = 0;
+
+// Menu selection variables
+// button select
+char select = 0;
+// joystic selections
+char selection = -1;
 
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
@@ -101,6 +116,7 @@ void  initializations(void) {
 // Disable watchdog timer (COPCTL register)
   COPCTL = 0x40   ; //COP off; RTI and COP stopped in BDM-mode
 
+#if USESCIDEBUGGING
 // Initialize asynchronous serial port (SCI) for 9600 baud, no interrupts
   SCIBDH =  0x00; //set baud rate to 9600
   SCIBDL =  0x9C; //24,000,000 / 16 / 156 = 9600 (approx)  dec=26
@@ -108,6 +124,7 @@ void  initializations(void) {
   SCICR2 =  0x0C; //initialize SCI for program-driven operation
   DDRB   =  0x10; //set PB4 for output mode
   PORTB  =  0x10; //assert DTR pin on COM port
+#endif
             
 // Initialize interrupts
 	      
@@ -137,13 +154,35 @@ void main(void) {
 	 // The watchdog was disabled in the initialization code.
 
 	// Display Menu Screen
+	displayMenu();
 	// Check for Menu Selection
-	// Use case statement to branch to appropriate
-	// Sub Function
-	// Menu:
-	//	Select Character
-	//	Select Field
-	//	Start Match
+	checkMenuInputs(joy0vert);
+	// Use case statement to branch to appropriate selection.
+	// Don't branch unless the user has triggered the 'select' button.
+	if (select = 1)
+	{
+			select = 0;
+			switch (selection)
+			{
+			// Sub Function
+			// Menu:
+			case 1:
+					//	Select Character
+					selectCharacter();
+					break;
+			case 2:
+					//	Select Field
+					selectField();
+					break;
+			case 3:
+					//	Start Match
+					startMatch();
+					break;
+			// the default case is '-1' if nothing has been selected
+			default:
+					break;
+			}
+	}
     
     _FEED_COP(); /* feeds the dog */
   } /* loop forever */
@@ -179,15 +218,98 @@ interrupt 15 void TIM_ISR(void)
 // No need to add anything in the .PRM file, the interrupt number is included above
 }
 
+
 /*
 ;***********************************************************************
 ; Name:         displaySplash
 ; Description:  Displays Splash screen for the game and gives the user
 ;								time to see it.
 ;***********************************************************************/
-void displaySplash(void);
+void displaySplash(void)
 {
 }
+
+/*
+;***********************************************************************
+; Name:         displayMenu
+; Description:  Displays Menu for user and their current selection.
+;								There are 3 menu selections that need to be drawn.
+;
+;***********************************************************************/
+void displayMenu(char selection)
+{
+}
+
+/*
+;***********************************************************************
+; Name:         checkMenuInputs
+; Description:  Check if the Joysticks have transitioned from below
+;								the specified threshold to above it for both the up
+;								and down directions. Essentially, we want to check
+;								a transition from the netural area in the middle to
+;								the top or bottom (Up/Down). Note that we pass by
+;								value to this function instead of using the global
+;								variable because it could change in the middle of
+;								this function call.
+;		D		0v -> (2.5v - JOYTHRESH)
+;		M		(2.5v - JOYTHRESH) -> (2.5 + JOYTHRESH)
+;		U		(2.5v + JOYTHRESH) -> 5v
+;
+;***********************************************************************/
+char checkMenuInputs(char joyin)
+{
+		// use a static variable so we can reuse the value when we return
+		// to this function. This was used as apposed to a global variable
+		// because we don't want anyone else modifying this value.
+		static char joyvertprev = 2.5;
+		static char prevleft = 0;
+		// Check pushing joystick up
+		if ( joyin > THRESHUP )
+		{
+				if ( joyvertprev < THRESHUP )
+				{
+						selection++;
+				}
+				// don't allow the selection to overflow
+				if (selection > 3)
+				{
+						selection = 0;
+				}
+		}
+
+		// Check pushing joystick down
+		if ( joyin < THRESHDO )
+		{
+				if ( joyvertprev > THRESHDO )
+				{
+						selection++;
+				}
+				// don't allow selection to underflow
+				if (selection < 0)
+				{
+						selection = 3;
+				}
+		}
+
+		// Check for button push (check if selection confirmed)
+		if ( (PTAD & LEFTPB) == 0 )
+		{
+				if (prevleft == 1)
+				{
+						select = 1;
+				}
+				prevleft = 0;
+		}
+		else if ( (PTAD & LEFTPB) == 1)
+		{
+				prevleft = 1;
+		}
+
+		// update previous value
+		joyvertprev = joyin;
+}
+
+#if USESCIDEBUGGING
 
 /***********************************************************************
 ; Character I/O Library Routines for 9S12C32
@@ -212,7 +334,7 @@ void outchar(char ch) {
     while (!(SCISR1 & 0x80));  /* wait for output buffer empty */
     SCIDRL = ch;
 }
-
+#endif
 
 
 /***********************************************************************
