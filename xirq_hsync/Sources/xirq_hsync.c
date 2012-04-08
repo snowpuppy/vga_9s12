@@ -82,6 +82,9 @@ void  initializations(void) {
 #define bset(x,y) \
 x = x | y
 
+#define bclr(x,y) \
+x = x & (0xFF-y)
+
 //; Set the PLL speed (bus clock = 24 MHz)
   CLKSEL = CLKSEL & 0x80; //; disengage PLL from system
   PLLCTL = PLLCTL | 0x40; //; turn on PLL
@@ -102,9 +105,32 @@ x = x | y
   PORTB  =  0x10; //assert DTR pin on COM port
             
 // Initialize interrupts
-   DDRT = 0x07; //port 0 is xirq input
+   // RBG,PWM,TIM outputs
+   // PTT 0 - PWM
+   // PTT 1 - TIM
+   // PTT 2 - B2
+   // PTT 3 - G2
+   // PTT 4 - R2
+   // PTT 5 - B1
+   // PTT 6 - G1
+   // PTT 7 - R1
+   DDRT = 0xFF; 
    PTT = 0x00;	      
    
+/*; Initialize TIM Ch 1 (TC1) for periodic interrupts every 10.0 ms
+;    Enable timer subsystem                         
+;    Set channel 7 for output compare
+;    Set appropriate pre-scale factor and enable counter reset after OC7
+;    Set up channel 7 to generate 10 ms interrupt rate
+;    Initially disable TIM Ch 7 interrupts	 	   			 		  			 		  		
+*/	 	   			 		  			 		  		
+//;  < add TIM initialization code here >
+/*  TSCR1 = 0x80; 
+  TIOS = 0x80;
+  TSCR2 = 0x0C;        
+  TC1 = 0x3A98;
+  TIE = 0x00;   
+  */ 
    
    asm andcc #$BF  //enables external xirq
 	      
@@ -122,6 +148,8 @@ void main(void) {
 //////////////////////////////////////////////////////////////
 //;  START OF CODE FOR Spring 2012 MINI-PROJECT
 //////////////////////////////////////////////////////////////
+  //asm ldx //...
+
   while(1){
   	
   	
@@ -149,137 +177,473 @@ void main(void) {
 ;***********************************************************************/
 void interrupt HSYNC_XISR( void)
 {
-  	// set CRGFLG bit 
-  //	CRGFLG = CRGFLG | 0x80;
+ /* movb #$80,PTT -> red
+    movb #$40,PTT -> green
+    movb #$20,PTT -> blue
+    movb #$A0,PTT -> yellow
+    movb #$C0,PTT -> pink
+    movb #$60,PTT -> teal
+    movb #$E0,PTT -> white
+  */
+
+ //enable timer irq
+//TIE = 0x80;
+
+ hCnt++; 
+
+if(hCnt > 28 & hCnt < 515){
+ //first 80 lines of black
+ asm{
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ 
+ //colors on screen
+ 
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$40,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$C0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$60,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$E0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$40,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$C0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$60,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$E0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$40,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$C0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$60,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$E0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ 
+ 
+ //last lines of black
+ movb #$00,PTT
   
-  hCnt++;
-  
-  if((hCnt > 50)  & (hCnt <300)){
-  	 asm {   
-
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      
-
-     }
-  
-  	bset(PTT,0x01);
-  	  asm {   // 30 cycles
-
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      nop
-      
-
-     }
-    PTT = 0x00;   
-  	}
-
-  
-   
-  		
-
-}
+ }//end of asm
+ 
+}//end of if
+ 
+ //diasble timer irq 		
+ //TIE = 0x00;
+ 
+}//end of xirq
 
 
 /***********************************************************************                       
@@ -350,6 +714,7 @@ void outchar(char ch) {
     while (!(SCISR1 & 0x80));  /* wait for output buffer empty */
     SCIDRL = ch;
 }
+
 
 
 

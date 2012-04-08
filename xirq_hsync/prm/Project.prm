@@ -52,4 +52,7 @@ VECTOR 0 _Startup /* reset vector: this is the default entry point for a C/C++ a
 
 VECTOR ADDRESS 0xFFF4 HSYNC_XISR
 VECTOR ADDRESS 0xFFF2 VSYNC_ISR
+VECTOR ADDRESS 0xFFEC TIM_ISR //timer channel 1
+VECTOR ADDRESS 0xFFF0 RTI_ISR
+
 

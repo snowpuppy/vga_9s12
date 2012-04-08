@@ -1,5 +1,5 @@
 *** EVALUATION ***
-PROGRAM "D:\ECE\ECE 362\362 mini project\xirq_hsync\bin\Project.abs"
+PROGRAM "E:\ECE\ECE 362\362 mini project\xirq_hsync\bin\Project.abs"
 
 *********************************************************************************************
 TARGET SECTION
@@ -24,7 +24,7 @@ _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0x900     2
-  _Copy    *toCopyDownBeg 0xC10E
+  _Copy    *toCopyDownBeg 0xC2BC
 } _startupData;
 
 *********************************************************************************************
@@ -33,8 +33,8 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            211     R     0xC03B     0xC10D   ROM_C000
-.copy                              2     R     0xC10E     0xC10F   ROM_C000
+.text                            641     R     0xC03B     0xC2BB   ROM_C000
+.copy                              2     R     0xC2BC     0xC2BD   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
@@ -258,11 +258,12 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_16e                   2   N/I      0x16E      0x16F   .absSeg219
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg220
 .bss                               2   R/W      0x900      0x901   RAM
-.vectSeg221_vect                   4     R     0xFFF2     0xFFF5   .vectSeg221
-.vectSeg222_vect                   2     R     0xFFFE     0xFFFF   .vectSeg222
+.vectSeg221_vect                   2     R     0xFFEC     0xFFED   .vectSeg221
+.vectSeg222_vect                   6     R     0xFFF0     0xFFF5   .vectSeg222
+.vectSeg223_vect                   2     R     0xFFFE     0xFFFF   .vectSeg223
 
 Summary of section sizes per section type:
-READ_ONLY (R):         116 (dec:      278)
+READ_ONLY (R):         2C8 (dec:      712)
 READ_WRITE (R/W):      102 (dec:      258)
 NO_INIT (N/I):         104 (dec:      260)
 
@@ -270,7 +271,9 @@ NO_INIT (N/I):         104 (dec:      260)
 VECTOR-ALLOCATION SECTION
     Address     InitValue   InitFunction
 ---------------------------------------------------------------------------------------------
-     0xFFF2        0xC108   VSYNC_ISR
+     0xFFEC        0xC2B8   TIM_ISR
+     0xFFF0        0xC2B7   RTI_ISR
+     0xFFF2        0xC2B1   VSYNC_ISR
      0xFFF4        0xC079   HSYNC_XISR
      0xFFFE        0xC029   _Startup
 
@@ -328,7 +331,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _TCTL4                                      4B       1       1       0   .abs_section_4b
      _TIE                                        4C       1       1       0   .abs_section_4c
      _TSCR2                                      4D       1       1       0   .abs_section_4d
-     _TFLG1                                      4E       1       1       0   .abs_section_4e
+     _TFLG1                                      4E       1       1       1   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _PACTL                                      60       1       1       0   .abs_section_60
      _PAFLG                                      61       1       1       0   .abs_section_61
@@ -420,7 +423,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXDSR7                                 17B       1       1       0   .abs_section_17b
      _CANTXDLR                                  17C       1       1       0   .abs_section_17c
      _CANTXTBPR                                 17D       1       1       0   .abs_section_17d
-     _PTT                                       240       1       1       3   .abs_section_240
+     _PTT                                       240       1       1      26   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       1   .abs_section_242
      _RDRT                                      243       1       1       0   .abs_section_243
@@ -514,8 +517,10 @@ MODULE:                 -- xirq_hsync.c.o --
 - PROCEDURES:
      initializations                           C03B      36      54       1   .text       
      main                                      C071       8       8       1   .text       
-     HSYNC_XISR                                C079      8F     143       0   .text       
-     VSYNC_ISR                                 C108       6       6       0   .text       
+     HSYNC_XISR                                C079     238     568       0   .text       
+     VSYNC_ISR                                 C2B1       6       6       0   .text       
+     RTI_ISR                                   C2B7       1       1       0   .text       
+     TIM_ISR                                   C2B8       4       4       0   .text       
 - VARIABLES:
      hCnt                                       900       2       2       3   .bss        
 
@@ -525,14 +530,14 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   mc9s12c32.c.o                              260      0      0
   Start12.c.o                                  0     49      0
-  xirq_hsync.c.o                               2    211      0
-  other                                      256     16      2
+  xirq_hsync.c.o                               2    641      0
+  other                                      256     20      2
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  initializations main HSYNC_XISR VSYNC_ISR 
+  initializations main HSYNC_XISR VSYNC_ISR RTI_ISR TIM_ISR 
 SECTION: ".bss"
   hCnt 
 SECTION: ".init"
@@ -1039,7 +1044,7 @@ OBJECT LIST SORTED BY ADDRESS
      _TCTL4                                      4B       1       1       0   .abs_section_4b
      _TIE                                        4C       1       1       0   .abs_section_4c
      _TSCR2                                      4D       1       1       0   .abs_section_4d
-     _TFLG1                                      4E       1       1       0   .abs_section_4e
+     _TFLG1                                      4E       1       1       1   .abs_section_4e
      _TFLG2                                      4F       1       1       0   .abs_section_4f
      _TC0                                        50       2       2       0   .abs_section_50
      _TC1                                        52       2       2       0   .abs_section_52
@@ -1162,7 +1167,7 @@ OBJECT LIST SORTED BY ADDRESS
      _CANTXDLR                                  17C       1       1       0   .abs_section_17c
      _CANTXTBPR                                 17D       1       1       0   .abs_section_17d
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
-     _PTT                                       240       1       1       3   .abs_section_240
+     _PTT                                       240       1       1      26   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       1   .abs_section_242
      _RDRT                                      243       1       1       0   .abs_section_243
@@ -1210,15 +1215,17 @@ OBJECT LIST SORTED BY ADDRESS
      _Startup                                  C029       8       8       0   .init       
      initializations                           C03B      36      54       1   .text       
      main                                      C071       8       8       1   .text       
-     HSYNC_XISR                                C079      8F     143       0   .text       
-     VSYNC_ISR                                 C108       6       6       0   .text       
+     HSYNC_XISR                                C079     238     568       0   .text       
+     VSYNC_ISR                                 C2B1       6       6       0   .text       
+     RTI_ISR                                   C2B7       1       1       0   .text       
+     TIM_ISR                                   C2B8       4       4       0   .text       
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
 xirq_hsync.c.o:
-  RTI_ISR TIM_ISR inchar outchar 
+  inchar outchar 
 NOT USED VARIABLES
 xirq_hsync.c.o:
   CR 
@@ -1226,7 +1233,7 @@ xirq_hsync.c.o:
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC10E ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC2BC ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1240,6 +1247,7 @@ initializations           USES _CLKSEL _PLLCTL _SYNR _REFDV _CRGFLG _COPCTL
 main                      USES initializations 
 HSYNC_XISR                USES hCnt _PTT 
 VSYNC_ISR                 USES hCnt 
+TIM_ISR                   USES _TFLG1 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -1260,12 +1268,14 @@ DEPENDENCY TREE
    
  VSYNC_ISR           
    
+ TIM_ISR             
+   
 *********************************************************************************************
 STATISTIC SECTION
 ---------------------------------------------------------------------------------------------
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 6
-Total size of all blocks to be downloaded: 278
+Number of blocks to be downloaded: 7
+Total size of all blocks to be downloaded: 712
 
