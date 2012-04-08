@@ -28,11 +28,11 @@ def getColor(pixel):
 
     # extract the color values
     if red1 == 255:
-        color1 = color1 + 1
+        color1 = color1 + 4
     if grn1 == 255:
         color1 = color1 + 2
     if blu1 == 255:
-        color1 = color1 + 4
+        color1 = color1 + 1
     if red1 == 128 and blu1 == 64 and grn1 == 0:
         color1 = 3
 
