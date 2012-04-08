@@ -1,5 +1,5 @@
 /***********************************************************************
-; ECE 362 - Mini-Project ASM Source File - Spring 2012                     
+; ECE 362 - Mini-Project ASM Source File - Spring 2012
 ;***********************************************************************
 ;	 	   			 		  			 		  		
 ; Team ID: < ? >
@@ -61,6 +61,12 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include <mc9s12c32.h>
 
+// Define bset and bclr macros
+#define bset(x,y) \
+    ( x = x | y )
+#define bclr(x,y) \
+    ( x = x & ~(y) )
+
 // Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
 #define USESCIDEBUGGING 1
 
@@ -77,6 +83,9 @@
 // define screen resolution
 #define SCREENW 48
 #define SCREENH 48
+
+// Define Timing specifications
+#define TIMEFORONESECOND 100
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -111,6 +120,9 @@ unsigned char joy1vert = 0;
 char select = 0;
 // joystic selections
 char selection = -1;
+
+// splash screen enable.
+unsigned char *splash_screen_enable = 0;
 
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
@@ -154,8 +166,18 @@ void  initializations(void) {
    DDRT = 0xFF; 
    PTT = 0x00;
    
-  //enables external xirq	 	      
-  asm andcc #$BF       
+  // Timer Used To Keep Track of Timing for user Application
+  // Such as displaying the splash screen for a decent period
+  // of time.
+  // enable timer system
+  TSCR1 = 0x80;
+  // set prescale and enable counter reset
+  TSCR2 = 0x0C;
+  // set channel 0 for output compare
+  TIOS = 0x01;
+  // set 1ms interrupts (needs to be changed to 1/60s of a second)
+  TC0 = 1500;
+
 }
 
 	 		  			 		  		
@@ -215,7 +237,7 @@ void main(void) {
   /* please make sure that you never leave main */
 }
 
-/***********************************************************************                       
+/***********************************************************************
 ; HSYNC_XIRQ interrupt service routine: HSYNC_XISR
 ;
 ; Make sure you add it to the interrupts vector table (HSYNC_XISR) 
@@ -727,6 +749,11 @@ interrupt 15 void TIM_ISR(void)
   // set TFLG1 bit 
  	TFLG1 = TFLG1 | 0x80; 
 // No need to add anything in the .PRM file, the interrupt number is included above
+
+    if (splash_screen_enable < TIMEFORONESECOND)
+    {
+        splash_screen_enable++;
+    }
 }
 
 
@@ -734,7 +761,7 @@ interrupt 15 void TIM_ISR(void)
 ;***********************************************************************
 ; Name:         displaySplash
 ; Description:  Displays Splash screen for the game and gives the user
-;								time to see it.
+;		time to see it.
 ;***********************************************************************/
 void displaySplash(void)
 {
@@ -742,8 +769,8 @@ void displaySplash(void)
 
     // copy the splash screen to the screen
     // note that the screen now needs to be 
-    // output to the monitor using the real
-    // time interrupt service routine (ISR)
+    // output to the monitor using the non-maskable
+    // interrupt service routine (IRQ)
     for (i = 0; i < SCREENW; i++)
     {
         for (j = 0; j < SCREENH; j++)
@@ -751,17 +778,26 @@ void displaySplash(void)
             screen[i*j] = image_splash[i][j];
         }
     }
+
+    while (splash_screen_enable < TIMEFORONESECOND);
 }
 
 /*
 ;***********************************************************************
 ; Name:         displayMenu
 ; Description:  Displays Menu for user and their current selection.
-;								There are 3 menu selections that need to be drawn.
+;		There are 3 menu selections that need to be drawn.
 ;
 ;***********************************************************************/
 void displayMenu(char selection)
 {
+    for (i = 0; i < SCREENW; i++)
+    {
+        for (j = 0; j < SCREENH; j++)
+        {
+            screen[i*j] = character_select[i][j];
+        }
+    }
 }
 
 /*
@@ -873,5 +909,5 @@ void outchar(char ch) {
 
 
 /***********************************************************************
-; ECE 362 - Mini-Project ASM Source File - Spring 2012                         
+; ECE 362 - Mini-Project ASM Source File - Spring 2012
 ;***********************************************************************/
