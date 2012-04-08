@@ -93,7 +93,10 @@ void selectField(void);
 void startMatch(void);
 
 
-// Variable declarations  	   			 		  			 		       
+// Variable declarations  
+// Count horizontal pulses
+int hCnt = 0;
+	   			 		  			 		       
 // GLOBAL SCREEN BUFFER (2304 pixels)
 unsigned char screen[1152];
 
@@ -139,8 +142,20 @@ void  initializations(void) {
 #endif
             
 // Initialize interrupts
-	      
-	      
+   // RBG,PWM,TIM outputs
+   // PTT 0 - PWM
+   // PTT 1 - TIM
+   // PTT 2 - B2
+   // PTT 3 - G2
+   // PTT 4 - R2
+   // PTT 5 - B1
+   // PTT 6 - G1
+   // PTT 7 - R1
+   DDRT = 0xFF; 
+   PTT = 0x00;
+   
+  //enables external xirq	 	      
+  asm andcc #$BF       
 }
 
 	 		  			 		  		
@@ -200,7 +215,492 @@ void main(void) {
   /* please make sure that you never leave main */
 }
 
+/***********************************************************************                       
+; HSYNC_XIRQ interrupt service routine: HSYNC_XISR
+;
+; Make sure you add it to the interrupts vector table (HSYNC_XISR) 
+; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
+;***********************************************************************/
+interrupt 5 void HSYNC_XISR( void)
+{
+ /* movb #$80,PTT -> red
+    movb #$40,PTT -> green
+    movb #$20,PTT -> blue
+    movb #$A0,PTT -> yellow
+    movb #$C0,PTT -> pink
+    movb #$60,PTT -> teal
+    movb #$E0,PTT -> white
+  */
 
+ //enable timer irq
+//TIE = 0x80;
+
+ hCnt++; 
+
+if(hCnt > 28 & hCnt < 515){
+ //first 80 lines of black
+ asm{
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ 
+ //colors on screen
+ 
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$40,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$C0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$60,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$E0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$40,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$C0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$60,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$E0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$40,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$C0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$60,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$E0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$80,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$20,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb #$A0,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ 
+ 
+ //last lines of black
+ movb #$00,PTT
+  
+ }//end of asm
+ 
+}//end of if
+ 
+ //diasble timer irq 		
+ //TIE = 0x00;
+ 
+}//end of xirq
+
+/***********************************************************************                       
+; VSYNC interrupt service routine: VSYNC_ISR
+;
+; Make sure you add it to the interrupts vector table (VECTOR 7 RTI_ISR) 
+; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
+;***********************************************************************/
+interrupt 6 void VSYNC_ISR( void)
+{
+  	hCnt = 0;
+}
 
 
 /***********************************************************************                       
