@@ -64,7 +64,7 @@ imheigh = theimage.size[1]
 
 outfile.write('// This is an automatically generated file.\n')
 outfile.write('// This file is generated for %s.png\n\n' % outfilename[0:-4] )
-outfile.write('unsigned char image_%s[%i][%i] = {\n' % (outfilename[0:-4], imheigh, imwidth ) )
+outfile.write('const unsigned char image_%s[%i][%i] = {\n' % (outfilename[0:-4], imheigh, imwidth ) )
 
 for h in range(0,imheigh):
     for w in range(0,imwidth,2):
