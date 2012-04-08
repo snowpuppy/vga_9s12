@@ -80,25 +80,28 @@
 
 // include images. These are in a separate file
 // because they're dynamically generated.
-#include <ourimages.h>
+#include "ourimages.h"
 
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
 void displaySplash(void);
 void displayMenu(char selection);
-char checkMenuInputs(char joyin);
+void checkMenuInputs(unsigned char joyin);
+void selectCharacter(void);
+void selectField(void);
+void startMatch(void);
 
 
 // Variable declarations  	   			 		  			 		       
 // GLOBAL SCREEN BUFFER (2304 pixels)
-char screen[1152];
+unsigned char screen[1152];
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
-char joy0hor = 0;
-char joy1hor = 0;
-char joy0vert = 0;
-char joy1vert = 0;
+unsigned char joy0hor = 0;
+unsigned char joy1hor = 0;
+unsigned char joy0vert = 0;
+unsigned char joy1vert = 0;
 
 // Menu selection variables
 // button select
@@ -160,12 +163,12 @@ void main(void) {
    // write code here (Insert Code down here because we need an infinite loop.)
 
 	// Display Menu Screen
-	displayMenu();
+	displayMenu(selection);
 	// Check for Menu Selection
 	checkMenuInputs(joy0vert);
 	// Use case statement to branch to appropriate selection.
 	// Don't branch unless the user has triggered the 'select' button.
-	if (select = 1)
+	if (select == 1)
 	{
 			select = 0;
 			switch (selection)
@@ -245,7 +248,7 @@ void displaySplash(void)
     {
         for (j = 0; j < SCREENH; j++)
         {
-            screen[i*j] = image_splash[i,j];
+            screen[i*j] = image_splash[i][j];
         }
     }
 }
@@ -278,7 +281,7 @@ void displayMenu(char selection)
 ;		U		(2.5v + JOYTHRESH) -> 5v
 ;
 ;***********************************************************************/
-char checkMenuInputs(char joyin)
+void checkMenuInputs(unsigned char joyin)
 {
 		// use a static variable so we can reuse the value when we return
 		// to this function. This was used as apposed to a global variable
@@ -322,13 +325,23 @@ char checkMenuInputs(char joyin)
 				}
 				prevleft = 0;
 		}
-		else if ( (PTAD & LEFTPB) == 1)
+		else if ( (PTAD & LEFTPB) == LEFTPB)
 		{
 				prevleft = 1;
 		}
 
 		// update previous value
 		joyvertprev = joyin;
+}
+
+void selectCharacter(void)
+{
+}
+void selectField(void)
+{
+}
+void startMatch(void)
+{
 }
 
 #if USESCIDEBUGGING

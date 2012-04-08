@@ -98,6 +98,6 @@ for h in range(0,imheigh):
     outfile.write('\n')
 
 # add closing brace
-outfile.write('}')
+outfile.write('};')
 
 outfile.close()
