@@ -73,9 +73,14 @@
 // define button layouts/masks
 #define LEFTPB 0x06
 
+
+// define screen resolution
+#define SCREENW 48
+#define SCREENH 48
+
 // include images. These are in a separate file
 // because they're dynamically generated.
-#include <../include/ourimages.h>
+#include <ourimages.h>
 
 // All funtions after main should be initialiezed here
 char inchar(void);

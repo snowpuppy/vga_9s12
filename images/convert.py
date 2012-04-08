@@ -62,8 +62,9 @@ pixels = theimage.load()
 imwidth = theimage.size[0]
 imheigh = theimage.size[1]
 
+# write comments and c-style syntax
 outfile.write('// This is an automatically generated file.\n')
-outfile.write('// This file is generated for %s.png\n\n' % outfilename[0:-4] )
+outfile.write('// This file is generated for %s.png by convert.py\n\n' % outfilename[0:-4] )
 outfile.write('const unsigned char image_%s[%i][%i] = {\n' % (outfilename[0:-4], imheigh, imwidth ) )
 
 for h in range(0,imheigh):
@@ -85,12 +86,12 @@ for h in range(0,imheigh):
         pcolor = ""
         # print the hex value to our output file
         if h < (imheigh - 1):
-            pcolor = "%02x," % sumcolor
+            pcolor = "0x%02x," % sumcolor
         else:
             if w < (imwidth - 2):
-                pcolor = "%02x," % sumcolor
+                pcolor = "0x%02x," % sumcolor
             else:
-                pcolor = "%02x" % sumcolor
+                pcolor = "0x%02x" % sumcolor
 
         outfile.write(pcolor)
 
