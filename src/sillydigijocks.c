@@ -61,6 +61,12 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include <mc9s12c32.h>
 
+// Define bset and bclr macros
+#define bset(x,y) \
+    ( x = x | y )
+#define bclr(x,y) \
+    ( x = x & ~(y) )
+
 // Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
 #define USESCIDEBUGGING 1
 
@@ -77,6 +83,9 @@
 // define screen resolution
 #define SCREENW 48
 #define SCREENH 48
+
+// Define Timing specifications
+#define TIMEFORONESECOND 100
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -109,6 +118,9 @@ char select = 0;
 // joystic selections
 char selection = -1;
 
+// splash screen enable.
+unsigned char *splash_screen_enable = 0;
+
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
 	 	   		
@@ -139,8 +151,19 @@ void  initializations(void) {
 #endif
             
 // Initialize interrupts
-	      
-	      
+
+  // Timer Used To Keep Track of Timing for user Application
+  // Such as displaying the splash screen for a decent period
+  // of time.
+  // enable timer system
+  TSCR1 = 0x80;
+  // set prescale and enable counter reset
+  TSCR2 = 0x0C;
+  // set channel 7 for output compare
+  TIOS = 0x80;
+  // set 1ms interrupts (needs to be changed to 1/60s of a second)
+  TC7 = 1500;
+
 }
 
 	 		  			 		  		
@@ -227,6 +250,11 @@ interrupt 15 void TIM_ISR(void)
   // set TFLG1 bit 
  	TFLG1 = TFLG1 | 0x80; 
 // No need to add anything in the .PRM file, the interrupt number is included above
+
+    if (splash_screen_enable < TIMEFORONESECOND)
+    {
+        splash_screen_enable++;
+    }
 }
 
 
@@ -242,8 +270,8 @@ void displaySplash(void)
 
     // copy the splash screen to the screen
     // note that the screen now needs to be 
-    // output to the monitor using the real
-    // time interrupt service routine (ISR)
+    // output to the monitor using the non-maskable
+    // interrupt service routine (IRQ)
     for (i = 0; i < SCREENW; i++)
     {
         for (j = 0; j < SCREENH; j++)
@@ -251,6 +279,8 @@ void displaySplash(void)
             screen[i*j] = image_splash[i][j];
         }
     }
+
+    while (splash_screen_enable < TIMEFORONESECOND);
 }
 
 /*
@@ -262,6 +292,13 @@ void displaySplash(void)
 ;***********************************************************************/
 void displayMenu(char selection)
 {
+    for (i = 0; i < SCREENW; i++)
+    {
+        for (j = 0; j < SCREENH; j++)
+        {
+            screen[i*j] = character_select[i][j];
+        }
+    }
 }
 
 /*

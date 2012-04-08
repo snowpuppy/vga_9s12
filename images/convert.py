@@ -54,7 +54,7 @@ theimage = Image.open(sys.argv[1])
 
 # open the file to write stuff to
 outfilename = sys.argv[1]
-outfilename = outfilename[0:-3] + 'hex'
+outfilename = outfilename[0:-3] + 'h'
 outfile = open(outfilename,'w')
 
 # get array of pixel values from the image
@@ -64,8 +64,9 @@ imheigh = theimage.size[1]
 
 # write comments and c-style syntax
 outfile.write('// This is an automatically generated file.\n')
-outfile.write('// This file is generated for %s.png by convert.py\n\n' % outfilename[0:-4] )
-outfile.write('const unsigned char image_%s[%i][%i] = {\n' % (outfilename[0:-4], imheigh, imwidth ) )
+outfile.write('// This file is generated for %s.png by convert.py\n\n' % outfilename[0:-2] )
+outfile.write('#ifndef %s_H\n\n' % outfilename[0:-2].upper() )
+outfile.write('const unsigned char image_%s[%i][%i] = {\n' % (outfilename[0:-2], imheigh, imwidth ) )
 
 for h in range(0,imheigh):
     for w in range(0,imwidth,2):
@@ -98,6 +99,7 @@ for h in range(0,imheigh):
     outfile.write('\n')
 
 # add closing brace
-outfile.write('};')
+outfile.write('};\n\n')
+outfile.write('#endif')
 
 outfile.close()
