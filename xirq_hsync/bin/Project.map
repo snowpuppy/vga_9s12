@@ -15,7 +15,7 @@ FILE SECTION
 mc9s12c32.c.o                           Model: SMALL,         Lang: ANSI-C
 Start12.c.o                             Model: SMALL,         Lang: ANSI-C
 rtshc12.c.o (ansisi.lib)                Model: SMALL,         Lang: ANSI-C
-sillydigijocks.c.o                      Model: SMALL,         Lang: ANSI-C
+Copy of sillydigijocks.c.o              Model: SMALL,         Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
@@ -25,7 +25,7 @@ _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
   _Range   pZeroOut       0x900     1163
-  _Copy    *toCopyDownBeg 0xC85B
+  _Copy    *toCopyDownBeg 0xC88B
 } _startupData;
 
 *********************************************************************************************
@@ -35,8 +35,8 @@ Section Name                    Size  Type     From       To       Segment
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
 .rodata                         1152     R     0xC03B     0xC4BA   ROM_C000
-.text                            908     R     0xC4BB     0xC846   ROM_C000
-.copy                             10     R     0xC85B     0xC864   ROM_C000
+.text                            956     R     0xC4BB     0xC876   ROM_C000
+.copy                             10     R     0xC88B     0xC894   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
 .data                              4   R/W      0x900      0x903   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
@@ -266,11 +266,11 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_ffe0                  2     R     0xFFE0     0xFFE1   .absSeg224
 .bss                               7   R/W      0x904      0x90A   RAM
 .common                         1152   R/W      0x90B      0xD8A   RAM
-RUNTIME                           20     R     0xC847     0xC85A   ROM_C000
+RUNTIME                           20     R     0xC877     0xC88A   ROM_C000
 .vectSeg225_vect                   2     R     0xFFFE     0xFFFF   .vectSeg225
 
 Summary of section sizes per section type:
-READ_ONLY (R):         86F (dec:     2159)
+READ_ONLY (R):         89F (dec:     2207)
 READ_WRITE (R/W):      58B (dec:     1419)
 NO_INIT (N/I):         104 (dec:      260)
 
@@ -426,7 +426,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _CANTXDSR7                                 17B       1       1       0   .abs_section_17b
      _CANTXDLR                                  17C       1       1       0   .abs_section_17c
      _CANTXTBPR                                 17D       1       1       0   .abs_section_17d
-     _PTT                                       240       1       1      26   .abs_section_240
+     _PTT                                       240       1       1      74   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       1   .abs_section_242
      _RDRT                                      243       1       1       0   .abs_section_243
@@ -518,22 +518,22 @@ MODULE:                 -- Start12.c.o --
      __SEG_END_SSTACK                           900       0       0       1               
 MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     _CASE_CHECKED_BYTE                        C847      14      20       1   RUNTIME     
+     _CASE_CHECKED_BYTE                        C877      14      20       1   RUNTIME     
 - VARIABLES:
-MODULE:                 -- sillydigijocks.c.o --
+MODULE:                 -- Copy of sillydigijocks.c.o --
 - PROCEDURES:
      initializations                           C4BB      34      52       1   .text       
      main                                      C4EF      6F     111       1   .text       
-     HSYNC_XISR                                C55E     244     580       1   .text       
-     VSYNC_ISR                                 C7A2       B      11       1   .text       
-     RTI_ISR                                   C7AD       4       4       1   .text       
-     TIM_ISR                                   C7B1       4       4       1   .text       
-     displaySplash                             C7B5      33      51       1   .text       
-     displayMenu                               C7E8       1       1       1   .text       
-     checkMenuInputs                           C7E9      5B      91       1   .text       
-     selectCharacter                           C844       1       1       1   .text       
-     selectField                               C845       1       1       1   .text       
-     startMatch                                C846       1       1       1   .text       
+     HSYNC_XISR                                C55E     274     628       1   .text       
+     VSYNC_ISR                                 C7D2       B      11       1   .text       
+     RTI_ISR                                   C7DD       4       4       1   .text       
+     TIM_ISR                                   C7E1       4       4       1   .text       
+     displaySplash                             C7E5      33      51       1   .text       
+     displayMenu                               C818       1       1       1   .text       
+     checkMenuInputs                           C819      5B      91       1   .text       
+     selectCharacter                           C874       1       1       1   .text       
+     selectField                               C875       1       1       1   .text       
+     startMatch                                C876       1       1       1   .text       
 - VARIABLES:
      image_splash                              C03B     480    1152       1   .rodata     
      screen_itterator                           900       2       2       5   .data       
@@ -558,7 +558,7 @@ MODULE STATISTIC
   mc9s12c32.c.o                              260      0      0
   Start12.c.o                                  0     49      0
   rtshc12.c.o (ansisi.lib)                     0     20      0
-  sillydigijocks.c.o                        1163    908   1160
+  Copy of sillydigijocks.c.o                1163    956   1160
   other                                      256     12     10
 
 *********************************************************************************************
@@ -1212,7 +1212,7 @@ OBJECT LIST SORTED BY ADDRESS
      _CANTXDLR                                  17C       1       1       0   .abs_section_17c
      _CANTXTBPR                                 17D       1       1       0   .abs_section_17d
      _CANTXTSR                                  17E       2       2       0   .abs_section_17e
-     _PTT                                       240       1       1      26   .abs_section_240
+     _PTT                                       240       1       1      74   .abs_section_240
      _PTIT                                      241       1       1       0   .abs_section_241
      _DDRT                                      242       1       1       1   .abs_section_242
      _RDRT                                      243       1       1       0   .abs_section_243
@@ -1270,17 +1270,17 @@ OBJECT LIST SORTED BY ADDRESS
      image_splash                              C03B     480    1152       1   .rodata     
      initializations                           C4BB      34      52       1   .text       
      main                                      C4EF      6F     111       1   .text       
-     HSYNC_XISR                                C55E     244     580       1   .text       
-     VSYNC_ISR                                 C7A2       B      11       1   .text       
-     RTI_ISR                                   C7AD       4       4       1   .text       
-     TIM_ISR                                   C7B1       4       4       1   .text       
-     displaySplash                             C7B5      33      51       1   .text       
-     displayMenu                               C7E8       1       1       1   .text       
-     checkMenuInputs                           C7E9      5B      91       1   .text       
-     selectCharacter                           C844       1       1       1   .text       
-     selectField                               C845       1       1       1   .text       
-     startMatch                                C846       1       1       1   .text       
-     _CASE_CHECKED_BYTE                        C847      14      20       1   RUNTIME     
+     HSYNC_XISR                                C55E     274     628       1   .text       
+     VSYNC_ISR                                 C7D2       B      11       1   .text       
+     RTI_ISR                                   C7DD       4       4       1   .text       
+     TIM_ISR                                   C7E1       4       4       1   .text       
+     displaySplash                             C7E5      33      51       1   .text       
+     displayMenu                               C818       1       1       1   .text       
+     checkMenuInputs                           C819      5B      91       1   .text       
+     selectCharacter                           C874       1       1       1   .text       
+     selectField                               C875       1       1       1   .text       
+     startMatch                                C876       1       1       1   .text       
+     _CASE_CHECKED_BYTE                        C877      14      20       1   RUNTIME     
      _Vector_15                                FFE0       2       2       0   .abs_section_ffe0
      _Vector_7                                 FFF0       2       2       0   .abs_section_fff0
      _Vector_6                                 FFF2       2       2       0   .abs_section_fff2
@@ -1297,30 +1297,30 @@ rtshc12.c.o (ansisi.lib):
   _LMODS _ILSEXT _COPY _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED 
   _CASE_SEARCH _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL 
   _FPCMP 
-sillydigijocks.c.o:
+Copy of sillydigijocks.c.o:
   inchar outchar 
 NOT USED VARIABLES
 rtshc12.c.o (ansisi.lib):
   _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
-sillydigijocks.c.o:
+Copy of sillydigijocks.c.o:
   joy0hor joy1hor joy1vert 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC85B ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xC88B ---- SIZE       4 ---
 Filling bytes inserted
  00040900
-------- ROM-ADDRESS: 0xC85F ---- RAM-ADDRESS: 0x900 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC88F ---- RAM-ADDRESS: 0x900 ---- SIZE       2 ---
 Name of initialized Object : screen_itterator
  090B
-------- ROM-ADDRESS: 0xC861 ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xC891 ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
 Name of initialized Object : selection
  FF
-------- ROM-ADDRESS: 0xC862 ---- RAM-ADDRESS: 0x903 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xC892 ---- RAM-ADDRESS: 0x903 ---- SIZE       1 ---
 Name of initialized Object : joyvertprev.1
  19
-------- ROM-ADDRESS: 0xC863 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC893 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
@@ -1399,5 +1399,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 8
-Total size of all blocks to be downloaded: 2159
+Total size of all blocks to be downloaded: 2207
 

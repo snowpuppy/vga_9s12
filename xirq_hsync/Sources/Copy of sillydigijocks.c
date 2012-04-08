@@ -307,289 +307,314 @@ if(hCnt > 39 & hCnt < 520){
  
  //colors on screen
  
+ 
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- bclr #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bset #$01,PTT
+ bset $01,PTT
  nop
  nop
  nop
  nop
  nop
  movb 1,x+,PTT
+ bclr $01,PTT
  nop
  nop
  nop
  nop
  nop
- bclr #$01,PTT
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ bclr $01,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ bset $01,PTT
  nop
  nop
  nop
