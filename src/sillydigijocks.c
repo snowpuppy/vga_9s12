@@ -73,6 +73,10 @@
 // define button layouts/masks
 #define LEFTPB 0x06
 
+// include images. These are in a separate file
+// because they're dynamically generated.
+#include <../include/ourimages.h>
+
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
@@ -150,9 +154,6 @@ void main(void) {
   for(;;) {
    // write code here (Insert Code down here because we need an infinite loop.)
 
-	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
-	 // The watchdog was disabled in the initialization code.
-
 	// Display Menu Screen
 	displayMenu();
 	// Check for Menu Selection
@@ -184,6 +185,8 @@ void main(void) {
 			}
 	}
     
+	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
+	 // The watchdog was disabled in the initialization code.
     _FEED_COP(); /* feeds the dog */
   } /* loop forever */
   /* please make sure that you never leave main */
@@ -227,6 +230,19 @@ interrupt 15 void TIM_ISR(void)
 ;***********************************************************************/
 void displaySplash(void)
 {
+    int i,j;
+
+    // copy the splash screen to the screen
+    // note that the screen now needs to be 
+    // output to the monitor using the real
+    // time interrupt service routine (ISR)
+    for (i = 0; i < SCREENW; i++)
+    {
+        for (j = 0; j < SCREENH; j++)
+        {
+            screen[i*j] = image_splash[i,j];
+        }
+    }
 }
 
 /*
@@ -244,13 +260,14 @@ void displayMenu(char selection)
 ;***********************************************************************
 ; Name:         checkMenuInputs
 ; Description:  Check if the Joysticks have transitioned from below
-;								the specified threshold to above it for both the up
-;								and down directions. Essentially, we want to check
-;								a transition from the netural area in the middle to
-;								the top or bottom (Up/Down). Note that we pass by
-;								value to this function instead of using the global
-;								variable because it could change in the middle of
-;								this function call.
+;				the specified threshold to above it for both the up
+;				and down directions. Essentially, we want to check
+;				a transition from the netural area in the middle to
+;			    the top or bottom (Up/Down). Note that we pass by
+;				value to this function instead of using the global
+;				variable because it could change in the middle of
+;				this function call.
+;
 ;		D		0v -> (2.5v - JOYTHRESH)
 ;		M		(2.5v - JOYTHRESH) -> (2.5 + JOYTHRESH)
 ;		U		(2.5v + JOYTHRESH) -> 5v
