@@ -14,7 +14,8 @@ FILE SECTION
 ---------------------------------------------------------------------------------------------
 mc9s12c32.c.o                           Model: SMALL,         Lang: ANSI-C
 Start12.c.o                             Model: SMALL,         Lang: ANSI-C
-xirq_hsync.c.o                          Model: SMALL,         Lang: ANSI-C
+rtshc12.c.o (ansisi.lib)                Model: SMALL,         Lang: ANSI-C
+sillydigijocks.c.o                      Model: SMALL,         Lang: ANSI-C
 
 *********************************************************************************************
 STARTUP SECTION
@@ -23,8 +24,8 @@ Entry point: 0xC029 (_Startup)
 _startupData is allocated at 0xC031 and uses 6 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x900     2
-  _Copy    *toCopyDownBeg 0xC2BC
+  _Range   pZeroOut       0x900     1163
+  _Copy    *toCopyDownBeg 0xC85B
 } _startupData;
 
 *********************************************************************************************
@@ -33,9 +34,11 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                             49     R     0xC000     0xC030   ROM_C000
 .startData                        10     R     0xC031     0xC03A   ROM_C000
-.text                            641     R     0xC03B     0xC2BB   ROM_C000
-.copy                              2     R     0xC2BC     0xC2BD   ROM_C000
+.rodata                         1152     R     0xC03B     0xC4BA   ROM_C000
+.text                            908     R     0xC4BB     0xC846   ROM_C000
+.copy                             10     R     0xC85B     0xC864   ROM_C000
 .stack                           256   R/W      0x800      0x8FF   RAM
+.data                              4   R/W      0x900      0x903   RAM
 .abs_section_8                     1   N/I        0x8        0x8   .absSeg0
 .abs_section_9                     1   N/I        0x9        0x9   .absSeg1
 .abs_section_a                     1   N/I        0xA        0xA   .absSeg2
@@ -257,24 +260,24 @@ Section Name                    Size  Type     From       To       Segment
 .abs_section_fc                    2   N/I       0xFC       0xFD   .absSeg218
 .abs_section_16e                   2   N/I      0x16E      0x16F   .absSeg219
 .abs_section_17e                   2   N/I      0x17E      0x17F   .absSeg220
-.bss                               2   R/W      0x900      0x901   RAM
-.vectSeg221_vect                   2     R     0xFFEC     0xFFED   .vectSeg221
-.vectSeg222_vect                   6     R     0xFFF0     0xFFF5   .vectSeg222
-.vectSeg223_vect                   2     R     0xFFFE     0xFFFF   .vectSeg223
+.abs_section_fff4                  2     R     0xFFF4     0xFFF5   .absSeg221
+.abs_section_fff2                  2     R     0xFFF2     0xFFF3   .absSeg222
+.abs_section_fff0                  2     R     0xFFF0     0xFFF1   .absSeg223
+.abs_section_ffe0                  2     R     0xFFE0     0xFFE1   .absSeg224
+.bss                               7   R/W      0x904      0x90A   RAM
+.common                         1152   R/W      0x90B      0xD8A   RAM
+RUNTIME                           20     R     0xC847     0xC85A   ROM_C000
+.vectSeg225_vect                   2     R     0xFFFE     0xFFFF   .vectSeg225
 
 Summary of section sizes per section type:
-READ_ONLY (R):         2C8 (dec:      712)
-READ_WRITE (R/W):      102 (dec:      258)
+READ_ONLY (R):         86F (dec:     2159)
+READ_WRITE (R/W):      58B (dec:     1419)
 NO_INIT (N/I):         104 (dec:      260)
 
 *********************************************************************************************
 VECTOR-ALLOCATION SECTION
     Address     InitValue   InitFunction
 ---------------------------------------------------------------------------------------------
-     0xFFEC        0xC2B8   TIM_ISR
-     0xFFF0        0xC2B7   RTI_ISR
-     0xFFF2        0xC2B1   VSYNC_ISR
-     0xFFF4        0xC079   HSYNC_XISR
      0xFFFE        0xC029   _Startup
 
 *********************************************************************************************
@@ -312,7 +315,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _PPAGE                                      30       1       1       0   .abs_section_30
      _SYNR                                       34       1       1       1   .abs_section_34
      _REFDV                                      35       1       1       1   .abs_section_35
-     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGFLG                                     37       1       1       2   .abs_section_37
      _CRGINT                                     38       1       1       0   .abs_section_38
      _CLKSEL                                     39       1       1       2   .abs_section_39
      _PLLCTL                                     3A       1       1       1   .abs_section_3a
@@ -460,7 +463,7 @@ MODULE:                 -- mc9s12c32.c.o --
      _PPSJ                                      26D       1       1       0   .abs_section_26d
      _PIEJ                                      26E       1       1       0   .abs_section_26e
      _PIFJ                                      26F       1       1       0   .abs_section_26f
-     _PTAD                                      270       1       1       0   .abs_section_270
+     _PTAD                                      270       1       1       2   .abs_section_270
      _PTIAD                                     271       1       1       0   .abs_section_271
      _DDRAD                                     272       1       1       0   .abs_section_272
      _RDRAD                                     273       1       1       0   .abs_section_273
@@ -513,16 +516,40 @@ MODULE:                 -- Start12.c.o --
      _startupData                              C031       6       6       3   .startData  
 - LABELS:
      __SEG_END_SSTACK                           900       0       0       1               
-MODULE:                 -- xirq_hsync.c.o --
+MODULE:                 -- rtshc12.c.o (ansisi.lib) --
 - PROCEDURES:
-     initializations                           C03B      36      54       1   .text       
-     main                                      C071       8       8       1   .text       
-     HSYNC_XISR                                C079     238     568       0   .text       
-     VSYNC_ISR                                 C2B1       6       6       0   .text       
-     RTI_ISR                                   C2B7       1       1       0   .text       
-     TIM_ISR                                   C2B8       4       4       0   .text       
+     _CASE_CHECKED_BYTE                        C847      14      20       1   RUNTIME     
 - VARIABLES:
-     hCnt                                       900       2       2       3   .bss        
+MODULE:                 -- sillydigijocks.c.o --
+- PROCEDURES:
+     initializations                           C4BB      34      52       1   .text       
+     main                                      C4EF      6F     111       1   .text       
+     HSYNC_XISR                                C55E     244     580       1   .text       
+     VSYNC_ISR                                 C7A2       B      11       1   .text       
+     RTI_ISR                                   C7AD       4       4       1   .text       
+     TIM_ISR                                   C7B1       4       4       1   .text       
+     displaySplash                             C7B5      33      51       1   .text       
+     displayMenu                               C7E8       1       1       1   .text       
+     checkMenuInputs                           C7E9      5B      91       1   .text       
+     selectCharacter                           C844       1       1       1   .text       
+     selectField                               C845       1       1       1   .text       
+     startMatch                                C846       1       1       1   .text       
+- VARIABLES:
+     image_splash                              C03B     480    1152       1   .rodata     
+     screen_itterator                           900       2       2       5   .data       
+     selection                                  902       1       1       8   .data       
+     joyvertprev.1                              903       1       1       3   .data       
+     hCnt                                       904       2       2       4   .bss        
+     vSyncFlag                                  906       1       1       3   .bss        
+     line_hold_count                            907       1       1       3   .bss        
+     joy0vert                                   908       1       1       1   .bss        
+     select                                     909       1       1       3   .bss        
+     prevleft.2                                 90A       1       1       3   .bss        
+     _Vector_5                                 FFF4       2       2       0   .abs_section_fff4
+     _Vector_6                                 FFF2       2       2       0   .abs_section_fff2
+     _Vector_7                                 FFF0       2       2       0   .abs_section_fff0
+     _Vector_15                                FFE0       2       2       0   .abs_section_ffe0
+     screen                                     90B     480    1152       4   .common     
 
 *********************************************************************************************
 MODULE STATISTIC
@@ -530,18 +557,24 @@ MODULE STATISTIC
 ---------------------------------------------------------------------------------------------
   mc9s12c32.c.o                              260      0      0
   Start12.c.o                                  0     49      0
-  xirq_hsync.c.o                               2    641      0
-  other                                      256     20      2
+  rtshc12.c.o (ansisi.lib)                     0     20      0
+  sillydigijocks.c.o                        1163    908   1160
+  other                                      256     12     10
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  initializations main HSYNC_XISR VSYNC_ISR RTI_ISR TIM_ISR 
+  initializations main HSYNC_XISR VSYNC_ISR RTI_ISR TIM_ISR displaySplash 
+  displayMenu checkMenuInputs selectCharacter selectField startMatch 
+SECTION: ".data"
+  screen_itterator selection joyvertprev.1 
 SECTION: ".bss"
-  hCnt 
+  hCnt vSyncFlag line_hold_count joy0vert select prevleft.2 
 SECTION: ".init"
   Init _Startup 
+SECTION: ".rodata"
+  image_splash 
 SECTION: ".abs_section_8"
   _PORTE 
 SECTION: ".abs_section_9"
@@ -984,6 +1017,18 @@ SECTION: ".abs_section_16e"
   _CANRXTSR 
 SECTION: ".abs_section_17e"
   _CANTXTSR 
+SECTION: ".common"
+  screen 
+SECTION: "RUNTIME"
+  _CASE_CHECKED_BYTE 
+SECTION: ".abs_section_fff4"
+  _Vector_5 
+SECTION: ".abs_section_fff2"
+  _Vector_6 
+SECTION: ".abs_section_fff0"
+  _Vector_7 
+SECTION: ".abs_section_ffe0"
+  _Vector_15 
 
 *********************************************************************************************
 OBJECT LIST SORTED BY ADDRESS
@@ -1024,7 +1069,7 @@ OBJECT LIST SORTED BY ADDRESS
      _PPAGE                                      30       1       1       0   .abs_section_30
      _SYNR                                       34       1       1       1   .abs_section_34
      _REFDV                                      35       1       1       1   .abs_section_35
-     _CRGFLG                                     37       1       1       1   .abs_section_37
+     _CRGFLG                                     37       1       1       2   .abs_section_37
      _CRGINT                                     38       1       1       0   .abs_section_38
      _CLKSEL                                     39       1       1       2   .abs_section_39
      _PLLCTL                                     3A       1       1       1   .abs_section_3a
@@ -1204,50 +1249,103 @@ OBJECT LIST SORTED BY ADDRESS
      _PPSJ                                      26D       1       1       0   .abs_section_26d
      _PIEJ                                      26E       1       1       0   .abs_section_26e
      _PIFJ                                      26F       1       1       0   .abs_section_26f
-     _PTAD                                      270       1       1       0   .abs_section_270
+     _PTAD                                      270       1       1       2   .abs_section_270
      _PTIAD                                     271       1       1       0   .abs_section_271
      _DDRAD                                     272       1       1       0   .abs_section_272
      _RDRAD                                     273       1       1       0   .abs_section_273
      _PERAD                                     274       1       1       0   .abs_section_274
      _PPSAD                                     275       1       1       0   .abs_section_275
-     hCnt                                       900       2       2       3   .bss        
+     screen_itterator                           900       2       2       5   .data       
+     selection                                  902       1       1       8   .data       
+     joyvertprev.1                              903       1       1       3   .data       
+     hCnt                                       904       2       2       4   .bss        
+     vSyncFlag                                  906       1       1       3   .bss        
+     line_hold_count                            907       1       1       3   .bss        
+     joy0vert                                   908       1       1       1   .bss        
+     select                                     909       1       1       3   .bss        
+     prevleft.2                                 90A       1       1       3   .bss        
+     screen                                     90B     480    1152       4   .common     
      Init                                      C000      29      41       1   .init       
      _Startup                                  C029       8       8       0   .init       
-     initializations                           C03B      36      54       1   .text       
-     main                                      C071       8       8       1   .text       
-     HSYNC_XISR                                C079     238     568       0   .text       
-     VSYNC_ISR                                 C2B1       6       6       0   .text       
-     RTI_ISR                                   C2B7       1       1       0   .text       
-     TIM_ISR                                   C2B8       4       4       0   .text       
+     image_splash                              C03B     480    1152       1   .rodata     
+     initializations                           C4BB      34      52       1   .text       
+     main                                      C4EF      6F     111       1   .text       
+     HSYNC_XISR                                C55E     244     580       1   .text       
+     VSYNC_ISR                                 C7A2       B      11       1   .text       
+     RTI_ISR                                   C7AD       4       4       1   .text       
+     TIM_ISR                                   C7B1       4       4       1   .text       
+     displaySplash                             C7B5      33      51       1   .text       
+     displayMenu                               C7E8       1       1       1   .text       
+     checkMenuInputs                           C7E9      5B      91       1   .text       
+     selectCharacter                           C844       1       1       1   .text       
+     selectField                               C845       1       1       1   .text       
+     startMatch                                C846       1       1       1   .text       
+     _CASE_CHECKED_BYTE                        C847      14      20       1   RUNTIME     
+     _Vector_15                                FFE0       2       2       0   .abs_section_ffe0
+     _Vector_7                                 FFF0       2       2       0   .abs_section_fff0
+     _Vector_6                                 FFF2       2       2       0   .abs_section_fff2
+     _Vector_5                                 FFF4       2       2       0   .abs_section_fff4
 
 *********************************************************************************************
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
-xirq_hsync.c.o:
+rtshc12.c.o (ansisi.lib):
+  _BSHL _BSHRS _BSHRU _BDIVMODU _BDIVMODS _ISHL _ISHRU _ISHRS _LSHL _LSHRU 
+  _LSHRS _LADD _LSUB _LAND _LOR _LXOR _LCMP _LCMP_P _LCMP_PP _LNEG _LCOM _LINC 
+  _LDEC _LMUL _LMULU16x32 _LMULS16x32 _lDivMod _LDIVU _NEG_P _LDIVS _LMODU 
+  _LMODS _ILSEXT _COPY _CASE_DIRECT _CASE_DIRECT_BYTE _CASE_CHECKED 
+  _CASE_SEARCH _CASE_SEARCH_BYTE _CASE_SEARCH_8 _CASE_SEARCH_8_BYTE _FCALL 
+  _FPCMP 
+sillydigijocks.c.o:
   inchar outchar 
 NOT USED VARIABLES
-xirq_hsync.c.o:
-  CR 
+rtshc12.c.o (ansisi.lib):
+  _PowOfTwo_8 _PowOfTwo_16 _PowOfTwo_32 errno 
+sillydigijocks.c.o:
+  joy0hor joy1hor joy1vert 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xC2BC ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xC85B ---- SIZE       4 ---
+Filling bytes inserted
+ 00040900
+------- ROM-ADDRESS: 0xC85F ---- RAM-ADDRESS: 0x900 ---- SIZE       2 ---
+Name of initialized Object : screen_itterator
+ 090B
+------- ROM-ADDRESS: 0xC861 ---- RAM-ADDRESS: 0x902 ---- SIZE       1 ---
+Name of initialized Object : selection
+ FF
+------- ROM-ADDRESS: 0xC862 ---- RAM-ADDRESS: 0x903 ---- SIZE       1 ---
+Name of initialized Object : joyvertprev.1
+ 19
+------- ROM-ADDRESS: 0xC863 ---- SIZE       2 ---
 Filling bytes inserted
  0000
 
 *********************************************************************************************
 OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
+screen_itterator          USES screen 
 Init                      USES _startupData 
 _Startup                  USES __SEG_END_SSTACK Init main 
 initializations           USES _CLKSEL _PLLCTL _SYNR _REFDV _CRGFLG _COPCTL 
                                 _SCIBD _SCICR1 _SCICR2 _DDRAB _PORTAB _DDRT _PTT 
-main                      USES initializations 
-HSYNC_XISR                USES hCnt _PTT 
-VSYNC_ISR                 USES hCnt 
+main                      USES initializations vSyncFlag hCnt displaySplash 
+                                selection displayMenu joy0vert checkMenuInputs select 
+                                _CASE_CHECKED_BYTE selectCharacter selectField startMatch 
+HSYNC_XISR                USES hCnt screen_itterator _PTT line_hold_count 
+                                screen 
+VSYNC_ISR                 USES vSyncFlag hCnt 
+RTI_ISR                   USES _CRGFLG 
 TIM_ISR                   USES _TFLG1 
+displaySplash             USES image_splash screen 
+checkMenuInputs           USES joyvertprev.1 selection _PTAD prevleft.2 select 
+_Vector_15                USES TIM_ISR 
+_Vector_7                 USES RTI_ISR 
+_Vector_6                 USES VSYNC_ISR 
+_Vector_5                 USES HSYNC_XISR 
 
 *********************************************************************************************
 DEPENDENCY TREE
@@ -1257,6 +1355,20 @@ DEPENDENCY TREE
  +- main                
  |  | 
  |  +- initializations     
+ |  |    
+ |  +- displaySplash       
+ |  |    
+ |  +- displayMenu         
+ |  |    
+ |  +- checkMenuInputs     
+ |  |    
+ |  +- _CASE_CHECKED_BYTE  
+ |  |    
+ |  +- selectCharacter     
+ |  |    
+ |  +- selectField         
+ |  |    
+ |  +- startMatch          
  |       
  +- _Startup            
     | 
@@ -1264,18 +1376,28 @@ DEPENDENCY TREE
     |    
     +- main                 (see above)
        
- HSYNC_XISR          
-   
- VSYNC_ISR           
-   
- TIM_ISR             
-   
+ _Vector_5           
+ | 
+ +- HSYNC_XISR          
+      
+ _Vector_6           
+ | 
+ +- VSYNC_ISR           
+      
+ _Vector_7           
+ | 
+ +- RTI_ISR             
+      
+ _Vector_15          
+ | 
+ +- TIM_ISR             
+      
 *********************************************************************************************
 STATISTIC SECTION
 ---------------------------------------------------------------------------------------------
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 7
-Total size of all blocks to be downloaded: 712
+Number of blocks to be downloaded: 8
+Total size of all blocks to be downloaded: 2159
 

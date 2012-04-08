@@ -45,11 +45,11 @@
 ;
 ;***********************************************************************
 ;
-;  Date code started: < ? >
+;  Date code started: 3/23/2012
 ;
 ;  Update history (add an entry every time a significant change is made):
 ;
-;  Date: < ? >  Name: < ? >   Update: < ? >
+;  Date: 3/31/2012  Name: Thor Smith   Update: Added Menu Logic. Started gameplay logic.
 ;
 ;  Date: < ? >  Name: < ? >   Update: < ? >
 ;
@@ -61,29 +61,72 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include <mc9s12c32.h>
 
+// Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
+#define USESCIDEBUGGING 1
+
+// Define threshold voltages
+#define JOYTHRESH 15
+#define BASETHRESH 5
+#define THRESHUP ( 25 + JOYTHRESH)
+#define THRESHDO ( 25 - JOYTHRESH)
+
+// define button layouts/masks
+#define LEFTPB 0x06
+
+
+// define screen resolution
+#define SCREENW 48
+#define SCREENH 48
+
+// include images. These are in a separate file
+// because they're dynamically generated.
+#include "ourimages.h"
+
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
+void displaySplash(void);
+void displayMenu(char selection);
+void checkMenuInputs(unsigned char joyin);
+void selectCharacter(void);
+void selectField(void);
+void startMatch(void);
 
 
-// Variable declarations  	   			 		  			 		       
-int hCnt = 0;
+// Variable declarations  
+// Count horizontal pulses
+unsigned int hCnt = 0;
 
+//Vsync IRQ flag (used once at start to position screen)
+unsigned char vSyncFlag = 0;
+
+// count vertical lines across the screen to verify that we have the
+// right number of pixel height
+unsigned char line_hold_count = 0;
+	   			 		  			 		       
+// GLOBAL SCREEN BUFFER (2304 pixels)
+unsigned char screen[1152];
+unsigned char *screen_itterator = screen;
+
+// GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
+unsigned char joy0hor = 0;
+unsigned char joy1hor = 0;
+unsigned char joy0vert = 0;
+unsigned char joy1vert = 0;
+
+// Menu selection variables
+// button select
+char select = 0;
+// joystic selections
+char selection = -1;
 
 // ASCII character definitions
-int CR = 0x0D;//Return   
-
+//int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
 	 	   		
 /***********************************************************************
 Initializations
 ***********************************************************************/
 void  initializations(void) {
-
-#define bset(x,y) \
-x = x | y
-
-#define bclr(x,y) \
-x = x & (0xFF-y)
 
 //; Set the PLL speed (bus clock = 24 MHz)
   CLKSEL = CLKSEL & 0x80; //; disengage PLL from system
@@ -96,6 +139,7 @@ x = x & (0xFF-y)
 // Disable watchdog timer (COPCTL register)
   COPCTL = 0x40   ; //COP off; RTI and COP stopped in BDM-mode
 
+#if USESCIDEBUGGING
 // Initialize asynchronous serial port (SCI) for 9600 baud, no interrupts
   SCIBDH =  0x00; //set baud rate to 9600
   SCIBDL =  0x9C; //24,000,000 / 16 / 156 = 9600 (approx)  dec=26
@@ -103,6 +147,7 @@ x = x & (0xFF-y)
   SCICR2 =  0x0C; //initialize SCI for program-driven operation
   DDRB   =  0x10; //set PB4 for output mode
   PORTB  =  0x10; //assert DTR pin on COM port
+#endif
             
 // Initialize interrupts
    // RBG,PWM,TIM outputs
@@ -115,25 +160,8 @@ x = x & (0xFF-y)
    // PTT 6 - G1
    // PTT 7 - R1
    DDRT = 0xFF; 
-   PTT = 0x00;	      
-   
-/*; Initialize TIM Ch 1 (TC1) for periodic interrupts every 10.0 ms
-;    Enable timer subsystem                         
-;    Set channel 7 for output compare
-;    Set appropriate pre-scale factor and enable counter reset after OC7
-;    Set up channel 7 to generate 10 ms interrupt rate
-;    Initially disable TIM Ch 7 interrupts	 	   			 		  			 		  		
-*/	 	   			 		  			 		  		
-//;  < add TIM initialization code here >
-/*  TSCR1 = 0x80; 
-  TIOS = 0x80;
-  TSCR2 = 0x0C;        
-  TC1 = 0x3A98;
-  TIE = 0x00;   
-  */ 
-   
-   asm andcc #$BF  //enables external xirq
-	      
+   PTT = 0x00;
+        
 }
 
 	 		  			 		  		
@@ -144,30 +172,59 @@ void main(void) {
   DisableInterrupts;
 	initializations(); 		  			 		  		
 	EnableInterrupts;
+	
+	//enables external xirq after vSync IRQ
+	vSyncFlag = 0;
+	while((vSyncFlag != 1) & (hCnt == 0)) {}	      
+  asm andcc #$BF 
 
 //////////////////////////////////////////////////////////////
 //;  START OF CODE FOR Spring 2012 MINI-PROJECT
 //////////////////////////////////////////////////////////////
-  //asm ldx //...
-
-  while(1){
-  	
-  	
-  	
-  }
   
-  
-  
+	// Load/Display Spalsh Screen
+	displaySplash();
 
   for(;;) {
-   // No need to write any code here
+   // write code here (Insert Code down here because we need an infinite loop.)
+
+	// Display Menu Screen
+	displayMenu(selection);
+	// Check for Menu Selection
+	checkMenuInputs(joy0vert);
+	// Use case statement to branch to appropriate selection.
+	// Don't branch unless the user has triggered the 'select' button.
+	if (select == 1)
+	{
+			select = 0;
+			switch (selection)
+			{
+			// Sub Function
+			// Menu:
+			case 1:
+					//	Select Character
+					selectCharacter();
+					break;
+			case 2:
+					//	Select Field
+					selectField();
+					break;
+			case 3:
+					//	Start Match
+					startMatch();
+					break;
+			// the default case is '-1' if nothing has been selected
+			default:
+					break;
+			}
+	}
     
+	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
+	 // The watchdog was disabled in the initialization code.
     _FEED_COP(); /* feeds the dog */
   } /* loop forever */
   /* please make sure that you never leave main */
 }
-
-
 
 /***********************************************************************                       
 ; HSYNC_XIRQ interrupt service routine: HSYNC_XISR
@@ -175,7 +232,7 @@ void main(void) {
 ; Make sure you add it to the interrupts vector table (HSYNC_XISR) 
 ; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
 ;***********************************************************************/
-void interrupt HSYNC_XISR( void)
+interrupt 5 void HSYNC_XISR( void)
 {
  /* movb #$80,PTT -> red
     movb #$40,PTT -> green
@@ -191,12 +248,15 @@ void interrupt HSYNC_XISR( void)
 
  hCnt++; 
 
-if(hCnt > 28 & hCnt < 515){
+  // We need the difference between hCnt lower limit
+  // and hCnt upper limit plus 1 to be 480. This is
+  // becuase we need to display 480 horizontal lines.
+  // If this is not so, then the display will scroll.
+if(hCnt > 39 & hCnt < 520){
  //first 80 lines of black
  asm{
-  nop
- nop
- nop
+ ldx screen_itterator
+ 
  nop
  nop
  nop
@@ -247,7 +307,7 @@ if(hCnt > 28 & hCnt < 515){
  
  //colors on screen
  
- movb #$80,PTT
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -258,12 +318,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
- movb #$40,PTT
  nop
  nop
  nop
@@ -273,13 +333,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
  nop
- movb #$20,PTT
  nop
  nop
  nop
@@ -288,6 +348,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -295,7 +356,6 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$A0,PTT
  nop
  nop
  nop
@@ -303,6 +363,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -311,13 +372,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$C0,PTT
  nop
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -327,12 +388,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$60,PTT
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -343,11 +404,11 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$E0,PTT
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -359,10 +420,10 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$80,PTT
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -375,9 +436,9 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$40,PTT
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -391,8 +452,8 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$20,PTT
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -407,7 +468,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$A0,PTT
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -422,8 +483,8 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
- movb #$C0,PTT
  nop
  nop
  nop
@@ -437,9 +498,9 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
- movb #$60,PTT
  nop
  nop
  nop
@@ -452,10 +513,10 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
- movb #$E0,PTT
  nop
  nop
  nop
@@ -467,11 +528,11 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
- movb #$80,PTT
  nop
  nop
  nop
@@ -482,12 +543,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
- movb #$40,PTT
  nop
  nop
  nop
@@ -497,13 +558,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
  nop
- movb #$20,PTT
  nop
  nop
  nop
@@ -512,6 +573,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -519,7 +581,6 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$A0,PTT
  nop
  nop
  nop
@@ -527,6 +588,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -535,13 +597,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$C0,PTT
  nop
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -551,12 +613,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$60,PTT
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -567,11 +629,11 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$E0,PTT
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -583,40 +645,10 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$80,PTT
  nop
  nop
  nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb #$20,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb #$A0,PTT
- nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -638,13 +670,25 @@ if(hCnt > 28 & hCnt < 515){
   
  }//end of asm
  
-}//end of if
+
+ 
+ line_hold_count++;
+ if (line_hold_count >= 10)
+ {
+ 	line_hold_count = 0;
+ 	screen_itterator += 24;
+ }
+ if(screen_itterator >= screen+1152)
+ {
+   screen_itterator = screen;
+ }
+ 
+ }//end of if
  
  //diasble timer irq 		
  //TIE = 0x00;
  
 }//end of xirq
-
 
 /***********************************************************************                       
 ; VSYNC interrupt service routine: VSYNC_ISR
@@ -652,15 +696,12 @@ if(hCnt > 28 & hCnt < 515){
 ; Make sure you add it to the interrupts vector table (VECTOR 7 RTI_ISR) 
 ; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
 ;***********************************************************************/
-void interrupt VSYNC_ISR( void)
+interrupt 6 void VSYNC_ISR( void)
 {
-  	// set CRGFLG bit 
-  	//CRGFLG = CRGFLG | 0x80;
-
+    vSyncFlag = 1;
   	hCnt = 0;
-  	 
-
 }
+
 
 /***********************************************************************                       
 ; RTI interrupt service routine: RTI_ISR
@@ -668,12 +709,11 @@ void interrupt VSYNC_ISR( void)
 ; Make sure you add it to the interrupts vector table (VECTOR 7 RTI_ISR) 
 ; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
 ;***********************************************************************/
-void interrupt RTI_ISR( void)
+interrupt 7 void RTI_ISR(void)
 {
   	// set CRGFLG bit 
-  	//CRGFLG = CRGFLG | 0x80;
-  	 
-
+  	CRGFLG = CRGFLG | 0x80; 
+// No need to add anything in the .PRM file, the interrupt number is included above
 }
 
 /***********************************************************************                       
@@ -682,14 +722,129 @@ void interrupt RTI_ISR( void)
 ; Make sure you add it to the interrupts vector table (VECTOR 15 TIM_ISR) 
 ; under: Project Settings/Linker Files/Project.PRM 					 		  			 		  		
 ;***********************************************************************/
-void interrupt TIM_ISR( void)
+interrupt 15 void TIM_ISR(void)
 {
   // set TFLG1 bit 
  	TFLG1 = TFLG1 | 0x80; 
-
+// No need to add anything in the .PRM file, the interrupt number is included above
 }
 
 
+/*
+;***********************************************************************
+; Name:         displaySplash
+; Description:  Displays Splash screen for the game and gives the user
+;								time to see it.
+;***********************************************************************/
+void displaySplash(void)
+{
+    int r,l;
+
+    // copy the splash screen to the screen
+    // note that the screen now needs to be 
+    // output to the monitor using the real
+    // time interrupt service routine (ISR)
+    for (r = 0; r < SCREENH; r++)
+    {
+        for (l = 0; l < SCREENW/2; l++)
+        {
+            screen[r*(SCREENW/2) + l] = image_splash[r][l];
+        }
+    }
+}
+
+/*
+;***********************************************************************
+; Name:         displayMenu
+; Description:  Displays Menu for user and their current selection.
+;								There are 3 menu selections that need to be drawn.
+;
+;***********************************************************************/
+void displayMenu(char selection)
+{
+}
+
+/*
+;***********************************************************************
+; Name:         checkMenuInputs
+; Description:  Check if the Joysticks have transitioned from below
+;				the specified threshold to above it for both the up
+;				and down directions. Essentially, we want to check
+;				a transition from the netural area in the middle to
+;			    the top or bottom (Up/Down). Note that we pass by
+;				value to this function instead of using the global
+;				variable because it could change in the middle of
+;				this function call.
+;
+;		D		0v -> (2.5v - JOYTHRESH)
+;		M		(2.5v - JOYTHRESH) -> (2.5 + JOYTHRESH)
+;		U		(2.5v + JOYTHRESH) -> 5v
+;
+;***********************************************************************/
+void checkMenuInputs(unsigned char joyin)
+{
+		// use a static variable so we can reuse the value when we return
+		// to this function. This was used as apposed to a global variable
+		// because we don't want anyone else modifying this value.
+		static char joyvertprev = 25;
+		static char prevleft = 0;
+		// Check pushing joystick up
+		if ( joyin > THRESHUP )
+		{
+				if ( joyvertprev < THRESHUP )
+				{
+						selection++;
+				}
+				// don't allow the selection to overflow
+				if (selection > 3)
+				{
+						selection = 0;
+				}
+		}
+
+		// Check pushing joystick down
+		if ( joyin < THRESHDO )
+		{
+				if ( joyvertprev > THRESHDO )
+				{
+						selection++;
+				}
+				// don't allow selection to underflow
+				if (selection < 0)
+				{
+						selection = 3;
+				}
+		}
+
+		// Check for button push (check if selection confirmed)
+		if ( (PTAD & LEFTPB) == 0 )
+		{
+				if (prevleft == 1)
+				{
+						select = 1;
+				}
+				prevleft = 0;
+		}
+		else if ( (PTAD & LEFTPB) == LEFTPB)
+		{
+				prevleft = 1;
+		}
+
+		// update previous value
+		joyvertprev = joyin;
+}
+
+void selectCharacter(void)
+{
+}
+void selectField(void)
+{
+}
+void startMatch(void)
+{
+}
+
+#if USESCIDEBUGGING
 
 /***********************************************************************
 ; Character I/O Library Routines for 9S12C32
@@ -714,8 +869,7 @@ void outchar(char ch) {
     while (!(SCISR1 & 0x80));  /* wait for output buffer empty */
     SCIDRL = ch;
 }
-
-
+#endif
 
 
 /***********************************************************************

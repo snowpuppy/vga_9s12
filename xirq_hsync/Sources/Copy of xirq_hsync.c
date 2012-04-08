@@ -170,7 +170,7 @@ void main(void) {
 
 
 /***********************************************************************                       
-; HSYNC_XIRQ interrupt service routine: HSYNC_XISR
+; HSYNC_IRQ interrupt service routine: HSYNC_XISR
 ;
 ; Make sure you add it to the interrupts vector table (HSYNC_XISR) 
 ; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
