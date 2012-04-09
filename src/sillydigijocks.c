@@ -1,5 +1,5 @@
 /***********************************************************************
-; ECE 362 - Mini-Project ASM Source File - Spring 2012
+; ECE 362 - Mini-Project ASM Source File - Spring 2012                     
 ;***********************************************************************
 ;	 	   			 		  			 		  		
 ; Team ID: < ? >
@@ -71,10 +71,10 @@
 #define USESCIDEBUGGING 1
 
 // Define threshold voltages
-#define JOYTHRESH 1.5
-#define BASETHRESH .5
-#define THRESHUP ( 2.5 + JOYTHRESH)
-#define THRESHDO ( 2.5 - JOYTHRESH)
+#define JOYTHRESH 15
+#define BASETHRESH 5
+#define THRESHUP ( 25 + JOYTHRESH)
+#define THRESHDO ( 25 - JOYTHRESH)
 
 // define button layouts/masks
 #define LEFTPB 0x06
@@ -104,10 +104,18 @@ void startMatch(void);
 
 // Variable declarations  
 // Count horizontal pulses
-int hCnt = 0;
+unsigned int hCnt = 0;
+
+//Vsync IRQ flag (used once at start to position screen)
+unsigned char vSyncFlag = 0;
+
+// count vertical lines across the screen to verify that we have the
+// right number of pixel height
+unsigned char line_hold_count = 0;
 	   			 		  			 		       
 // GLOBAL SCREEN BUFFER (2304 pixels)
 unsigned char screen[1152];
+unsigned char *screen_itterator = screen;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 unsigned char joy0hor = 0;
@@ -165,7 +173,7 @@ void  initializations(void) {
    // PTT 7 - R1
    DDRT = 0xFF; 
    PTT = 0x00;
-   
+        
   // Timer Used To Keep Track of Timing for user Application
   // Such as displaying the splash screen for a decent period
   // of time.
@@ -173,11 +181,10 @@ void  initializations(void) {
   TSCR1 = 0x80;
   // set prescale and enable counter reset
   TSCR2 = 0x0C;
-  // set channel 0 for output compare
-  TIOS = 0x01;
+  // set channel 7 for output compare
+  TIOS = 0x80;
   // set 1ms interrupts (needs to be changed to 1/60s of a second)
-  TC0 = 1500;
-
+  TC7 = 1500;
 }
 
 	 		  			 		  		
@@ -188,6 +195,11 @@ void main(void) {
   DisableInterrupts;
 	initializations(); 		  			 		  		
 	EnableInterrupts;
+	
+	//enables external xirq after vSync IRQ
+	vSyncFlag = 0;
+	while((vSyncFlag != 1) & (hCnt == 0)) {}	      
+  asm andcc #$BF 
 
 //////////////////////////////////////////////////////////////
 //;  START OF CODE FOR Spring 2012 MINI-PROJECT
@@ -237,7 +249,7 @@ void main(void) {
   /* please make sure that you never leave main */
 }
 
-/***********************************************************************
+/***********************************************************************                       
 ; HSYNC_XIRQ interrupt service routine: HSYNC_XISR
 ;
 ; Make sure you add it to the interrupts vector table (HSYNC_XISR) 
@@ -259,12 +271,15 @@ interrupt 5 void HSYNC_XISR( void)
 
  hCnt++; 
 
-if(hCnt > 28 & hCnt < 515){
+  // We need the difference between hCnt lower limit
+  // and hCnt upper limit plus 1 to be 480. This is
+  // becuase we need to display 480 horizontal lines.
+  // If this is not so, then the display will scroll.
+if(hCnt > 39 & hCnt < 520){
  //first 80 lines of black
  asm{
-  nop
- nop
- nop
+ ldx screen_itterator
+ 
  nop
  nop
  nop
@@ -315,7 +330,7 @@ if(hCnt > 28 & hCnt < 515){
  
  //colors on screen
  
- movb #$80,PTT
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -326,12 +341,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
- movb #$40,PTT
  nop
  nop
  nop
@@ -341,13 +356,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
  nop
- movb #$20,PTT
  nop
  nop
  nop
@@ -356,6 +371,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -363,7 +379,6 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$A0,PTT
  nop
  nop
  nop
@@ -371,6 +386,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -379,13 +395,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$C0,PTT
  nop
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -395,12 +411,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$60,PTT
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -411,11 +427,11 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$E0,PTT
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -427,10 +443,10 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$80,PTT
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -443,9 +459,9 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$40,PTT
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -459,8 +475,8 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$20,PTT
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -475,7 +491,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$A0,PTT
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -490,8 +506,8 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
- movb #$C0,PTT
  nop
  nop
  nop
@@ -505,9 +521,9 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
- movb #$60,PTT
  nop
  nop
  nop
@@ -520,10 +536,10 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
- movb #$E0,PTT
  nop
  nop
  nop
@@ -535,11 +551,11 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
- movb #$80,PTT
  nop
  nop
  nop
@@ -550,12 +566,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
- movb #$40,PTT
  nop
  nop
  nop
@@ -565,13 +581,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
  nop
  nop
  nop
- movb #$20,PTT
  nop
  nop
  nop
@@ -580,6 +596,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -587,7 +604,6 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$A0,PTT
  nop
  nop
  nop
@@ -595,6 +611,7 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -603,13 +620,13 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$C0,PTT
  nop
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -619,12 +636,12 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$60,PTT
  nop
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -635,11 +652,11 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$E0,PTT
  nop
  nop
  nop
  nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -651,40 +668,10 @@ if(hCnt > 28 & hCnt < 515){
  nop
  nop
  nop
- movb #$80,PTT
  nop
  nop
  nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb #$20,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb #$A0,PTT
- nop
+ movb 1,x+,PTT
  nop
  nop
  nop
@@ -706,7 +693,20 @@ if(hCnt > 28 & hCnt < 515){
   
  }//end of asm
  
-}//end of if
+
+ 
+ line_hold_count++;
+ if (line_hold_count >= 10)
+ {
+ 	line_hold_count = 0;
+ 	screen_itterator += 24;
+ }
+ if(screen_itterator >= screen+1152)
+ {
+   screen_itterator = screen;
+ }
+ 
+ }//end of if
  
  //diasble timer irq 		
  //TIE = 0x00;
@@ -721,6 +721,7 @@ if(hCnt > 28 & hCnt < 515){
 ;***********************************************************************/
 interrupt 6 void VSYNC_ISR( void)
 {
+    vSyncFlag = 1;
   	hCnt = 0;
 }
 
@@ -761,21 +762,21 @@ interrupt 15 void TIM_ISR(void)
 ;***********************************************************************
 ; Name:         displaySplash
 ; Description:  Displays Splash screen for the game and gives the user
-;		time to see it.
+;								time to see it.
 ;***********************************************************************/
 void displaySplash(void)
 {
-    int i,j;
+    int r,l;
 
     // copy the splash screen to the screen
     // note that the screen now needs to be 
     // output to the monitor using the non-maskable
     // interrupt service routine (IRQ)
-    for (i = 0; i < SCREENW; i++)
+    for (r = 0; r < SCREENH; r++)
     {
-        for (j = 0; j < SCREENH; j++)
+        for (l = 0; l < SCREENW/2; l++)
         {
-            screen[i*j] = image_splash[i][j];
+            screen[r*(SCREENW/2) + l] = image_splash[r][l];
         }
     }
 
@@ -786,16 +787,17 @@ void displaySplash(void)
 ;***********************************************************************
 ; Name:         displayMenu
 ; Description:  Displays Menu for user and their current selection.
-;		There are 3 menu selections that need to be drawn.
+;								There are 3 menu selections that need to be drawn.
 ;
 ;***********************************************************************/
 void displayMenu(char selection)
 {
-    for (i = 0; i < SCREENW; i++)
+		int r,l;
+    for (r = 0; r < SCREENH; r++)
     {
-        for (j = 0; j < SCREENH; j++)
+        for (l = 0; l < SCREENW/2; l++)
         {
-            screen[i*j] = character_select[i][j];
+            screen[r*(SCREENW/2) + l] = image_splash[r][l];
         }
     }
 }
@@ -822,7 +824,7 @@ void checkMenuInputs(unsigned char joyin)
 		// use a static variable so we can reuse the value when we return
 		// to this function. This was used as apposed to a global variable
 		// because we don't want anyone else modifying this value.
-		static char joyvertprev = 2.5;
+		static char joyvertprev = 25;
 		static char prevleft = 0;
 		// Check pushing joystick up
 		if ( joyin > THRESHUP )
@@ -909,5 +911,5 @@ void outchar(char ch) {
 
 
 /***********************************************************************
-; ECE 362 - Mini-Project ASM Source File - Spring 2012
+; ECE 362 - Mini-Project ASM Source File - Spring 2012                         
 ;***********************************************************************/
