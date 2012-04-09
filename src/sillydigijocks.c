@@ -130,7 +130,7 @@ char select = 0;
 char selection = -1;
 
 // splash screen enable.
-unsigned char *splash_screen_enable = 0;
+unsigned char splash_screen_enable = 0;
 
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
@@ -181,10 +181,11 @@ void  initializations(void) {
   TSCR1 = 0x80;
   // set prescale and enable counter reset
   TSCR2 = 0x0C;
-  // set channel 7 for output compare
-  TIOS = 0x80;
+  // set channel 0 for output compare
+  TIOS = 0x01;
   // set 1ms interrupts (needs to be changed to 1/60s of a second)
-  TC7 = 1500;
+  TC0 = 1500;
+  TIE = 0x01; 
 }
 
 	 		  			 		  		
@@ -325,11 +326,12 @@ if(hCnt > 39 & hCnt < 520){
  nop
  nop
  nop
- nop
- nop
+
  
  //colors on screen
  
+ ldy #24
+loop:
  movb 1,x+,PTT
  nop
  nop
@@ -337,355 +339,11 @@ if(hCnt > 39 & hCnt < 520){
  nop
  nop
  nop
+ bset PTT,$02
  nop
  nop
  nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- movb 1,x+,PTT
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
+ dbne y,loop
  
  
  //last lines of black
@@ -745,7 +403,7 @@ interrupt 7 void RTI_ISR(void)
 ; Make sure you add it to the interrupts vector table (VECTOR 15 TIM_ISR) 
 ; under: Project Settings/Linker Files/Project.PRM 					 		  			 		  		
 ;***********************************************************************/
-interrupt 15 void TIM_ISR(void)
+interrupt 8 void TIM_ISR(void)
 {
   // set TFLG1 bit 
  	TFLG1 = TFLG1 | 0x80; 
@@ -776,7 +434,7 @@ void displaySplash(void)
     {
         for (l = 0; l < SCREENW/2; l++)
         {
-            screen[r*(SCREENW/2) + l] = image_splash[r][l];
+            screen[r*(SCREENW/2) + l] = image_character_select[r][l];
         }
     }
 
@@ -797,7 +455,7 @@ void displayMenu(char selection)
     {
         for (l = 0; l < SCREENW/2; l++)
         {
-            screen[r*(SCREENW/2) + l] = image_splash[r][l];
+            screen[r*(SCREENW/2) + l] = image_menu_select[r][l];
         }
     }
 }
