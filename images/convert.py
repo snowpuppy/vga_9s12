@@ -66,6 +66,7 @@ imheigh = theimage.size[1]
 outfile.write('// This is an automatically generated file.\n')
 outfile.write('// This file is generated for %s.png by convert.py\n\n' % outfilename[0:-2] )
 outfile.write('#ifndef %s_H\n\n' % outfilename[0:-2].upper() )
+outfile.write('#define %s_H\n\n' % outfilename[0:-2].upper() )
 outfile.write('const unsigned char image_%s[%i][%i] = {\n' % (outfilename[0:-2], imheigh, imwidth/2 ) )
 
 for h in range(0,imheigh):
