@@ -51,7 +51,8 @@
 ;
 ;  Date: 3/31/2012  Name: Thor Smith   Update: Added Menu Logic. Started gameplay logic.
 ;
-;  Date: < ? >  Name: < ? >   Update: < ? >
+;  Date: 4/8/2012 	Name: Thor Smith/David Kauer Update: Merged vga assembly 
+;		with main C file and displayed splash screen.
 ;
 ;  Date: < ? >  Name: < ? >   Update: < ? >
 ;
