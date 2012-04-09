@@ -71,10 +71,10 @@
 #define USESCIDEBUGGING 1
 
 // Define threshold voltages
-#define JOYTHRESH 1.5
-#define BASETHRESH .5
-#define THRESHUP ( 2.5 + JOYTHRESH)
-#define THRESHDO ( 2.5 - JOYTHRESH)
+#define JOYTHRESH 15
+#define BASETHRESH 5
+#define THRESHUP ( 25 + JOYTHRESH)
+#define THRESHDO ( 25 - JOYTHRESH)
 
 // define button layouts/masks
 #define LEFTPB 0x06
@@ -102,9 +102,20 @@ void selectField(void);
 void startMatch(void);
 
 
-// Variable declarations  	   			 		  			 		       
+// Variable declarations  
+// Count horizontal pulses
+unsigned int hCnt = 0;
+
+//Vsync IRQ flag (used once at start to position screen)
+unsigned char vSyncFlag = 0;
+
+// count vertical lines across the screen to verify that we have the
+// right number of pixel height
+unsigned char line_hold_count = 0;
+	   			 		  			 		       
 // GLOBAL SCREEN BUFFER (2304 pixels)
 unsigned char screen[1152];
+unsigned char *screen_itterator = screen;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 unsigned char joy0hor = 0;
@@ -151,7 +162,18 @@ void  initializations(void) {
 #endif
             
 // Initialize interrupts
-
+   // RBG,PWM,TIM outputs
+   // PTT 0 - PWM
+   // PTT 1 - TIM
+   // PTT 2 - B2
+   // PTT 3 - G2
+   // PTT 4 - R2
+   // PTT 5 - B1
+   // PTT 6 - G1
+   // PTT 7 - R1
+   DDRT = 0xFF; 
+   PTT = 0x00;
+        
   // Timer Used To Keep Track of Timing for user Application
   // Such as displaying the splash screen for a decent period
   // of time.
@@ -163,7 +185,6 @@ void  initializations(void) {
   TIOS = 0x80;
   // set 1ms interrupts (needs to be changed to 1/60s of a second)
   TC7 = 1500;
-
 }
 
 	 		  			 		  		
@@ -174,6 +195,11 @@ void main(void) {
   DisableInterrupts;
 	initializations(); 		  			 		  		
 	EnableInterrupts;
+	
+	//enables external xirq after vSync IRQ
+	vSyncFlag = 0;
+	while((vSyncFlag != 1) & (hCnt == 0)) {}	      
+  asm andcc #$BF 
 
 //////////////////////////////////////////////////////////////
 //;  START OF CODE FOR Spring 2012 MINI-PROJECT
@@ -223,7 +249,481 @@ void main(void) {
   /* please make sure that you never leave main */
 }
 
+/***********************************************************************                       
+; HSYNC_XIRQ interrupt service routine: HSYNC_XISR
+;
+; Make sure you add it to the interrupts vector table (HSYNC_XISR) 
+; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
+;***********************************************************************/
+interrupt 5 void HSYNC_XISR( void)
+{
+ /* movb #$80,PTT -> red
+    movb #$40,PTT -> green
+    movb #$20,PTT -> blue
+    movb #$A0,PTT -> yellow
+    movb #$C0,PTT -> pink
+    movb #$60,PTT -> teal
+    movb #$E0,PTT -> white
+  */
 
+ //enable timer irq
+//TIE = 0x80;
+
+ hCnt++; 
+
+  // We need the difference between hCnt lower limit
+  // and hCnt upper limit plus 1 to be 480. This is
+  // becuase we need to display 480 horizontal lines.
+  // If this is not so, then the display will scroll.
+if(hCnt > 39 & hCnt < 520){
+ //first 80 lines of black
+ asm{
+ ldx screen_itterator
+ 
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ 
+ //colors on screen
+ 
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ movb 1,x+,PTT
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ 
+ 
+ //last lines of black
+ movb #$00,PTT
+  
+ }//end of asm
+ 
+
+ 
+ line_hold_count++;
+ if (line_hold_count >= 10)
+ {
+ 	line_hold_count = 0;
+ 	screen_itterator += 24;
+ }
+ if(screen_itterator >= screen+1152)
+ {
+   screen_itterator = screen;
+ }
+ 
+ }//end of if
+ 
+ //diasble timer irq 		
+ //TIE = 0x00;
+ 
+}//end of xirq
+
+/***********************************************************************                       
+; VSYNC interrupt service routine: VSYNC_ISR
+;
+; Make sure you add it to the interrupts vector table (VECTOR 7 RTI_ISR) 
+; under: Project Settings/Linker Files/Project.PRM 		  			 		  		
+;***********************************************************************/
+interrupt 6 void VSYNC_ISR( void)
+{
+    vSyncFlag = 1;
+  	hCnt = 0;
+}
 
 
 /***********************************************************************                       
@@ -266,17 +766,17 @@ interrupt 15 void TIM_ISR(void)
 ;***********************************************************************/
 void displaySplash(void)
 {
-    int i,j;
+    int r,l;
 
     // copy the splash screen to the screen
     // note that the screen now needs to be 
     // output to the monitor using the non-maskable
     // interrupt service routine (IRQ)
-    for (i = 0; i < SCREENW; i++)
+    for (r = 0; r < SCREENH; r++)
     {
-        for (j = 0; j < SCREENH; j++)
+        for (l = 0; l < SCREENW/2; l++)
         {
-            screen[i*j] = image_splash[i][j];
+            screen[r*(SCREENW/2) + l] = image_splash[r][l];
         }
     }
 
@@ -292,11 +792,12 @@ void displaySplash(void)
 ;***********************************************************************/
 void displayMenu(char selection)
 {
-    for (i = 0; i < SCREENW; i++)
+		int r,l;
+    for (r = 0; r < SCREENH; r++)
     {
-        for (j = 0; j < SCREENH; j++)
+        for (l = 0; l < SCREENW/2; l++)
         {
-            screen[i*j] = character_select[i][j];
+            screen[r*(SCREENW/2) + l] = image_splash[r][l];
         }
     }
 }
@@ -323,7 +824,7 @@ void checkMenuInputs(unsigned char joyin)
 		// use a static variable so we can reuse the value when we return
 		// to this function. This was used as apposed to a global variable
 		// because we don't want anyone else modifying this value.
-		static char joyvertprev = 2.5;
+		static char joyvertprev = 25;
 		static char prevleft = 0;
 		// Check pushing joystick up
 		if ( joyin > THRESHUP )
