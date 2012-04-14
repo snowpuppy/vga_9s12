@@ -86,7 +86,7 @@
 #define SCREENH 48
 
 // Define Timing specifications
-#define TIMEFORONESECOND 100
+#define TIMEFORONESECOND 2*100
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -181,11 +181,11 @@ void  initializations(void) {
   // enable timer system
   TSCR1 = 0x80;
   // set prescale and enable counter reset
-  TSCR2 = 0x0C;
+  TSCR2 = 0x04;
   // set channel 0 for output compare
   TIOS = 0x01;
   // set 1ms interrupts (needs to be changed to 1/60s of a second)
-  TC0 = 1500;
+  TC0 = 15000;
   TIE = 0x01; 
 }
 
@@ -407,7 +407,10 @@ interrupt 7 void RTI_ISR(void)
 interrupt 8 void TIM_ISR(void)
 {
   // set TFLG1 bit 
- 	TFLG1 = TFLG1 | 0x80; 
+ 	TFLG1 = TFLG1 | 0x01;
+ 	
+ 	// increment the counter for TC0 (it should wrap around and create reliable interrupt rate)
+ 	TC0 += 15000; 
 // No need to add anything in the .PRM file, the interrupt number is included above
 
     if (splash_screen_enable < TIMEFORONESECOND)
@@ -435,7 +438,7 @@ void displaySplash(void)
     {
         for (l = 0; l < SCREENW/2; l++)
         {
-            screen[r*(SCREENW/2) + l] = image_character_select[r][l];
+            screen[r*(SCREENW/2) + l] = image_splash[r][l];
         }
     }
 
