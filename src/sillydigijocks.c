@@ -71,14 +71,14 @@
 // Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
 #define USESCIDEBUGGING 1
 
-// Define threshold voltages
-#define JOYTHRESH 15
+// Define threshold voltages (approx 2.5V +- .5V)
+#define ZEROTHRESH 0x19
 #define BASETHRESH 5
-#define THRESHUP ( 25 + JOYTHRESH)
-#define THRESHDO ( 25 - JOYTHRESH)
+#define THRESHUP (ZEROTHRESH)
+#define THRESHDO (-ZEROTHRESH)
 
 // define button layouts/masks
-#define LEFTPB 0x06
+#define LEFTPB 0x20
 
 
 // define screen resolution
@@ -92,6 +92,9 @@
 // because they're dynamically generated.
 #include "ourimages.h"
 
+// include character definitions
+#include "character.h"
+
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
@@ -101,6 +104,7 @@ void checkMenuInputs(unsigned char joyin);
 void selectCharacter(void);
 void selectField(void);
 void startMatch(void);
+void display_character(struct character *self);
 
 
 // Variable declarations  
@@ -119,19 +123,63 @@ unsigned char screen[1152];
 unsigned char *screen_itterator = screen;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
-unsigned char joy0hor = 0;
+unsigned char joy0hor = 0xf3;
 unsigned char joy1hor = 0;
-unsigned char joy0vert = 0;
-unsigned char joy1vert = 0;
+unsigned char joy0ver = 0;
+unsigned char joy1ver = 0;
 
 // Menu selection variables
 // button select
 char select = 0;
 // joystic selections
-char selection = -1;
+char selection = 1;
 
 // splash screen enable.
 unsigned char splash_screen_enable = 0;
+
+// Define characters 1 and 2
+struct character player0 = {
+		28, // x
+		28, // y
+		500, // horvel
+		0, // vervel
+		0, // horvelcnt
+		0, // vervelcnt
+		0, // moveflag
+		500, // horacc
+		0, // veracc
+		0, // horacccnt
+		0, // veracccnt
+		0, // damage
+		"def", // name
+		defautAttack, // attack
+		defaultMove, // move
+		image_kirby, // frame
+		0, // currframe
+		4, // framew
+		4, // frameh
+};
+struct character player1 = {
+		28, // x
+		28, // y
+		0, // horvel
+		0, // vervel
+		0, // horvelcnt
+		0, // vervelcnt
+		0, // moveflag
+		0, // horacc
+		0, // veracc
+		0, // horacccnt
+		0, // veracccnt
+		0, // damage
+		"def", // name
+		defautAttack, // attack
+		defaultMove, // move
+		image_kirby, // frame
+		0, // currframe
+		4, // framew
+		4, // frameh
+};
 
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
@@ -186,7 +234,16 @@ void  initializations(void) {
   TIOS = 0x01;
   // set 1ms interrupts (needs to be changed to 1/60s of a second)
   TC0 = 15000;
-  TIE = 0x01; 
+  TIE = 0x00; 
+
+
+  ATDCTL2 = 0x80;
+  ATDCTL3 = 0x08;
+  ATDCTL4 = 0x85;
+  // 0011 0011 where 0's represent analog inputs and 1's represent
+  // digital inputs. Controller 0 is high byte, Controller 1 is low byte.
+  ATDDIEN = 0x33; 
+
 }
 
 	 		  			 		  		
@@ -209,14 +266,14 @@ void main(void) {
   
 	// Load/Display Spalsh Screen
 	displaySplash();
+  	// load default choice for menu
+  	displayMenu(selection);
 
   for(;;) {
    // write code here (Insert Code down here because we need an infinite loop.)
 
-	// Display Menu Screen
-	displayMenu(selection);
 	// Check for Menu Selection
-	checkMenuInputs(joy0vert);
+	checkMenuInputs(joy0ver);
 	// Use case statement to branch to appropriate selection.
 	// Don't branch unless the user has triggered the 'select' button.
 	if (select == 1)
@@ -243,7 +300,20 @@ void main(void) {
 					break;
 			}
 	}
-    
+    //startMatch();
+    /*
+    player0.x += 1;
+    player0.y += 1;
+    if (player0.x + player0.framew > 48) 
+    {
+      player0.x = 0;
+    }
+    if (player0.y + player0.frameh > 48) 
+    {
+      player0.y = 0;
+    }
+    */
+    //display_character(&player0);
 	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
 	 // The watchdog was disabled in the initialization code.
     _FEED_COP(); /* feeds the dog */
@@ -382,6 +452,34 @@ interrupt 6 void VSYNC_ISR( void)
 {
     vSyncFlag = 1;
   	hCnt = 0;
+
+	// wait for sampled inputs
+	// bit 7: analog horizontal controller 0
+	// bit 6: analog vertical   controller 0
+	// bit 5: digital button 1  controller 0
+	// bit 4: digital button 2  controller 0
+
+	// bit 3: analog horizontal controller 1
+	// bit 2: analog vertical   controller 1
+	// bit 1: digital button 1  controller 1
+	// bit 0: digital button 2  controller 1
+	asm {
+
+await:	brclr	ATDSTAT,$80,await
+		movb	ATDDR7, joy0hor
+
+		movb	#$02, ATDCTL5
+await1:	brclr	ATDSTAT,$80,await1
+		movb	ATDDR6, joy0vert
+
+		movb	#$04, ATDCTL5
+await2:	brclr	ATDSTAT,$80,await2
+		movb	ATDDR3, joy1hor
+
+		movb	#$08, ATDCTL5
+await3:	brclr	ATDSTAT,$80,await3
+		movb	ATDDR2, joy1vert
+	}
 }
 
 
@@ -413,10 +511,105 @@ interrupt 8 void TIM_ISR(void)
  	TC0 += 15000; 
 // No need to add anything in the .PRM file, the interrupt number is included above
 
+		// handle splash screen logic
     if (splash_screen_enable < TIMEFORONESECOND)
     {
         splash_screen_enable++;
     }
+	/*
+		// If game is in progress....
+
+		// #################################
+		// set player0 velocity update flag
+		// #################################
+		if (player0.horacc != 0)
+		{
+				player0.horacccnt++;
+				if (player0.horacccnt >= player0.horacc)
+				{
+						// need to update velocity up/down
+						bset(player0.moveflag, VELRI);
+						// restart count
+						player0.horacccnt = 0;
+				}
+		}
+		if (player0.veracc != 0)
+		{
+				player0.veracccnt++;
+				if (player0.veracccnt >= player0.veracc)
+				{
+						// need to update velocity left/right
+						bset(player0.moveflag, VELUP);
+						player0.veracccnt = 0;
+				}
+		}
+		// set player0 movement flag
+		if (player0.horvel != 0) 
+		{
+				player0.horvelcnt++;
+				if (player0.horvelcnt >= player0.horvel)
+				{
+						bset(player0.moveflag, MOVEUP);
+						player0.horvelcnt = 0;
+				}
+		}
+		if (player0.vervel != 0)
+		{
+				player0.vervelcnt++;
+				if (player0.vervelcnt >= player0.vervel)
+				{
+						bset(player0.moveflag, MOVERI);
+						player0.vervelcnt = 0;
+				}
+		}
+
+		// ############################
+		// player 1 acceleration values
+		// ############################
+		if (player1.horacc != 0)
+		{
+				player1.horacccnt++;
+				if (player1.horacccnt >= player1.horacc)
+				{
+						// need to update velocity up/down
+						bset(player1.moveflag, VELRI);
+						// restart count
+						player1.horacccnt = 0;
+				}
+		}
+		if (player1.veracc != 0)
+		{
+				player1.veracccnt++;
+				if (player1.veracccnt >= player1.veracc)
+				{
+						// need to update velocity left/right
+						bset(player1.moveflag, VELUP);
+						player1.veracccnt = 0;
+				}
+		}
+
+		// set player1 movement flags
+		if (player1.horvel != 0)
+		{
+				player1.horvelcnt++;
+				if (player1.horvelcnt >= player1.horvel)
+				{
+						bset(player1.moveflag, MOVEUP);
+						player1.horvelcnt = 0;
+				}
+		}
+		if (player1.vervel != 0)
+		{
+				player1.vervelcnt++;
+				if (player1.vervelcnt >= player1.vervel)
+				{
+						bset(player1.moveflag, MOVERI);
+						player1.vervelcnt = 0;
+				}
+		}
+	
+	*/	
+		// END OF TIM ISR
 }
 
 
@@ -442,7 +635,7 @@ void displaySplash(void)
         }
     }
 
-    while (splash_screen_enable < TIMEFORONESECOND);
+    //while (splash_screen_enable < TIMEFORONESECOND);
 }
 
 /*
@@ -454,12 +647,28 @@ void displaySplash(void)
 ;***********************************************************************/
 void displayMenu(char selection)
 {
-		int r,l;
+	int r,l;
+	// pick image to draw
+	switch(selection)
+	{
+		case 1:
+			menu_image = image_menu_select1;
+			break;
+		case 2:
+			menu_image = image_menu_select2;
+			break;
+		case 3:
+			menu_image = image_menu_select3;
+			break;
+		default:
+			break;
+	}
+	// draw the image
     for (r = 0; r < SCREENH; r++)
     {
         for (l = 0; l < SCREENW/2; l++)
         {
-            screen[r*(SCREENW/2) + l] = image_menu_select[r][l];
+            screen[r*(SCREENW/2) + l] = menu_image[r][l];
         }
     }
 }
@@ -476,9 +685,9 @@ void displayMenu(char selection)
 ;				variable because it could change in the middle of
 ;				this function call.
 ;
-;		D		0v -> (2.5v - JOYTHRESH)
-;		M		(2.5v - JOYTHRESH) -> (2.5 + JOYTHRESH)
-;		U		(2.5v + JOYTHRESH) -> 5v
+;		D		0v -> (2.5v - ZEROTHRESH)
+;		M		(2.5v - ZEROTHRESH) -> (2.5 + ZEROTHRESH)
+;		U		(2.5v + ZEROTHRESH) -> 5v
 ;
 ;***********************************************************************/
 void checkMenuInputs(unsigned char joyin)
@@ -486,7 +695,7 @@ void checkMenuInputs(unsigned char joyin)
 		// use a static variable so we can reuse the value when we return
 		// to this function. This was used as apposed to a global variable
 		// because we don't want anyone else modifying this value.
-		static char joyvertprev = 25;
+		static char joyvertprev = 0;
 		static char prevleft = 0;
 		// Check pushing joystick up
 		if ( joyin > THRESHUP )
@@ -494,6 +703,7 @@ void checkMenuInputs(unsigned char joyin)
 				if ( joyvertprev < THRESHUP )
 				{
 						selection++;
+						displayMenu(selection);
 				}
 				// don't allow the selection to overflow
 				if (selection > 3)
@@ -507,7 +717,8 @@ void checkMenuInputs(unsigned char joyin)
 		{
 				if ( joyvertprev > THRESHDO )
 				{
-						selection++;
+						selection--;
+						displayMenu(selection);
 				}
 				// don't allow selection to underflow
 				if (selection < 0)
@@ -542,6 +753,145 @@ void selectField(void)
 }
 void startMatch(void)
 {
+		char quit = 0;
+
+		while (!quit)
+		{
+				// update acceleration for each player
+				// 50 means 500ms and 150 means 1500ms. These correspond to 
+				// 2p/s and 1.5p/s correspondingly
+				if (-ZEROTHRESH < joy0hor && joy0hor < ZEROTHRESH)
+				{
+						player0.horacc = 0;
+				}
+				else if (joy0hor > 0)
+				{
+						player0.horacc = 50 + (150 - joy0hor* (150/(256 - ZEROTHRESH) ) );
+				}
+				else
+				{
+						player0.horacc = -50 + (-150 - joy0hor*(150/(256 - ZEROTHRESH) ) );
+				}
+				if (-ZEROTHRESH < joy0ver && joy0ver < ZEROTHRESH)
+				{
+						player0.veracc = 0;
+				}
+				else if (joy0hor > 0)
+				{
+						player0.veracc = 50 + (150 - joy0hor* (150/(256 - ZEROTHRESH) ) );
+				}
+				else
+				{
+						player0.veracc = -50 + (-150 - joy0hor*(150/(256 - ZEROTHRESH) ) );
+				}
+				// update velociety for each player
+				if (player0.moveflag & VELUP == VELUP)
+				{
+						player0.vervel = (player0.vervel*player0.veracc)/ (player0.vervel + player0.veracc);
+						bclr(player0.moveflag, VELUP);
+				}
+				if (player0.moveflag & VELRI == VELRI)
+				{
+						player0.horvel = (player0.horvel*player0.horacc)/ (player0.horvel + player0.horacc);
+						bclr(player0.moveflag, VELRI);
+				}
+				// move player (it can be any function, I may move the above logic
+				// into this function to avoid typing it for both players.
+				player0.move(&player0);
+				//  display the character at his location
+				display_character(&player0);
+		}
+}
+
+
+void display_character(struct character *self)
+{
+		unsigned char r,l;
+		unsigned int location = 0;
+		unsigned char odd = 0; // checks start on odd pixel.
+		unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
+		unsigned char digit0, digit1, digit2, digit3;
+
+    // 0 or 1 value. If 1, then we're starting on an odd pixel
+    // modulus logic needs to be kept out of for looping.
+    odd = self->x % 2;
+    
+    // calculate starting location to draw character
+    // Note that each pixel is stored in two bytes. Thus the
+    // width of our array is SCREENW/2 or 24 in this case.
+    // To get "y" lines down, we need to multiply by the width
+    // of our array. To get "x" lines over, we need to add that
+    // value to the beginning our line. Thus we calculate the
+    // position to display the image in our one-dimensional
+    // array.
+    location = self->y*(SCREENW/2) + self->x/2;
+
+		for (r = 0; r < self->frameh; r++)
+		{
+				for (l = 0; l < self->framew/2; l++)
+				{
+				/*
+				    digit0 = location / 1000;
+				    digit3 = location - digit0*1000;
+				    digit1 = digit3 / 100;
+				    digit3 = digit3 - digit1*100;
+				    digit2 = digit3 / 10;
+				    digit3 = digit3 - digit2*10;
+				    outchar(digit0 + '0');
+				    outchar(digit1 + '0');
+				    outchar(digit2 + '0');
+				    outchar(digit3 + '0');
+				    outchar('\n');
+				    outchar('\r');
+				  */  
+				    // do a different process if we start on an odd pixel.
+						if (odd)
+						{
+						    // STORE FIRST PIXEL
+						    
+						    // note that we've already calculated the starting location
+						    // We are masking off the lower nibble [F0]
+								temp1 = screen[location] & 0xf0;
+								// we want the pixel at row "r" and column "l"
+								// a four by four pixel picture's array will
+								// only have 2 columns (2pixels/byte).
+								// We are again masking off the lower nibble [F0]
+								temp3 = self->frame[(self->framew/2)*r + l];
+								temp2 = temp3 & 0xf0;
+								// Shift the upper nibble to the lower nibble [0F]
+								temp2 = temp2 / 0x10;
+								// add the bytes together [FF]
+								temp1 = temp1 + temp2;
+								// store the result in the screen.
+								screen[location] = temp1;
+								
+								// STORE SECOND PIXEL
+								
+								// get our current location plus one
+								// We are masking off the upper nibble this time [0F]
+								temp1 = screen[location+1] & 0x0f;
+								// Again we mask off the upper nibble, this time [0F]
+								// for our picture's byte
+								temp2 = temp3 & 0x0f;
+								// shift our low nibble to our high nibble. [F0]
+								temp2 *= 0x10;
+								// add the bytes together [FF]
+								temp1 = temp1 + temp2;
+								screen[location+1] = temp1;
+						}
+						else
+						{
+						    // We start on an even byte, so just copy our
+						    // picture over two pixels at a time.
+								temp1 = self->frame[(self->framew/2)*r + l];
+								screen[location] = temp1;
+						}
+						// increment our location by one column
+						location++;
+				}
+				// increment our location by one row
+				location += SCREENW/2 - self->framew/2;
+		}
 }
 
 #if USESCIDEBUGGING
