@@ -277,18 +277,28 @@ interrupt 5 void HSYNC_XISR( void)
   // and hCnt upper limit plus 1 to be 480. This is
   // becuase we need to display 480 horizontal lines.
   // If this is not so, then the display will scroll.
-if(hCnt > 39 & hCnt < 520){
+if(hCnt > 34 & hCnt < 515){ //39 520
  //first 80 lines of black
  asm{
  ldx screen_itterator
  
+// nop
+// nop
+// nop
+// nop
+// nop
+// nop 
+// nop
+//  nop
+// nop //
  nop
  nop
  nop
  nop
+ nop  //
  nop
  nop
- nop
+ nop 
   nop
  nop
  nop
@@ -300,17 +310,7 @@ if(hCnt > 39 & hCnt < 520){
  nop
  nop
   nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
-  nop
- nop
+nop
  nop
  nop
  nop
@@ -320,7 +320,7 @@ if(hCnt > 39 & hCnt < 520){
  nop
  nop
   nop
- nop
+ nop 
  nop
  nop
  nop
@@ -331,19 +331,26 @@ if(hCnt > 39 & hCnt < 520){
  
  //colors on screen
  
- ldy #24
+ ldy #24 //24
 loop:
  movb 1,x+,PTT
  nop
  nop
  nop
  nop
- nop
- nop
+
+// nop
+// nop
+ 
+ 
  bset PTT,$02
  nop
  nop
  nop
+
+
+ 
+ 
  dbne y,loop
  
  
