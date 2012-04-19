@@ -28,6 +28,8 @@
 #define VELUP  0x10 // update up/down velocity
 #define VELRI  0x20 // update right/left velocity
 
+char dummy1 = 0;
+char dummy2 = 0;
 
 struct character
 {
@@ -69,28 +71,31 @@ void defautAttack(struct character *self, char type, char direction)
 ;***********************************************************************/
 void defaultMove(struct character *self)
 {
-		if (self->moveflag & MOVEUP == MOVEUP && self->vervel > 0)
+    dummy1 = ( (self->moveflag & MOVERI) == MOVERI);
+    dummy2 = (self->horvel > 0);
+    
+		if ( (self->moveflag & MOVEUP == MOVEUP) && (self->vervel > 0 ) )
 		{
 				// check for collisions
 				// move up one pixel.
 				self->y -= 1;
 				bclr(self->moveflag,MOVEUP);
 		}
-		else if (self->moveflag & MOVEUP == MOVEUP && self->vervel < 0)
+		else if ( (self->moveflag & MOVEUP == MOVEUP ) && ( self->vervel < 0) )
 		{
 				// check for collisions
 				// move down one pixel.
 				self->y += 1;
 				bclr(self->moveflag,MOVEUP);
 		}
-		if (self->moveflag & MOVERI == MOVERI && self->horvel > 0)
+		if ( ( (self->moveflag & MOVERI) == MOVERI) && (self->horvel > 0) )
 		{
 				// check for collisions
 				// move right one pixel.
 				self->x += 1;
 				bclr(self->moveflag,MOVERI);
 		}
-		else if (self->moveflag & MOVERI == MOVERI && self->horvel < 0)
+		else if ( (self->moveflag & MOVERI == MOVERI ) && ( self->horvel < 0 ) )
 		{
 				// check for collisions
 				// move left one pixel.

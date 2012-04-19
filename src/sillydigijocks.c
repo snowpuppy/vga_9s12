@@ -522,7 +522,7 @@ interrupt 8 void TIM_ISR(void)
     }
 
 	// If game is in progress....
-	if (selection == 3 && select == 1)
+	if (selection == 3 )//&& select == 1)
 	{
 		// #################################
 		// set player0 velocity update flag
@@ -554,7 +554,7 @@ interrupt 8 void TIM_ISR(void)
 				player0.horvelcnt++;
 				if (player0.horvelcnt >= player0.horvel)
 				{
-						bset(player0.moveflag, MOVEUP);
+						bset(player0.moveflag, MOVERI);
 						player0.horvelcnt = 0;
 				}
 		}
@@ -563,7 +563,7 @@ interrupt 8 void TIM_ISR(void)
 				player0.vervelcnt++;
 				if (player0.vervelcnt >= player0.vervel)
 				{
-						bset(player0.moveflag, MOVERI);
+						bset(player0.moveflag, MOVEUP);
 						player0.vervelcnt = 0;
 				}
 		}
