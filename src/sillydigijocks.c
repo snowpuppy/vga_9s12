@@ -105,6 +105,7 @@ void selectCharacter(void);
 void selectField(void);
 void startMatch(void);
 void display_character(struct character *self);
+void writeBackground(unsigned char *image);
 
 
 // Variable declarations  
@@ -631,6 +632,7 @@ void displaySplash(void)
     // note that the screen now needs to be 
     // output to the monitor using the non-maskable
     // interrupt service routine (IRQ)
+    /*
     for (r = 0; r < SCREENH; r++)
     {
         for (l = 0; l < SCREENW/2; l++)
@@ -638,6 +640,8 @@ void displaySplash(void)
             screen[r*(SCREENW/2) + l] = image_splash[r][l];
         }
     }
+    */
+    writeBackground(image_splash);
 
     while (splash_screen_enable < TIMEFORONESECOND);
 }
@@ -657,31 +661,13 @@ void displayMenu(char selection)
 	switch(selection)
 	{
 		case 1:
-			for (r = 0; r < SCREENH; r++)
-			{
-				for (l = 0; l < SCREENW/2; l++)
-				{
-					screen[r*(SCREENW/2) + l] = image_menu_select1[r][l];
-				}
-			}
+            writeBackground(image_menu_select1);
 			break;
 		case 2:
-			for (r = 0; r < SCREENH; r++)
-			{
-				for (l = 0; l < SCREENW/2; l++)
-				{
-					screen[r*(SCREENW/2) + l] = image_menu_select2[r][l];
-				}
-			}
+            writeBackground(image_menu_select2);
 			break;
 		case 3:
-			for (r = 0; r < SCREENH; r++)
-			{
-				for (l = 0; l < SCREENW/2; l++)
-				{
-					screen[r*(SCREENW/2) + l] = image_menu_select3[r][l];
-				}
-			}
+            writeBackground(image_menu_select3);
 			break;
 		default:
 			break;
@@ -836,7 +822,6 @@ void display_character(struct character *self)
 		unsigned int location = 0;
 		unsigned char odd = 0; // checks start on odd pixel.
 		unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
-//		unsigned char digit0, digit1, digit2, digit3;
 
     // 0 or 1 value. If 1, then we're starting on an odd pixel
     // modulus logic needs to be kept out of for looping.
@@ -856,20 +841,6 @@ void display_character(struct character *self)
 		{
 				for (l = 0; l < self->framew/2; l++)
 				{
-				/*
-				    digit0 = location / 1000;
-				    digit3 = location - digit0*1000;
-				    digit1 = digit3 / 100;
-				    digit3 = digit3 - digit1*100;
-				    digit2 = digit3 / 10;
-				    digit3 = digit3 - digit2*10;
-				    outchar(digit0 + '0');
-				    outchar(digit1 + '0');
-				    outchar(digit2 + '0');
-				    outchar(digit3 + '0');
-				    outchar('\n');
-				    outchar('\r');
-				  */  
 				    // do a different process if we start on an odd pixel.
 						if (odd)
 						{
@@ -918,6 +889,19 @@ void display_character(struct character *self)
 				// increment our location by one row
 				location += SCREENW/2 - self->framew/2;
 		}
+}
+
+/***********************************************************************
+; Name:         writeBackground
+; Description:  writes a large full sized 48x48 image to the screen
+;***********************************************************************/
+void writeBackground(unsigned char *image)
+{
+    int loc;
+    for (loc = 0; loc < SCREENSIZE; loc++)
+    {
+        screen[loc] = image[loc];
+    }
 }
 
 #if USESCIDEBUGGING
