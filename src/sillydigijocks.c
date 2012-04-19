@@ -74,8 +74,8 @@
 // Define threshold voltages (approx 2.5V +- .5V)
 #define ZEROTHRESH 0x19
 #define BASETHRESH 5
-#define THRESHUP (ZEROTHRESH)
-#define THRESHDO (-ZEROTHRESH)
+#define THRESHUP (-ZEROTHRESH)
+#define THRESHDO (ZEROTHRESH)
 
 // define button layouts/masks
 #define LEFTPB 0x20
@@ -100,7 +100,7 @@ char inchar(void);
 void outchar(char x);
 void displaySplash(void);
 void displayMenu(char selection);
-void checkMenuInputs(unsigned char joyin);
+void checkMenuInputs(char joyin);
 void selectCharacter(void);
 void selectField(void);
 void startMatch(void);
@@ -123,10 +123,10 @@ unsigned char screen[1152];
 unsigned char *screen_itterator = screen;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
-unsigned char joy0hor = 0xf3;
-unsigned char joy1hor = 0;
-unsigned char joy0ver = 0;
-unsigned char joy1ver = 0;
+char joy0hor = 0;
+char joy1hor = 0;
+char joy0ver = 0;
+char joy1ver = 0;
 
 // Menu selection variables
 // button select
@@ -234,7 +234,7 @@ void  initializations(void) {
   TIOS = 0x01;
   // set 1ms interrupts (needs to be changed to 1/60s of a second)
   TC0 = 15000;
-  TIE = 0x00; 
+  TIE = 0x01; 
 
 
   ATDCTL2 = 0x80;
@@ -347,7 +347,7 @@ interrupt 5 void HSYNC_XISR( void)
   // and hCnt upper limit plus 1 to be 480. This is
   // becuase we need to display 480 horizontal lines.
   // If this is not so, then the display will scroll.
-if(hCnt > 34 & hCnt < 515){ //39 520
+if(hCnt > 39 & hCnt < 520){
  //first 80 lines of black
  asm{
  ldx screen_itterator
@@ -357,18 +357,28 @@ if(hCnt > 34 & hCnt < 515){ //39 520
 // nop
 // nop
 // nop
-// nop 
+// nop
 // nop
 //  nop
-// nop //
+// nop
  nop
  nop
  nop
  nop
- nop  //
  nop
  nop
- nop 
+ nop
+ nop
+  nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
+ nop
   nop
  nop
  nop
@@ -380,17 +390,7 @@ if(hCnt > 34 & hCnt < 515){ //39 520
  nop
  nop
   nop
-nop
  nop
- nop
- nop
- nop
- nop
- nop
- nop
- nop
-  nop
- nop 
  nop
  nop
  nop
@@ -401,26 +401,19 @@ nop
  
  //colors on screen
  
- ldy #24 //24
+ ldy #24
 loop:
  movb 1,x+,PTT
  nop
  nop
  nop
  nop
-
 // nop
-// nop
- 
- 
+ //nop
  bset PTT,$02
  nop
  nop
  nop
-
-
- 
- 
  dbne y,loop
  
  
@@ -460,7 +453,7 @@ interrupt 6 void VSYNC_ISR( void)
     vSyncFlag = 1;
   	hCnt = 0;
 
-	// wait for sampled inputs
+	// wait for sampled inputs (note that they are signed)
 	// bit 7: analog horizontal controller 0
 	// bit 6: analog vertical   controller 0
 	// bit 5: digital button 1  controller 0
@@ -471,21 +464,25 @@ interrupt 6 void VSYNC_ISR( void)
 	// bit 1: digital button 1  controller 1
 	// bit 0: digital button 2  controller 1
 	asm {
+		movb	#$47, ATDCTL5
+await:
+        brclr	ATDSTAT0,$80,await
+        movb	ATDDR0H, joy0hor
+        
+        movb	#$46, ATDCTL5
+await1:	
+        brclr	ATDSTAT0,$80,await1
+        movb	ATDDR0H, joy0ver
 
-await:	brclr	ATDSTAT,$80,await
-		movb	ATDDR7, joy0hor
+        movb	#$43, ATDCTL5
+await2:	
+        brclr	ATDSTAT0,$80,await2
+        movb	ATDDR0H, joy1hor
 
-		movb	#$02, ATDCTL5
-await1:	brclr	ATDSTAT,$80,await1
-		movb	ATDDR6, joy0vert
-
-		movb	#$04, ATDCTL5
-await2:	brclr	ATDSTAT,$80,await2
-		movb	ATDDR3, joy1hor
-
-		movb	#$08, ATDCTL5
-await3:	brclr	ATDSTAT,$80,await3
-		movb	ATDDR2, joy1vert
+        movb	#$42, ATDCTL5
+await3:	
+        brclr	ATDSTAT0,$80,await3
+        movb	ATDDR0H, joy1ver
 	}
 }
 
@@ -642,7 +639,7 @@ void displaySplash(void)
         }
     }
 
-    //while (splash_screen_enable < TIMEFORONESECOND);
+    while (splash_screen_enable < TIMEFORONESECOND);
 }
 
 /*
@@ -655,29 +652,42 @@ void displaySplash(void)
 void displayMenu(char selection)
 {
 	int r,l;
+	//unsigned char **menu_image = NULL;
 	// pick image to draw
 	switch(selection)
 	{
 		case 1:
-			menu_image = image_menu_select1;
+			for (r = 0; r < SCREENH; r++)
+			{
+				for (l = 0; l < SCREENW/2; l++)
+				{
+					screen[r*(SCREENW/2) + l] = image_menu_select1[r][l];
+				}
+			}
 			break;
 		case 2:
-			menu_image = image_menu_select2;
+			for (r = 0; r < SCREENH; r++)
+			{
+				for (l = 0; l < SCREENW/2; l++)
+				{
+					screen[r*(SCREENW/2) + l] = image_menu_select2[r][l];
+				}
+			}
 			break;
 		case 3:
-			menu_image = image_menu_select3;
+			for (r = 0; r < SCREENH; r++)
+			{
+				for (l = 0; l < SCREENW/2; l++)
+				{
+					screen[r*(SCREENW/2) + l] = image_menu_select3[r][l];
+				}
+			}
 			break;
 		default:
 			break;
 	}
 	// draw the image
-    for (r = 0; r < SCREENH; r++)
-    {
-        for (l = 0; l < SCREENW/2; l++)
-        {
-            screen[r*(SCREENW/2) + l] = menu_image[r][l];
-        }
-    }
+    
 }
 
 /*
@@ -697,7 +707,7 @@ void displayMenu(char selection)
 ;		U		(2.5v + ZEROTHRESH) -> 5v
 ;
 ;***********************************************************************/
-void checkMenuInputs(unsigned char joyin)
+void checkMenuInputs(char joyin)
 {
 		// use a static variable so we can reuse the value when we return
 		// to this function. This was used as apposed to a global variable
@@ -715,7 +725,7 @@ void checkMenuInputs(unsigned char joyin)
 				// don't allow the selection to overflow
 				if (selection > 3)
 				{
-						selection = 0;
+						selection = 3;
 				}
 		}
 
@@ -730,7 +740,7 @@ void checkMenuInputs(unsigned char joyin)
 				// don't allow selection to underflow
 				if (selection < 0)
 				{
-						selection = 3;
+						selection = 0;
 				}
 		}
 
@@ -754,6 +764,15 @@ void checkMenuInputs(unsigned char joyin)
 
 void selectCharacter(void)
 {
+    int r,l;
+
+    for (r = 0; r < SCREENH; r++)
+    {
+        for (l = 0; l < SCREENW/2; l++)
+        {
+            screen[r*(SCREENW/2) + l] = image_character_select[r][l];
+        }
+    }
 }
 void selectField(void)
 {
@@ -817,7 +836,7 @@ void display_character(struct character *self)
 		unsigned int location = 0;
 		unsigned char odd = 0; // checks start on odd pixel.
 		unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
-		unsigned char digit0, digit1, digit2, digit3;
+//		unsigned char digit0, digit1, digit2, digit3;
 
     // 0 or 1 value. If 1, then we're starting on an odd pixel
     // modulus logic needs to be kept out of for looping.
