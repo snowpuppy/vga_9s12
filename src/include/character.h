@@ -43,6 +43,7 @@ struct character
 		void (*move)(struct character *); // up/down and left/right atd values
 		const unsigned char *frame;
 		unsigned char currframe;
+		unsigned char numframes;
 		unsigned char framew, frameh;
 };
 
@@ -68,29 +69,33 @@ void defautAttack(struct character *self, char type, char direction)
 ;***********************************************************************/
 void defaultMove(struct character *self)
 {
-		if (self->moveflag & MOVEUP == MOVEUP && self->horvel > 0)
+		if (self->moveflag & MOVEUP == MOVEUP && self->vervel > 0)
 		{
 				// check for collisions
 				// move up one pixel.
 				self->y -= 1;
+				bclr(self->moveflag,MOVEUP);
 		}
-		else if (self->moveflag & MOVEUP == MOVEUP && self->horvel < 0)
+		else if (self->moveflag & MOVEUP == MOVEUP && self->vervel < 0)
 		{
 				// check for collisions
 				// move down one pixel.
 				self->y += 1;
+				bclr(self->moveflag,MOVEUP);
 		}
-		if (self->moveflag & MOVERI == MOVERI && self->vervel > 0)
+		if (self->moveflag & MOVERI == MOVERI && self->horvel > 0)
 		{
 				// check for collisions
 				// move right one pixel.
 				self->x += 1;
+				bclr(self->moveflag,MOVERI);
 		}
-		else if (self->moveflag & MOVERI == MOVERI && self->vervel < 0)
+		else if (self->moveflag & MOVERI == MOVERI && self->horvel < 0)
 		{
 				// check for collisions
 				// move left one pixel.
 				self->x -= 1;
+				bclr(self->moveflag,MOVERI);
 		}
 }
 

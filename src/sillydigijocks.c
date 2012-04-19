@@ -62,11 +62,7 @@
 #include "derivative.h"      /* derivative-specific definitions */
 #include <mc9s12c32.h>
 
-// Define bset and bclr macros
-#define bset(x,y) \
-    ( x = x | y )
-#define bclr(x,y) \
-    ( x = x & ~(y) )
+#include "bset_clr.h"
 
 // Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
 #define USESCIDEBUGGING 1
@@ -84,6 +80,7 @@
 // define screen resolution
 #define SCREENW 48
 #define SCREENH 48
+#define SCREENSIZE 1152
 
 // Define Timing specifications
 #define TIMEFORONESECOND 2*100
@@ -105,7 +102,7 @@ void selectCharacter(void);
 void selectField(void);
 void startMatch(void);
 void display_character(struct character *self);
-void writeBackground(unsigned char *image);
+void writeBackground(const unsigned char *image);
 
 
 // Variable declarations  
@@ -120,7 +117,7 @@ unsigned char vSyncFlag = 0;
 unsigned char line_hold_count = 0;
 	   			 		  			 		       
 // GLOBAL SCREEN BUFFER (2304 pixels)
-unsigned char screen[1152];
+unsigned char screen[SCREENSIZE];
 unsigned char *screen_itterator = screen;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
@@ -157,6 +154,7 @@ struct character player0 = {
 		defaultMove, // move
 		image_kirby, // frame
 		0, // currframe
+		2, // numframes
 		4, // framew
 		4, // frameh
 };
@@ -178,6 +176,7 @@ struct character player1 = {
 		defaultMove, // move
 		image_kirby, // frame
 		0, // currframe
+		2, // numframes
 		4, // framew
 		4, // frameh
 };
@@ -521,9 +520,10 @@ interrupt 8 void TIM_ISR(void)
     {
         splash_screen_enable++;
     }
-	/*
-		// If game is in progress....
 
+	// If game is in progress....
+	if (selection == 3 && select == 1)
+	{
 		// #################################
 		// set player0 velocity update flag
 		// #################################
@@ -612,9 +612,9 @@ interrupt 8 void TIM_ISR(void)
 						player1.vervelcnt = 0;
 				}
 		}
+	}
 	
-	*/	
-		// END OF TIM ISR
+	// END OF TIM ISR
 }
 
 
@@ -626,7 +626,7 @@ interrupt 8 void TIM_ISR(void)
 ;***********************************************************************/
 void displaySplash(void)
 {
-    int r,l;
+    //int r,l;
 
     // copy the splash screen to the screen
     // note that the screen now needs to be 
@@ -655,7 +655,7 @@ void displaySplash(void)
 ;***********************************************************************/
 void displayMenu(char selection)
 {
-	int r,l;
+	//int r,l;
 	//unsigned char **menu_image = NULL;
 	// pick image to draw
 	switch(selection)
@@ -672,7 +672,6 @@ void displayMenu(char selection)
 		default:
 			break;
 	}
-	// draw the image
     
 }
 
@@ -750,15 +749,7 @@ void checkMenuInputs(char joyin)
 
 void selectCharacter(void)
 {
-    int r,l;
-
-    for (r = 0; r < SCREENH; r++)
-    {
-        for (l = 0; l < SCREENW/2; l++)
-        {
-            screen[r*(SCREENW/2) + l] = image_character_select[r][l];
-        }
-    }
+	writeBackground(image_character_select);
 }
 void selectField(void)
 {
@@ -788,24 +779,38 @@ void startMatch(void)
 				{
 						player0.veracc = 0;
 				}
-				else if (joy0hor > 0)
+				else if (joy0ver > 0)
 				{
-						player0.veracc = 50 + (150 - joy0hor* (150/(256 - ZEROTHRESH) ) );
+						player0.veracc = 50 + (150 - joy0ver* (150/(256 - ZEROTHRESH) ) );
 				}
 				else
 				{
-						player0.veracc = -50 + (-150 - joy0hor*(150/(256 - ZEROTHRESH) ) );
+						player0.veracc = -50 + (-150 - joy0ver*(150/(256 - ZEROTHRESH) ) );
 				}
 				// update velociety for each player
 				if (player0.moveflag & VELUP == VELUP)
 				{
-						player0.vervel = (player0.vervel*player0.veracc)/ (player0.vervel + player0.veracc);
-						bclr(player0.moveflag, VELUP);
+						if (player0.vervel != 0)
+						{
+								player0.vervel = (player0.vervel*player0.veracc)/ (player0.vervel + player0.veracc);
+								bclr(player0.moveflag, VELUP);
+						}
+						else
+						{
+								player0.vervel = player0.veracc;
+						}
 				}
 				if (player0.moveflag & VELRI == VELRI)
 				{
-						player0.horvel = (player0.horvel*player0.horacc)/ (player0.horvel + player0.horacc);
-						bclr(player0.moveflag, VELRI);
+						if (player0.horvel != 0)
+						{
+								player0.horvel = (player0.horvel*player0.horacc)/ (player0.horvel + player0.horacc);
+								bclr(player0.moveflag, VELRI);
+						}
+						else
+						{
+								player0.horvel = player0.horacc;
+						}
 				}
 				// move player (it can be any function, I may move the above logic
 				// into this function to avoid typing it for both players.
@@ -818,10 +823,10 @@ void startMatch(void)
 
 void display_character(struct character *self)
 {
-		unsigned char r,l;
-		unsigned int location = 0;
-		unsigned char odd = 0; // checks start on odd pixel.
-		unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
+	unsigned char r,l;
+	unsigned int location = 0;
+	unsigned char odd = 0; // checks start on odd pixel.
+	unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
 
     // 0 or 1 value. If 1, then we're starting on an odd pixel
     // modulus logic needs to be kept out of for looping.
@@ -842,18 +847,20 @@ void display_character(struct character *self)
 				for (l = 0; l < self->framew/2; l++)
 				{
 				    // do a different process if we start on an odd pixel.
-						if (odd)
+						if (location < SCREENSIZE)
 						{
-						    // STORE FIRST PIXEL
-						    
-						    // note that we've already calculated the starting location
-						    // We are masking off the lower nibble [F0]
+							if (odd)
+							{
+								// STORE FIRST PIXEL
+
+								// note that we've already calculated the starting location
+								// We are masking off the lower nibble [F0]
 								temp1 = screen[location] & 0xf0;
 								// we want the pixel at row "r" and column "l"
 								// a four by four pixel picture's array will
 								// only have 2 columns (2pixels/byte).
 								// We are again masking off the lower nibble [F0]
-								temp3 = self->frame[(self->framew/2)*r + l];
+								temp3 = self->frame[(self->framew/2)*self->numframes*r + l];
 								temp2 = temp3 & 0xf0;
 								// Shift the upper nibble to the lower nibble [0F]
 								temp2 = temp2 / 0x10;
@@ -861,9 +868,9 @@ void display_character(struct character *self)
 								temp1 = temp1 + temp2;
 								// store the result in the screen.
 								screen[location] = temp1;
-								
+
 								// STORE SECOND PIXEL
-								
+
 								// get our current location plus one
 								// We are masking off the upper nibble this time [0F]
 								temp1 = screen[location+1] & 0x0f;
@@ -875,13 +882,14 @@ void display_character(struct character *self)
 								// add the bytes together [FF]
 								temp1 = temp1 + temp2;
 								screen[location+1] = temp1;
-						}
-						else
-						{
-						    // We start on an even byte, so just copy our
-						    // picture over two pixels at a time.
-								temp1 = self->frame[(self->framew/2)*r + l];
+							}
+							else
+							{
+								// We start on an even byte, so just copy our
+								// picture over two pixels at a time.
+								temp1 = self->frame[(self->framew/2)*self->numframes*r + l];
 								screen[location] = temp1;
+							}
 						}
 						// increment our location by one column
 						location++;
@@ -895,7 +903,7 @@ void display_character(struct character *self)
 ; Name:         writeBackground
 ; Description:  writes a large full sized 48x48 image to the screen
 ;***********************************************************************/
-void writeBackground(unsigned char *image)
+void writeBackground(const unsigned char *image)
 {
     int loc;
     for (loc = 0; loc < SCREENSIZE; loc++)
