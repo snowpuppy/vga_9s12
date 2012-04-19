@@ -22,7 +22,7 @@ def getColor(pixel):
 
     # test to make sure the pixel is valid
     if not (red1 == 255 or red1 == 0) or not (grn1 == 255 or grn1 == 0) or not (blu1 == 255 or blu1 == 0):
-        if (red1 != 128 and blu1 != 64 and grn1 != 0):
+        if (red1 != 128 and grn1 != 64 and blu1 != 0):
             print "There is an invalid pixel value in this picture r = %3i g = %3i b = %3i" % (red1, grn1, blu1)
             exit()
 
@@ -34,7 +34,7 @@ def getColor(pixel):
         color1 = color1 + 2
     if blu1 == 255:
         color1 = color1 + 1
-    if red1 == 128 and blu1 == 64 and grn1 == 0:
+    if red1 == 128 and grn1 == 64 and blu1 == 0:
         color1 = 3
 
     return color1
