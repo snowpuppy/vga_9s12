@@ -1,5 +1,5 @@
 // This is an automatically generated file.
-// This file is generated for ./kirby.png by convert.py
+// This file is generated for kirby.png by convert.py
 
 #ifndef KIRBY_H
 

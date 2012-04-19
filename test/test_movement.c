@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../src/character.h"
-#include "../src/kirby.h"
-#include "../src/splash.h"
+#include "../src/include/character.h"
+#include "../src/include/kirby.h"
+#include "../src/include/splash.h"
 
 // define screen resolution
 #define SCREENW 48
