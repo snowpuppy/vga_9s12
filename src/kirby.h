@@ -1,11 +1,11 @@
 // This is an automatically generated file.
 // This file is generated for ./kirby.png by convert.py
 
-#ifndef ./KIRBY_H
+#ifndef KIRBY_H
 
-#define ./KIRBY_H
+#define KIRBY_H
 
-const unsigned char image_./kirby[4][4] = {
+const unsigned char image_kirby[16] = {
 0xf4,0xbc,0xf4,0xbc,
 0xa0,0xb4,0xb4,0x14,
 0xb4,0xb4,0xb4,0xb4,

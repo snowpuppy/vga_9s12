@@ -55,3 +55,4 @@ const unsigned char image_splash[48][24] = {
 };
 
 #endif
+

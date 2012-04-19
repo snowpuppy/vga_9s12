@@ -19,19 +19,36 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+// These are used to set the movement flags. The character will move one
+// pixel at a time.
+#define MOVEUP 0x1
+#define MOVEDO 0x2
+#define MOVERI 0x4
+#define MOVELE 0x8
+#define VELUP  0x10 // update up/down velocity
+#define VELRI  0x20 // update right/left velocity
+
+
 struct character
 {
 		char x,y;
-		char horvel, vertvel;
-		char horacc, veracc;
-		char damage;
+		int horvel, vervel;
+		int horvelcnt, vervelcnt;
+		char moveflag; // flag for moving up or moving down. bset(MOVEUP,moveflag)
+		int horacc, veracc;
+		int horacccnt, veracccnt;
+		unsigned char damage;
 		char name[3+1];
-		void (*attack)(char, char) // type of attack and direction of attack
-		void (*move)(char, char) // up/down and left/right atd values
-		char *frame;
-		char currframe;
-		char framew, frameh;
+		void (*attack)(struct character *, char, char); // type of attack and direction of attack
+		void (*move)(struct character *); // up/down and left/right atd values
+		const unsigned char *frame;
+		unsigned char currframe;
+		unsigned char framew, frameh;
 };
+
+// DEFUALT FUNCTIONS
+void defaultMove(struct character *self);
+void defautAttack(struct character *self, char type, char direction);
 
 /*
 ;***********************************************************************
@@ -39,7 +56,7 @@ struct character
 ; Description:  Implements an attack for the player who calls it.
 ;								
 ;***********************************************************************/
-void defautAttack(char type, char direction)
+void defautAttack(struct character *self, char type, char direction)
 {
 }
 
@@ -49,8 +66,32 @@ void defautAttack(char type, char direction)
 ; Description:  Implements a move for the player who calls it.
 ;								
 ;***********************************************************************/
-void defaultMove(char vertical, char horizontal)
+void defaultMove(struct character *self)
 {
+		if (self->moveflag & MOVEUP == MOVEUP && self->horvel > 0)
+		{
+				// check for collisions
+				// move up one pixel.
+				self->y -= 1;
+		}
+		else if (self->moveflag & MOVEUP == MOVEUP && self->horvel < 0)
+		{
+				// check for collisions
+				// move down one pixel.
+				self->y += 1;
+		}
+		if (self->moveflag & MOVERI == MOVERI && self->vervel > 0)
+		{
+				// check for collisions
+				// move right one pixel.
+				self->x += 1;
+		}
+		else if (self->moveflag & MOVERI == MOVERI && self->vervel < 0)
+		{
+				// check for collisions
+				// move left one pixel.
+				self->x -= 1;
+		}
 }
 
 #endif
