@@ -21,22 +21,22 @@
 
 // These are used to set the movement flags. The character will move one
 // pixel at a time.
-#define MOVEUP 0x1
-#define MOVEDO 0x2
-#define MOVERI 0x4
-#define MOVELE 0x8
+#define MOVEUP 0x01
+#define MOVEDO 0x02
+#define MOVERI 0x04
+#define MOVELE 0x08
 #define VELUP  0x10 // update up/down velocity
 #define VELRI  0x20 // update right/left velocity
-
-char dummy1 = 0;
-char dummy2 = 0;
 
 struct character
 {
 		char x,y;
 		int horvel, vervel;
 		int horvelcnt, vervelcnt;
-		char moveflag; // flag for moving up or moving down. bset(MOVEUP,moveflag)
+		unsigned char movever_v; // flag for moving up or moving down. bset(MOVEUP,moveflag)
+		unsigned char movehor_v;
+		unsigned char movever_r;
+		unsigned char movehor_r;
 		int horacc, veracc;
 		int horacccnt, veracccnt;
 		unsigned char damage;
@@ -71,36 +71,46 @@ void defautAttack(struct character *self, char type, char direction)
 ;***********************************************************************/
 void defaultMove(struct character *self)
 {
-    dummy1 = ( (self->moveflag & MOVERI) == MOVERI);
-    dummy2 = (self->horvel > 0);
     
-		if ( (self->moveflag & MOVEUP == MOVEUP) && (self->vervel > 0 ) )
+		//if ( (self->moveflag & MOVEUP == MOVEUP) && (self->vervel > 0 ) )
+		if ( self->movever_r && self->vervel > 0 )
 		{
 				// check for collisions
 				// move up one pixel.
 				self->y -= 1;
-				bclr(self->moveflag,MOVEUP);
+				//bclr(self->moveflag,MOVEUP);
+				self->movever_r = 0;
+				display_character(self);
 		}
-		else if ( (self->moveflag & MOVEUP == MOVEUP ) && ( self->vervel < 0) )
+		//else if ( (self->moveflag & MOVEUP == MOVEUP ) && ( self->vervel < 0) )
+		else if ( self->movever_r && self->vervel < 0)
 		{
 				// check for collisions
 				// move down one pixel.
 				self->y += 1;
-				bclr(self->moveflag,MOVEUP);
+				//bclr(self->moveflag,MOVEUP);
+				self->movever_r = 0;
+				display_character(self);
 		}
-		if ( ( (self->moveflag & MOVERI) == MOVERI) && (self->horvel > 0) )
+		//if ( ( (self->moveflag & MOVERI) == MOVERI) && (self->horvel > 0) )
+		if ( self->movehor_r && self->horvel > 0 )
 		{
 				// check for collisions
 				// move right one pixel.
 				self->x += 1;
-				bclr(self->moveflag,MOVERI);
+				//bclr(self->moveflag,MOVERI);
+				self->movehor_r = 0;
+				display_character(self);
 		}
-		else if ( (self->moveflag & MOVERI == MOVERI ) && ( self->horvel < 0 ) )
+		//else if ( (self->moveflag & MOVERI == MOVERI ) && ( self->horvel < 0 ) )
+		else if (self->movehor_r && self->horvel < 0 )
 		{
 				// check for collisions
 				// move left one pixel.
 				self->x -= 1;
-				bclr(self->moveflag,MOVERI);
+				//bclr(self->moveflag,MOVERI);
+				self->movehor_r = 0;
+				display_character(self);
 		}
 }
 

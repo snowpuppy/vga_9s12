@@ -85,13 +85,6 @@
 // Define Timing specifications
 #define TIMEFORONESECOND 2*100
 
-// include images. These are in a separate file
-// because they're dynamically generated.
-#include "ourimages.h"
-
-// include character definitions
-#include "character.h"
-
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
@@ -103,6 +96,15 @@ void selectField(void);
 void startMatch(void);
 void display_character(struct character *self);
 void writeBackground(const unsigned char *image);
+int abs(int value);
+
+
+// include images. These are in a separate file
+// because they're dynamically generated.
+#include "ourimages.h"
+
+// include character definitions
+#include "character.h"
 
 
 // Variable declarations  
@@ -139,12 +141,15 @@ unsigned char splash_screen_enable = 0;
 struct character player0 = {
 		28, // x
 		28, // y
-		500, // horvel
+		0, // horvel
 		0, // vervel
 		0, // horvelcnt
 		0, // vervelcnt
-		0, // moveflag
-		500, // horacc
+		0, // movever_v
+		0, // movehor_v
+		0, // movever_r
+		0, // movehor_r
+		0, // horacc
 		0, // veracc
 		0, // horacccnt
 		0, // veracccnt
@@ -152,7 +157,7 @@ struct character player0 = {
 		"def", // name
 		defautAttack, // attack
 		defaultMove, // move
-		image_kirby, // frame
+		image_link, // frame
 		0, // currframe
 		2, // numframes
 		4, // framew
@@ -165,7 +170,10 @@ struct character player1 = {
 		0, // vervel
 		0, // horvelcnt
 		0, // vervelcnt
-		0, // moveflag
+		0, // movever_v
+		0, // movehor_v
+		0, // movever_r
+		0, // movehor_r
 		0, // horacc
 		0, // veracc
 		0, // horacccnt
@@ -278,7 +286,6 @@ void main(void) {
 	// Don't branch unless the user has triggered the 'select' button.
 	if (select == 1)
 	{
-			select = 0;
 			switch (selection)
 			{
 			// Sub Function
@@ -299,6 +306,7 @@ void main(void) {
 			default:
 					break;
 			}
+			select = 0;
 	}
     //startMatch();
     /*
@@ -522,7 +530,7 @@ interrupt 8 void TIM_ISR(void)
     }
 
 	// If game is in progress....
-	if (selection == 3 )//&& select == 1)
+	if (selection == 3 && select == 1)
 	{
 		// #################################
 		// set player0 velocity update flag
@@ -530,10 +538,11 @@ interrupt 8 void TIM_ISR(void)
 		if (player0.horacc != 0)
 		{
 				player0.horacccnt++;
-				if (player0.horacccnt >= player0.horacc)
+				if (player0.horacccnt >= abs(player0.horacc) )
 				{
 						// need to update velocity up/down
-						bset(player0.moveflag, VELRI);
+						//bset(player0.moveflag, VELRI);
+						player0.movehor_v = 1;
 						// restart count
 						player0.horacccnt = 0;
 				}
@@ -541,10 +550,11 @@ interrupt 8 void TIM_ISR(void)
 		if (player0.veracc != 0)
 		{
 				player0.veracccnt++;
-				if (player0.veracccnt >= player0.veracc)
+				if (player0.veracccnt >= abs(player0.veracc) )
 				{
 						// need to update velocity left/right
-						bset(player0.moveflag, VELUP);
+						//bset(player0.moveflag, VELUP);
+						player0.movever_v = 1;
 						player0.veracccnt = 0;
 				}
 		}
@@ -552,18 +562,20 @@ interrupt 8 void TIM_ISR(void)
 		if (player0.horvel != 0) 
 		{
 				player0.horvelcnt++;
-				if (player0.horvelcnt >= player0.horvel)
+				if (player0.horvelcnt >= abs(player0.horvel) )
 				{
-						bset(player0.moveflag, MOVERI);
+						//bset(player0.moveflag, MOVERI);
+						player0.movehor_r = 1;
 						player0.horvelcnt = 0;
 				}
 		}
 		if (player0.vervel != 0)
 		{
 				player0.vervelcnt++;
-				if (player0.vervelcnt >= player0.vervel)
+				if (player0.vervelcnt >= abs(player0.vervel) )
 				{
-						bset(player0.moveflag, MOVEUP);
+						//bset(player0.moveflag, MOVEUP);
+						player0.movever_r = 1;
 						player0.vervelcnt = 0;
 				}
 		}
@@ -574,10 +586,11 @@ interrupt 8 void TIM_ISR(void)
 		if (player1.horacc != 0)
 		{
 				player1.horacccnt++;
-				if (player1.horacccnt >= player1.horacc)
+				if (player1.horacccnt >= abs(player1.horacc) )
 				{
 						// need to update velocity up/down
-						bset(player1.moveflag, VELRI);
+						//bset(player1.moveflag, VELRI);
+						player1.movehor_v = 1;
 						// restart count
 						player1.horacccnt = 0;
 				}
@@ -585,10 +598,11 @@ interrupt 8 void TIM_ISR(void)
 		if (player1.veracc != 0)
 		{
 				player1.veracccnt++;
-				if (player1.veracccnt >= player1.veracc)
+				if (player1.veracccnt >= abs(player1.veracc) )
 				{
 						// need to update velocity left/right
-						bset(player1.moveflag, VELUP);
+						//bset(player1.moveflag, VELUP);
+						player1.movever_v = 1;
 						player1.veracccnt = 0;
 				}
 		}
@@ -597,18 +611,20 @@ interrupt 8 void TIM_ISR(void)
 		if (player1.horvel != 0)
 		{
 				player1.horvelcnt++;
-				if (player1.horvelcnt >= player1.horvel)
+				if (player1.horvelcnt >= abs(player1.horvel) )
 				{
-						bset(player1.moveflag, MOVEUP);
+						//bset(player1.moveflag, MOVEUP);
+						player1.movehor_r = 1;
 						player1.horvelcnt = 0;
 				}
 		}
 		if (player1.vervel != 0)
 		{
 				player1.vervelcnt++;
-				if (player1.vervelcnt >= player1.vervel)
+				if (player1.vervelcnt >= abs(player1.vervel) )
 				{
-						bset(player1.moveflag, MOVERI);
+						//bset(player1.moveflag, MOVERI);
+						player1.movever_r = 1;
 						player1.vervelcnt = 0;
 				}
 		}
@@ -756,68 +772,82 @@ void selectField(void)
 }
 void startMatch(void)
 {
-		char quit = 0;
+	char quit = 0;
 
-		while (!quit)
+	while (!quit)
+	{
+		if (hCnt > 520 || hCnt < 32)
 		{
-				// update acceleration for each player
-				// 50 means 500ms and 150 means 1500ms. These correspond to 
-				// 2p/s and 1.5p/s correspondingly
-				if (-ZEROTHRESH < joy0hor && joy0hor < ZEROTHRESH)
+			// update acceleration for each player
+			// 50 means 500ms and 150 means 1500ms. These correspond to 
+			// 2p/s and 1.5p/s correspondingly
+
+			// UPDATE HORIZONTAL ACCELERATION PLAYER0
+			if (-ZEROTHRESH < joy0hor && joy0hor < ZEROTHRESH)
+			{
+				player0.horacc = 0;
+				player0.horvel = 0;
+			}
+			else if (joy0hor > 0)
+			{
+				player0.horacc = 50 + (75 - (joy0hor*75)/(128 - ZEROTHRESH) );
+			}
+			else
+			{
+				player0.horacc = -50 + (-75 - (joy0hor*75)/(128 - ZEROTHRESH) );
+			}
+			// UPDATE VERTICAL ACCELERATION PLAYER0
+			if (-ZEROTHRESH < joy0ver && joy0ver < ZEROTHRESH)
+			{
+				player0.veracc = 0;
+				player0.vervel = 0;
+			}
+			else if (joy0ver > 0)
+			{
+				player0.veracc = 50 + (75 - (joy0ver*75)/(128 - ZEROTHRESH) );
+			}
+			else
+			{
+				player0.veracc = -50 + (-75 - (joy0ver*75)/(128 - ZEROTHRESH) );
+			}
+			// UPDATE VERTICAL VELOCITY PLAYER0
+			//if (player0.moveflag & VELUP == VELUP)
+			if (player0.movever_v)
+			{
+				if (player0.vervel != 0)
 				{
-						player0.horacc = 0;
-				}
-				else if (joy0hor > 0)
-				{
-						player0.horacc = 50 + (150 - joy0hor* (150/(256 - ZEROTHRESH) ) );
+					player0.vervel = (player0.vervel*player0.veracc)/ (player0.vervel + player0.veracc);
 				}
 				else
 				{
-						player0.horacc = -50 + (-150 - joy0hor*(150/(256 - ZEROTHRESH) ) );
+					player0.vervel = player0.veracc;
 				}
-				if (-ZEROTHRESH < joy0ver && joy0ver < ZEROTHRESH)
+				//bclr(player0.moveflag, VELUP);
+				player0.movever_v = 0;
+			}
+			// UPDATE HORIZONTAL VELOCITY PLAYER0
+			//if (player0.moveflag & VELRI == VELRI)
+			if (player0.movehor_v)
+			{
+				if (player0.horvel != 0)
 				{
-						player0.veracc = 0;
-				}
-				else if (joy0ver > 0)
-				{
-						player0.veracc = 50 + (150 - joy0ver* (150/(256 - ZEROTHRESH) ) );
+					player0.horvel = (player0.horvel*player0.horacc)/ (player0.horvel + player0.horacc);
 				}
 				else
 				{
-						player0.veracc = -50 + (-150 - joy0ver*(150/(256 - ZEROTHRESH) ) );
+					player0.horvel = player0.horacc;
 				}
-				// update velociety for each player
-				if (player0.moveflag & VELUP == VELUP)
-				{
-						if (player0.vervel != 0)
-						{
-								player0.vervel = (player0.vervel*player0.veracc)/ (player0.vervel + player0.veracc);
-								bclr(player0.moveflag, VELUP);
-						}
-						else
-						{
-								player0.vervel = player0.veracc;
-						}
-				}
-				if (player0.moveflag & VELRI == VELRI)
-				{
-						if (player0.horvel != 0)
-						{
-								player0.horvel = (player0.horvel*player0.horacc)/ (player0.horvel + player0.horacc);
-								bclr(player0.moveflag, VELRI);
-						}
-						else
-						{
-								player0.horvel = player0.horacc;
-						}
-				}
-				// move player (it can be any function, I may move the above logic
-				// into this function to avoid typing it for both players.
-				player0.move(&player0);
-				//  display the character at his location
-				display_character(&player0);
+				//bclr(player0.moveflag, VELRI);
+				player0.movehor_v = 0;
+			}
+			// move player (it can be any function, I may move the above logic
+			// into this function to avoid typing it for both players.
+			player0.move(&player0);
+			//  display the character at his location
+			//display_character(&player0);
 		}
+
+	}
 }
 
 
@@ -854,17 +884,17 @@ void display_character(struct character *self)
 								// STORE FIRST PIXEL
 
 								// note that we've already calculated the starting location
-								// We are masking off the lower nibble [F0]
-								temp1 = screen[location] & 0xf0;
+								// We are masking off the lower nibble [E0]
+								temp1 = screen[location] & 0xe0;
 								// we want the pixel at row "r" and column "l"
 								// a four by four pixel picture's array will
 								// only have 2 columns (2pixels/byte).
-								// We are again masking off the lower nibble [F0]
+								// We are again masking off the lower nibble [E0]
 								temp3 = self->frame[(self->framew/2)*self->numframes*r + l];
-								temp2 = temp3 & 0xf0;
-								// Shift the upper nibble to the lower nibble [0F]
-								temp2 = temp2 / 0x10;
-								// add the bytes together [FF]
+								temp2 = temp3 & 0xe0;
+								// Shift the upper nibble to the lower nibble [1C]
+								temp2 = temp2 / 0x08;
+								// add the bytes together [FC]
 								temp1 = temp1 + temp2;
 								// store the result in the screen.
 								screen[location] = temp1;
@@ -872,14 +902,14 @@ void display_character(struct character *self)
 								// STORE SECOND PIXEL
 
 								// get our current location plus one
-								// We are masking off the upper nibble this time [0F]
-								temp1 = screen[location+1] & 0x0f;
-								// Again we mask off the upper nibble, this time [0F]
+								// We are masking off the upper nibble this time [1C]
+								temp1 = screen[location+1] & 0x1c;
+								// Again we mask off the upper nibble, this time [1C]
 								// for our picture's byte
-								temp2 = temp3 & 0x0f;
-								// shift our low nibble to our high nibble. [F0]
-								temp2 *= 0x10;
-								// add the bytes together [FF]
+								temp2 = temp3 & 0x1c;
+								// shift our low nibble to our high nibble. [E0]
+								temp2 *= 0x08;
+								// add the bytes together [FC]
 								temp1 = temp1 + temp2;
 								screen[location+1] = temp1;
 							}
@@ -910,6 +940,23 @@ void writeBackground(const unsigned char *image)
     {
         screen[loc] = image[loc];
     }
+}
+
+
+/***********************************************************************
+; Name:         abs
+; Description:  find absolute value of an integer
+;***********************************************************************/
+int abs(int value)
+{
+	if (value < 0)
+	{
+		return -value;
+	}
+	else
+	{
+		return value;
+	}
 }
 
 #if USESCIDEBUGGING

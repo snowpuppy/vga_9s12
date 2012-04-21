@@ -7,3 +7,4 @@
 #include "pick_char.h"
 #include "splash.h"
 #include "kirby.h"
+#include "link.h"
