@@ -30,6 +30,7 @@
 
 struct character
 {
+		char player; // indicates either player0 or player1. Used when figuring out who attacked who.
 		char x,y;
 		int horvel, vervel;
 		int horvelcnt, vervelcnt;
@@ -37,12 +38,15 @@ struct character
 		unsigned char movehor_v;
 		unsigned char movever_r;
 		unsigned char movehor_r;
+		unsigned char jumpflag;
 		int horacc, veracc;
 		int horacccnt, veracccnt;
 		unsigned char damage;
 		char name[3+1];
 		void (*attack)(struct character *, char, char); // type of attack and direction of attack
 		void (*move)(struct character *); // up/down and left/right atd values
+		char attacking;
+		char crouching;
 		const unsigned char *frame;
 		unsigned char currframe;
 		unsigned char numframes;
@@ -71,44 +75,83 @@ void defautAttack(struct character *self, char type, char direction)
 ;***********************************************************************/
 void defaultMove(struct character *self)
 {
-    
+    int coll = 0;
+
 		//if ( (self->moveflag & MOVEUP == MOVEUP) && (self->vervel > 0 ) )
 		if ( self->movever_r && self->vervel > 0 )
 		{
-				// check for collisions
+				// clear character
+				clear_character(self);
 				// move up one pixel.
 				self->y -= 1;
-				//bclr(self->moveflag,MOVEUP);
+				// check for collisions
+				coll = checkCollisions(self);
+				if (coll)
+				{
+						self->vervel = 0;
+						self->y += 1;
+						if (self->veracc > 0)
+						{
+								// -50 needs to be defined as gravity
+								self->veracc = GRAVITY;
+						}
+				}
 				self->movever_r = 0;
 				display_character(self);
 		}
 		//else if ( (self->moveflag & MOVEUP == MOVEUP ) && ( self->vervel < 0) )
 		else if ( self->movever_r && self->vervel < 0)
 		{
-				// check for collisions
+				// clear character
+				clear_character(self);
 				// move down one pixel.
 				self->y += 1;
-				//bclr(self->moveflag,MOVEUP);
+				// check for collisions
+				coll = checkCollisions(self);
+				if (coll)
+				{
+						self->vervel = 0;
+						//self->veracc = 0;
+						self->y -= 1;
+				}
 				self->movever_r = 0;
 				display_character(self);
 		}
 		//if ( ( (self->moveflag & MOVERI) == MOVERI) && (self->horvel > 0) )
 		if ( self->movehor_r && self->horvel > 0 )
 		{
-				// check for collisions
+				// clear character
+				clear_character(self);
 				// move right one pixel.
 				self->x += 1;
-				//bclr(self->moveflag,MOVERI);
+				self->currframe = 1;
+				// check for collisions
+				coll = checkCollisions(self);
+				if (coll)
+				{
+						self->vervel = 0;
+						self->veracc = 0;
+						self->x -= 1;
+				}
 				self->movehor_r = 0;
 				display_character(self);
 		}
 		//else if ( (self->moveflag & MOVERI == MOVERI ) && ( self->horvel < 0 ) )
 		else if (self->movehor_r && self->horvel < 0 )
 		{
-				// check for collisions
+				// clear character
+				clear_character(self);
 				// move left one pixel.
 				self->x -= 1;
-				//bclr(self->moveflag,MOVERI);
+				self->currframe = 0;
+				// check for collisions
+				coll = checkCollisions(self);
+				if (coll)
+				{
+						self->horvel = 0;
+						self->horacc = 0;
+						self->x += 1;
+				}
 				self->movehor_r = 0;
 				display_character(self);
 		}

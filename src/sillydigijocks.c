@@ -54,7 +54,7 @@
 ;  Date: 4/8/2012 	Name: Thor Smith/David Kauer Update: Merged vga assembly 
 ;		with main C file and displayed splash screen.
 ;
-;  Date: < ? >  Name: < ? >   Update: < ? >
+;  Date: 4/20/2012  Name: Thor Smith   Update: Added movement logic.
 ;
 ;
 ;***********************************************************************/
@@ -70,11 +70,15 @@
 // Define threshold voltages (approx 2.5V +- .5V)
 #define ZEROTHRESH 0x19
 #define BASETHRESH 5
-#define THRESHUP (-ZEROTHRESH)
-#define THRESHDO (ZEROTHRESH)
+#define THRESHUP (ZEROTHRESH)
+#define THRESHDO (-ZEROTHRESH)
 
 // define button layouts/masks
 #define LEFTPB 0x20
+#define P0BUTTON1 0x20
+#define P0BUTTON2 0x10
+#define P1BUTTON1 0x02
+#define P1BUTTON2 0x01
 
 
 // define screen resolution
@@ -84,6 +88,9 @@
 
 // Define Timing specifications
 #define TIMEFORONESECOND 2*100
+
+// Define gravity constant
+#define GRAVITY -50
 
 // All funtions after main should be initialiezed here
 char inchar(void);
@@ -97,7 +104,13 @@ void startMatch(void);
 void display_character(struct character *self);
 void writeBackground(const unsigned char *image);
 int abs(int value);
-
+char checkCollisions(struct character *self);
+char checkCollision(struct character *self, struct platform *platform);
+char checkButtons(unsigned char button1, unsigned char button2, unsigned char *button1prev, unsigned char *button2prev);
+char debounceJoystick(char joyin, char *joyinprev);
+void checkPlayerJump(struct character *self, char joyin, char *joyinprev);
+void updateVelAcc(struct character *self, char inhor,char inver);
+void clear_character(struct character *self);
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -105,6 +118,9 @@ int abs(int value);
 
 // include character definitions
 #include "character.h"
+
+// include platform structure.
+#include "platform.h"
 
 
 // Variable declarations  
@@ -122,11 +138,18 @@ unsigned char line_hold_count = 0;
 unsigned char screen[SCREENSIZE];
 unsigned char *screen_itterator = screen;
 
+// Define Field that is selected.
+const unsigned char *selected_field = image_battlefield1;
+
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 char joy0hor = 0;
+char joy0horprev = 0;
 char joy1hor = 0;
+char joy1horprev = 0;
 char joy0ver = 0;
+char joy0verprev = 0;
 char joy1ver = 0;
+char joy1verprev = 0;
 
 // Menu selection variables
 // button select
@@ -139,8 +162,9 @@ unsigned char splash_screen_enable = 0;
 
 // Define characters 1 and 2
 struct character player0 = {
+		0, // player
 		28, // x
-		28, // y
+		43, // y
 		0, // horvel
 		0, // vervel
 		0, // horvelcnt
@@ -149,6 +173,7 @@ struct character player0 = {
 		0, // movehor_v
 		0, // movever_r
 		0, // movehor_r
+		0, // jumpflag
 		0, // horacc
 		0, // veracc
 		0, // horacccnt
@@ -157,13 +182,16 @@ struct character player0 = {
 		"def", // name
 		defautAttack, // attack
 		defaultMove, // move
-		image_link, // frame
+		0, // attacking
+		0, // crouching
+		image_yoshi, // frame
 		0, // currframe
 		2, // numframes
 		4, // framew
 		4, // frameh
 };
 struct character player1 = {
+		1, // player
 		28, // x
 		28, // y
 		0, // horvel
@@ -174,6 +202,7 @@ struct character player1 = {
 		0, // movehor_v
 		0, // movever_r
 		0, // movehor_r
+		0, // jumpflag
 		0, // horacc
 		0, // veracc
 		0, // horacccnt
@@ -182,11 +211,25 @@ struct character player1 = {
 		"def", // name
 		defautAttack, // attack
 		defaultMove, // move
+		0, // attacking
+		0, // crouching
 		image_kirby, // frame
 		0, // currframe
 		2, // numframes
 		4, // framew
 		4, // frameh
+};
+
+
+// define global platform structure.
+struct platform *all_platforms[MAXPLATFORMS] = {NULL};
+
+// define ground as default platform
+struct platform ground = {
+		0, // x
+		48, // y
+		48, // w
+		1, // h
 };
 
 // ASCII character definitions
@@ -274,8 +317,11 @@ void main(void) {
   
 	// Load/Display Spalsh Screen
 	displaySplash();
-  	// load default choice for menu
-  	displayMenu(selection);
+	// load default choice for menu
+	displayMenu(selection);
+
+	// set ground as default platform
+	all_platforms[0] = &ground;
 
   for(;;) {
    // write code here (Insert Code down here because we need an infinite loop.)
@@ -307,6 +353,7 @@ void main(void) {
 					break;
 			}
 			select = 0;
+			displayMenu(selection);
 	}
     //startMatch();
     /*
@@ -492,6 +539,18 @@ await3:
         brclr	ATDSTAT0,$80,await3
         movb	ATDDR0H, joy1ver
 	}
+	if (selection == 3 && select == 1)
+	{
+		// set jumping flags.
+		if (debounceJoystick(joy0ver, &joy0verprev) == 1)
+		{
+			player0.jumpflag = 1;
+		}
+		if (debounceJoystick(joy1ver, &joy1verprev) == 1)
+		{
+			player1.jumpflag = 1;
+		}
+	}
 }
 
 
@@ -628,6 +687,10 @@ interrupt 8 void TIM_ISR(void)
 						player1.vervelcnt = 0;
 				}
 		}
+		
+		//player0.jumpflag = debounceJoystick(joy0hor, &joy0horprev);
+		//player1.jumpflag = debounceJoystick(joy1hor, &joy1horprev);
+		
 	}
 	
 	// END OF TIM ISR
@@ -713,35 +776,35 @@ void checkMenuInputs(char joyin)
 		// use a static variable so we can reuse the value when we return
 		// to this function. This was used as apposed to a global variable
 		// because we don't want anyone else modifying this value.
-		static char joyvertprev = 0;
 		static char prevleft = 0;
+		static char joyvertprev = 0;
 		// Check pushing joystick up
-		if ( joyin > THRESHUP )
+		if ( joyin < THRESHUP )
 		{
-				if ( joyvertprev < THRESHUP )
-				{
-						selection++;
-						displayMenu(selection);
-				}
-				// don't allow the selection to overflow
-				if (selection > 3)
-				{
-						selection = 3;
-				}
-		}
-
-		// Check pushing joystick down
-		if ( joyin < THRESHDO )
-		{
-				if ( joyvertprev > THRESHDO )
+				if ( joyvertprev > THRESHUP )
 				{
 						selection--;
 						displayMenu(selection);
 				}
-				// don't allow selection to underflow
+				// don't allow the selection to overflow
 				if (selection < 0)
 				{
 						selection = 0;
+				}
+		}
+
+		// Check pushing joystick down
+		if ( joyin > THRESHDO )
+		{
+				if ( joyvertprev < THRESHDO )
+				{
+						selection++;
+						displayMenu(selection);
+				}
+				// don't allow selection to underflow
+				if (selection > 3)
+				{
+						selection = 3;
 				}
 		}
 
@@ -769,87 +832,73 @@ void selectCharacter(void)
 }
 void selectField(void)
 {
+	// set the appropriate ledges
+	all_platforms[1] = &batt1_plat1;
+	all_platforms[2] = &batt1_plat2;
+	all_platforms[3] = &batt1_plat3;
+	all_platforms[4] = &batt1_plat4;
+	all_platforms[5] = &batt1_plat5;
+	all_platforms[6] = &batt1_plat6;
+	selected_field = image_battlefield1;
 }
+
 void startMatch(void)
 {
 	char quit = 0;
+	unsigned char button1player0prev = 0;
+	unsigned char button2player0prev = 0;
+	unsigned char button1player1prev = 0;
+	unsigned char button2player1prev = 0;
+
+	writeBackground(selected_field);
+	display_character(&player0);
 
 	while (!quit)
 	{
 		if (hCnt > 520 || hCnt < 32)
 		{
-			// update acceleration for each player
-			// 50 means 500ms and 150 means 1500ms. These correspond to 
-			// 2p/s and 1.5p/s correspondingly
+			// update horizontal and vertical velocity for player 0
+			updateVelAcc(&player0,joy0hor,joy0ver);
+			// check for jumping and button presses.
+			checkPlayerJump(&player0, joy0ver, &joy0verprev);
+			//joy0verprev = joy0ver; // this may need to be updated in the function above.
+			player0.attacking = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+			// TEMPORARY EXIT CONDITION
+			if (player0.attacking == 2) // pushbutton 2 pressed
+			{
+					quit = 1;
+			}
 
-			// UPDATE HORIZONTAL ACCELERATION PLAYER0
-			if (-ZEROTHRESH < joy0hor && joy0hor < ZEROTHRESH)
-			{
-				player0.horacc = 0;
-				player0.horvel = 0;
-			}
-			else if (joy0hor > 0)
-			{
-				player0.horacc = 50 + (75 - (joy0hor*75)/(128 - ZEROTHRESH) );
-			}
-			else
-			{
-				player0.horacc = -50 + (-75 - (joy0hor*75)/(128 - ZEROTHRESH) );
-			}
-			// UPDATE VERTICAL ACCELERATION PLAYER0
-			if (-ZEROTHRESH < joy0ver && joy0ver < ZEROTHRESH)
-			{
-				player0.veracc = 0;
-				player0.vervel = 0;
-			}
-			else if (joy0ver > 0)
-			{
-				player0.veracc = 50 + (75 - (joy0ver*75)/(128 - ZEROTHRESH) );
-			}
-			else
-			{
-				player0.veracc = -50 + (-75 - (joy0ver*75)/(128 - ZEROTHRESH) );
-			}
-			// UPDATE VERTICAL VELOCITY PLAYER0
-			//if (player0.moveflag & VELUP == VELUP)
-			if (player0.movever_v)
-			{
-				if (player0.vervel != 0)
-				{
-					player0.vervel = (player0.vervel*player0.veracc)/ (player0.vervel + player0.veracc);
-				}
-				else
-				{
-					player0.vervel = player0.veracc;
-				}
-				//bclr(player0.moveflag, VELUP);
-				player0.movever_v = 0;
-			}
-			// UPDATE HORIZONTAL VELOCITY PLAYER0
-			//if (player0.moveflag & VELRI == VELRI)
-			if (player0.movehor_v)
-			{
-				if (player0.horvel != 0)
-				{
-					player0.horvel = (player0.horvel*player0.horacc)/ (player0.horvel + player0.horacc);
-				}
-				else
-				{
-					player0.horvel = player0.horacc;
-				}
-				//bclr(player0.moveflag, VELRI);
-				player0.movehor_v = 0;
-			}
-			// move player (it can be any function, I may move the above logic
-			// into this function to avoid typing it for both players.
+			// move player (it can be any function)
 			player0.move(&player0);
 			//  display the character at his location
 			//display_character(&player0);
 		}
-
 	}
 }
 
+void clear_character(struct character *self)
+{
+	unsigned char r,l;
+	unsigned int location = 0;
+	
+	location = self->y*(SCREENW/2) + self->x/2;
+
+	for (r = 0; r < self->frameh; r++)
+	{
+		for (l = 0; l < self->framew/2 + 1; l++)
+		{
+			if ( location >= 0 && location < SCREENSIZE )
+			{
+				screen[location] = selected_field[location];
+			}
+			// increment our location by one column
+			location++;
+		}
+		// increment our location by one row
+		location += SCREENW/2 - self->framew/2 - 1;
+	}
+}
 
 void display_character(struct character *self)
 {
@@ -877,7 +926,7 @@ void display_character(struct character *self)
 				for (l = 0; l < self->framew/2; l++)
 				{
 				    // do a different process if we start on an odd pixel.
-						if (location < SCREENSIZE)
+						if (location >= 0 && location < SCREENSIZE)
 						{
 							if (odd)
 							{
@@ -890,7 +939,7 @@ void display_character(struct character *self)
 								// a four by four pixel picture's array will
 								// only have 2 columns (2pixels/byte).
 								// We are again masking off the lower nibble [E0]
-								temp3 = self->frame[(self->framew/2)*self->numframes*r + l];
+								temp3 = self->frame[(self->framew/2)*self->numframes*r + l + self->framew*self->currframe/2];
 								temp2 = temp3 & 0xe0;
 								// Shift the upper nibble to the lower nibble [1C]
 								temp2 = temp2 / 0x08;
@@ -917,7 +966,7 @@ void display_character(struct character *self)
 							{
 								// We start on an even byte, so just copy our
 								// picture over two pixels at a time.
-								temp1 = self->frame[(self->framew/2)*self->numframes*r + l];
+								temp1 = self->frame[(self->framew/2)*self->numframes*r + l + self->framew*self->currframe/2];
 								screen[location] = temp1;
 							}
 						}
@@ -926,6 +975,243 @@ void display_character(struct character *self)
 				}
 				// increment our location by one row
 				location += SCREENW/2 - self->framew/2;
+		}
+}
+
+/***********************************************************************
+; Name:         checkPlayerJump
+; Description:  This function checks to see if the player has chosen to
+;								jump by pushing up on the joystick. It will also test
+;								to see if the player is crouching by pressing down on
+;								the joystick. (down still being implemented.)
+;***********************************************************************/
+void checkPlayerJump(struct character *self, char joyin, char *joyinprev)
+{
+		char jump = 0;
+
+		//jump = debounceJoystick(joyin, joyinprev);
+		jump = self->jumpflag;
+		if (jump == 1)
+		{
+				if (self->vervel == 0)
+				{
+						// give initial velocity and constant acceleration.
+						// values may need to be adjusted.
+						self->veracc = -20;
+						self->vervel = 4;
+				}
+				self->jumpflag = 0;
+		}
+		else if (jump == -1)
+		{
+				// implement crouching logic.
+		}
+}
+
+/***********************************************************************
+; Name:         debounceJoystick
+; Description:  This function debounces vertical and horizontal joystick
+;								inputs. It says THRESHUP and THRESHDO, but the thresholds
+;								are the same for vertical and horizontal. A 1 is returned
+;								if the joystick was bounced up or right. A -1 is returned
+;								if the joystick was bounced down or left. (depending
+;								on how the function is called)
+;***********************************************************************/
+char debounceJoystick(char joyin, char *joyinprev)
+{
+		char ret = 0;
+		// check for moving joystick up
+		// transition from up to down
+		if ( joyin < THRESHUP)
+		{
+				if (*joyinprev > THRESHUP)
+				{
+						ret = 1;
+				}
+		}
+		// check for moving joystick down
+		// transision from down to up
+		else if (joyin > THRESHDO )
+		{
+				if (*joyinprev < THRESHDO )
+				{
+						ret = -1;
+				}
+		}
+		*joyinprev = joyin;
+		return ret;
+}
+
+/***********************************************************************
+; Name:         checkButtons
+; Description:  This function checks the requested buttons and their
+;								previous inputs to see if either button1 or button2
+;								was pressed. An appropriate flag is returned to indicate
+;								the button that was pressed.
+;
+;			0 -- No button pressed
+;			1 -- First button pressed
+;			2 -- Second button pressed
+;***********************************************************************/
+char checkButtons(unsigned char button1, unsigned char button2, unsigned char *button1prev, unsigned char *button2prev)
+{
+		char ret = 0; // 0 means no button pressed.
+
+		// DEBOUNCE BUTTON 1
+		if ( (PTAD & button1) == 0 )
+		{
+				if (*button1prev == 1)
+				{
+						ret = 1;
+				}
+		}
+		else if ( (PTAD & button1) == button1)
+		{
+				*button1prev = 1;
+		}
+
+		// DEBOUNCE BUTTON 2
+		if ( (PTAD & button2) == 0)
+		{
+				if ( *button2prev == 1)
+				{
+						ret = 2;
+				}
+				*button2prev = 0;
+		}
+		else if ( (PTAD & button2) == button2)
+		{
+				*button2prev = 1;
+		}
+		return ret;
+}
+
+/***********************************************************************
+; Name:         checkCollision
+; Description:  This function detects a collision between a character
+;								and a platform object. A 0 is returned if a collision is
+;								detected. A 1 is returned if no collision detected.
+;***********************************************************************/
+char checkCollision(struct character *self, struct platform *platform)
+{
+		char ret = 0; // 0 means no collision
+		if ( (self->x + self->framew) > platform->x )
+		{
+				if ( self->x < ( platform->x + platform->w ) )
+				{
+						if ( (self->y + self->frameh) > platform->y )
+						{
+								if ( self->y < (platform->y + platform->h) )
+								{
+										ret = 1;
+								}
+						}
+				}
+		}
+		return ret;
+}
+
+/***********************************************************************
+; Name:         checkCollisions
+; Description:  This function checks for collisions between a character
+;								and all platforms that are currently in the list. The
+;								list of platforms is set in the selectField() function.
+;								Note that the ground is enabled by default.
+;***********************************************************************/
+char checkCollisions(struct character *self)
+{
+		char i;
+		char ret = 0; // 0 means no collision detected.
+		for (i = 0; i < MAXPLATFORMS; i++)
+		{
+				// if we've run out of platforms to test against, then return.
+				// note that the platforms variable is an array of pointers to
+				// structures. The end may be signified by a NULL character.
+				if ( all_platforms[i] == NULL)
+				{
+						break;
+				}
+				ret = checkCollision(self, all_platforms[i]);
+				// if a collison was detected. Don't bother checking for other collisions.
+				// We need to undo our move and set flags appropriately.
+				if (ret)
+				{
+						break;
+				}
+		}
+		return ret;
+}
+
+/***********************************************************************
+; Name:         updateVelAcc
+; Description:  This function updates a players horizontal and vertical
+;								acceleration and velocity.
+;***********************************************************************/
+void updateVelAcc(struct character *self, char inhor, char inver)
+{
+		// update acceleration 
+		// 50 means 500ms and 150 means 1500ms. These correspond to 
+		// 2p/s and 1.5p/s correspondingly
+
+		// UPDATE HORIZONTAL ACCELERATION
+		if (-ZEROTHRESH < inhor && inhor < ZEROTHRESH)
+		{
+				self->horacc = 0;
+				self->horvel = 0;
+		}
+		else if (inhor > 0)
+		{
+				self->horacc = 50 + (75 - (inhor *75)/(128 - ZEROTHRESH) );
+		}
+		else
+		{
+				self->horacc = -50 + (-75 - (inhor *75)/(128 - ZEROTHRESH) );
+		}
+		/*
+		// UPDATE VERTICAL ACCELERATION
+		if (-ZEROTHRESH < inver && inver < ZEROTHRESH)
+		{
+				self->veracc = 0;
+				self->vervel = 0;
+		}
+		else if (inver > 0)
+		{
+				self->veracc = 50 + (75 - (inver *75)/(128 - ZEROTHRESH) );
+		}
+		else
+		{
+				self->veracc = -50 + (-75 - (inver *75)/(128 - ZEROTHRESH) );
+		}
+		*/
+		// UPDATE VERTICAL VELOCITY PLAYER0
+		//if (self->moveflag & VELUP == VELUP)
+		if (self->movever_v)
+		{
+				if (self->vervel != 0)
+				{
+						self->vervel = (self->vervel*self->veracc)/ (self->vervel + self->veracc);
+				}
+				else
+				{
+						self->vervel = self->veracc;
+				}
+				//bclr(self->moveflag, VELUP);
+				self->movever_v = 0;
+		}
+		// UPDATE HORIZONTAL VELOCITY PLAYER0
+		//if (self->moveflag & VELRI == VELRI)
+		if (self->movehor_v)
+		{
+				if (self->horvel != 0)
+				{
+						self->horvel = (self->horvel*self->horacc)/ (self->horvel + self->horacc);
+				}
+				else
+				{
+						self->horvel = self->horacc;
+				}
+				//bclr(self->moveflag, VELRI);
+				self->movehor_v = 0;
 		}
 }
 
