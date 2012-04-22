@@ -92,7 +92,7 @@ void defaultMove(struct character *self)
 						self->y += 1;
 						if (self->veracc > 0)
 						{
-								// -50 needs to be defined as gravity
+								// gravity adjusted above
 								self->veracc = GRAVITY;
 						}
 				}

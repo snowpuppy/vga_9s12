@@ -56,6 +56,9 @@
 ;
 ;  Date: 4/20/2012  Name: Thor Smith   Update: Added movement logic.
 ;
+;  Date: 4/21/2012  Name: Thor Smith   Update: Added jumping, collision detection,
+;		frame cycling, and character erasing.
+;
 ;
 ;***********************************************************************/
 #include <hidef.h>      /* common defines and macros */
@@ -842,6 +845,11 @@ void selectField(void)
 	selected_field = image_battlefield1;
 }
 
+/***********************************************************************
+; Name:         startMatch
+; Description:  This function is the main game loop. All player movement
+;								and scorekeeping has to be performed inside this loop.
+;***********************************************************************/
 void startMatch(void)
 {
 	char quit = 0;
@@ -877,6 +885,11 @@ void startMatch(void)
 	}
 }
 
+/***********************************************************************
+; Name:         clear_character
+; Description:  This function clears a character at their given x and y
+;								coordinates by redrawing the selected field behind them.
+;***********************************************************************/
 void clear_character(struct character *self)
 {
 	unsigned char r,l;
@@ -900,6 +913,12 @@ void clear_character(struct character *self)
 	}
 }
 
+/***********************************************************************
+; Name:         display_character
+; Description:  This function draws a character to the screen buffer at
+;								their x and y coordinates. Compensation is made for 
+;								characters drawn on odd pixels.
+;***********************************************************************/
 void display_character(struct character *self)
 {
 	unsigned char r,l;
