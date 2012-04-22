@@ -93,7 +93,7 @@
 #define TIMEFORONESECOND 2*100
 
 // Define gravity constant
-#define GRAVITY -50
+#define GRAVITY -10
 
 // All funtions after main should be initialiezed here
 char inchar(void);
@@ -183,7 +183,7 @@ struct character player0 = {
 		0, // veracccnt
 		0, // damage
 		"def", // name
-		defautAttack, // attack
+		defaultAttack, // attack
 		defaultMove, // move
 		0, // attacking
 		0, // crouching
@@ -212,7 +212,7 @@ struct character player1 = {
 		0, // veracccnt
 		0, // damage
 		"def", // name
-		defautAttack, // attack
+		defaultAttack, // attack
 		defaultMove, // move
 		0, // attacking
 		0, // crouching
@@ -1016,8 +1016,8 @@ void checkPlayerJump(struct character *self, char joyin, char *joyinprev)
 				{
 						// give initial velocity and constant acceleration.
 						// values may need to be adjusted.
-						self->veracc = -20;
-						self->vervel = 4;
+						self->veracc = GRAVITY;
+						self->vervel = 3;
 				}
 				self->jumpflag = 0;
 		}
@@ -1041,18 +1041,18 @@ char debounceJoystick(char joyin, char *joyinprev)
 		char ret = 0;
 		// check for moving joystick up
 		// transition from up to down
-		if ( joyin < THRESHUP)
+		if ( joyin > THRESHUP)
 		{
-				if (*joyinprev > THRESHUP)
+				if (*joyinprev < THRESHUP)
 				{
 						ret = 1;
 				}
 		}
 		// check for moving joystick down
 		// transision from down to up
-		else if (joyin > THRESHDO )
+		else if (joyin < THRESHDO )
 		{
-				if (*joyinprev < THRESHDO )
+				if (*joyinprev > THRESHDO )
 				{
 						ret = -1;
 				}
@@ -1180,11 +1180,11 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		}
 		else if (inhor > 0)
 		{
-				self->horacc = 50 + (75 - (inhor *75)/(128 - ZEROTHRESH) );
+				self->horacc = 20 + (30 - (inhor *30)/(128 - ZEROTHRESH) );
 		}
 		else
 		{
-				self->horacc = -50 + (-75 - (inhor *75)/(128 - ZEROTHRESH) );
+				self->horacc = -20 + (-30 - (inhor *30)/(128 - ZEROTHRESH) );
 		}
 		/*
 		// UPDATE VERTICAL ACCELERATION
@@ -1202,7 +1202,7 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 				self->veracc = -50 + (-75 - (inver *75)/(128 - ZEROTHRESH) );
 		}
 		*/
-		// UPDATE VERTICAL VELOCITY PLAYER0
+		// UPDATE VERTICAL VELOCITY
 		//if (self->moveflag & VELUP == VELUP)
 		if (self->movever_v)
 		{
@@ -1217,12 +1217,14 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 				//bclr(self->moveflag, VELUP);
 				self->movever_v = 0;
 		}
-		// UPDATE HORIZONTAL VELOCITY PLAYER0
+		// UPDATE HORIZONTAL VELOCITY
 		//if (self->moveflag & VELRI == VELRI)
 		if (self->movehor_v)
 		{
 				if (self->horvel != 0)
 				{
+						// This needs to be handled in such a way that the user can't accelerate much
+						// unless he's fighting to slow down from a large velocity.
 						self->horvel = (self->horvel*self->horacc)/ (self->horvel + self->horacc);
 				}
 				else

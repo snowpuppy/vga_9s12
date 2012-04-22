@@ -63,7 +63,7 @@ void defautAttack(struct character *self, char type, char direction);
 ; Description:  Implements an attack for the player who calls it.
 ;								
 ;***********************************************************************/
-void defautAttack(struct character *self, char type, char direction)
+void defaultAttack(struct character *self)
 {
 }
 
@@ -111,7 +111,7 @@ void defaultMove(struct character *self)
 				if (coll)
 				{
 						self->vervel = 0;
-						//self->veracc = 0;
+						self->veracc = 0;
 						self->y -= 1;
 				}
 				self->movever_r = 0;
@@ -135,6 +135,15 @@ void defaultMove(struct character *self)
 				}
 				self->movehor_r = 0;
 				display_character(self);
+
+				// check for gravity
+				self->y += 1;
+				coll = checkCollisions(self);
+				if (!coll)
+				{
+						self->veracc = -20;
+				}
+				self->y -= 1;
 		}
 		//else if ( (self->moveflag & MOVERI == MOVERI ) && ( self->horvel < 0 ) )
 		else if (self->movehor_r && self->horvel < 0 )
@@ -154,6 +163,15 @@ void defaultMove(struct character *self)
 				}
 				self->movehor_r = 0;
 				display_character(self);
+
+				// check for gravity
+				self->y += 1;
+				coll = checkCollisions(self);
+				if (!coll)
+				{
+						self->veracc = -20;
+				}
+				self->y -= 1;
 		}
 }
 
