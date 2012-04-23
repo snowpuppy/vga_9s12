@@ -231,12 +231,12 @@ void defaultAttackImpl(struct character *self, char attackdir)
 void defaultMove(struct character *self)
 {
     int coll = 0;
-
+    clear_character(self);
 		//if ( (self->moveflag & MOVEUP == MOVEUP) && (self->vervel > 0 ) )
 		if ( self->movever_r && self->vervel > 0 )
 		{
 				// clear character
-				clear_character(self);
+				//clear_character(self);
 				// move up one pixel.
 				self->y -= 1;
 				// check for collisions
@@ -252,13 +252,13 @@ void defaultMove(struct character *self)
 						}
 				}
 				self->movever_r = 0;
-				display_character(self);
+				//display_character(self);
 		}
 		//else if ( (self->moveflag & MOVEUP == MOVEUP ) && ( self->vervel < 0) )
 		else if ( self->movever_r && self->vervel < 0)
 		{
 				// clear character
-				clear_character(self);
+				//clear_character(self);
 				// move down one pixel.
 				self->y += 1;
 				// check for collisions
@@ -270,13 +270,13 @@ void defaultMove(struct character *self)
 						self->y -= 1;
 				}
 				self->movever_r = 0;
-				display_character(self);
+				//display_character(self);
 		}
 		//if ( ( (self->moveflag & MOVERI) == MOVERI) && (self->horvel > 0) )
 		if ( self->movehor_r && self->horvel > 0 )
 		{
 				// clear character
-				clear_character(self);
+				//clear_character(self);
 				// move right one pixel.
 				self->x += 1;
 				self->currframe = 1;
@@ -289,7 +289,7 @@ void defaultMove(struct character *self)
 						self->x -= 1;
 				}
 				self->movehor_r = 0;
-				display_character(self);
+				//display_character(self);
 
 				// check for gravity
 				self->y += 1;
@@ -304,7 +304,7 @@ void defaultMove(struct character *self)
 		else if (self->movehor_r && self->horvel < 0 )
 		{
 				// clear character
-				clear_character(self);
+				//clear_character(self);
 				// move left one pixel.
 				self->x -= 1;
 				self->currframe = 0;
@@ -317,7 +317,7 @@ void defaultMove(struct character *self)
 						self->x += 1;
 				}
 				self->movehor_r = 0;
-				display_character(self);
+				//display_character(self);
 
 				// check for gravity
 				self->y += 1;
@@ -328,6 +328,7 @@ void defaultMove(struct character *self)
 				}
 				self->y -= 1;
 		}
+		display_character(self);
 }
 
 #endif

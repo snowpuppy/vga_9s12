@@ -940,6 +940,7 @@ void startMatch(void)
 
 	writeBackground(selected_field);
 	display_character(&player0);
+	display_character(&player1);
 
 	while (!quit)
 	{
@@ -966,8 +967,18 @@ void startMatch(void)
 			player1.move(&player1);
 			//  display the character at his location
 			//display_character(&player0);
+      displayLives();
+      displayDamage();
+      quit = quit || checkDeath(&player0);
+      quit = quit || checkDeath(&player1);
 		}
 	}
+	
+	// reset player lives and other values
+	player0.lives = 5;
+	player1.lives = 5;
+	player0.damage = 0;
+	player1.damage = 0;
 }
 
 /***********************************************************************
@@ -1536,6 +1547,7 @@ char checkDeath(struct character *self)
 						self->vervel = 0;
 				}
 		}
+		return ret;
 }
 
 #if USESCIDEBUGGING
