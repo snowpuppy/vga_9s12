@@ -9,7 +9,7 @@
 
 struct platform {
 	char x, y;
-	char w, h;
+	unsigned char w, h;
 };
 
 

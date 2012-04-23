@@ -7,18 +7,26 @@
 
 struct platform batt1_plat1=
 {
-		17, // x
-		11, // y
-		12, // w
-		2, // h
+//		17, // x
+//		11, // y
+//		12, // w
+//		2, // h
+      0,
+      0,
+      1,
+      48
 };
 
 struct platform batt1_plat2 =
 {
-		2, // x
-		19, // y
-		12, // w
-		2, // h
+//		2, // x
+//		19, // y
+//		12, // w
+//		2, // h
+      48,
+      0,
+      1,
+      48
 };
 
 struct platform batt1_plat3 =

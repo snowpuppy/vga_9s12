@@ -70,11 +70,24 @@
 // Enable/disable debugging with serial port (i.e. inchar/outchar/pmsg)
 #define USESCIDEBUGGING 1
 
+// VGA hSync low and high values
+#define HSYNCLOW 39
+#define HSYNCHIGH 520
+
 // Define threshold voltages (approx 2.5V +- .5V)
 #define ZEROTHRESH 0x19
 #define BASETHRESH 5
 #define THRESHUP (ZEROTHRESH)
 #define THRESHDO (-ZEROTHRESH)
+
+// define maximum player horizontal velocity under normal
+// circumstances. i.e. (not hit by another player)
+#define MAXVELOCITY 20
+
+// define maximum damage to be taken by a player
+// This allows me to scale the damage that should
+// be taken.
+#define MAXDAMGE 100
 
 // define button layouts/masks
 #define LEFTPB 0x20
@@ -93,7 +106,7 @@
 #define TIMEFORONESECOND 2*100
 
 // Define gravity constant
-#define GRAVITY -10
+#define GRAVITY -20
 
 // All funtions after main should be initialiezed here
 char inchar(void);
@@ -107,11 +120,15 @@ void startMatch(void);
 void display_character(struct character *self);
 void writeBackground(const unsigned char *image);
 int abs(int value);
-char checkCollisions(struct character *self);
-char checkCollision(struct character *self, struct platform *platform);
+//char checkCollisions(struct character *self);
+char checkCollisions(char x1, char y1, unsigned char w1, unsigned char h1);
+//char checkCollision(struct character *self, struct platform *platform);
+char checkCollision(char x1, char y1, unsigned char w1, unsigned char h1, char x2, char y2, unsigned char w2, unsigned char h2);
+char checkCharCollisions(struct character *self);
+char checkCharHitChar(struct character *self, char attackx, char attacky, unsigned char attackw, unsigned char attackh);
 char checkButtons(unsigned char button1, unsigned char button2, unsigned char *button1prev, unsigned char *button2prev);
 char debounceJoystick(char joyin, char *joyinprev);
-void checkPlayerJump(struct character *self, char joyin, char *joyinprev);
+void checkPlayerJump(struct character *self);
 void updateVelAcc(struct character *self, char inhor,char inver);
 void clear_character(struct character *self);
 
@@ -154,6 +171,12 @@ char joy0verprev = 0;
 char joy1ver = 0;
 char joy1verprev = 0;
 
+// GLOBAL DIGITAL INPUTS
+unsigned char button1player0prev = 0;
+unsigned char button2player0prev = 0;
+unsigned char button1player1prev = 0;
+unsigned char button2player1prev = 0;
+
 // Menu selection variables
 // button select
 char select = 0;
@@ -162,66 +185,6 @@ char selection = 1;
 
 // splash screen enable.
 unsigned char splash_screen_enable = 0;
-
-// Define characters 1 and 2
-struct character player0 = {
-		0, // player
-		28, // x
-		43, // y
-		0, // horvel
-		0, // vervel
-		0, // horvelcnt
-		0, // vervelcnt
-		0, // movever_v
-		0, // movehor_v
-		0, // movever_r
-		0, // movehor_r
-		0, // jumpflag
-		0, // horacc
-		0, // veracc
-		0, // horacccnt
-		0, // veracccnt
-		0, // damage
-		"def", // name
-		defaultAttack, // attack
-		defaultMove, // move
-		0, // attacking
-		0, // crouching
-		image_yoshi, // frame
-		0, // currframe
-		2, // numframes
-		4, // framew
-		4, // frameh
-};
-struct character player1 = {
-		1, // player
-		28, // x
-		28, // y
-		0, // horvel
-		0, // vervel
-		0, // horvelcnt
-		0, // vervelcnt
-		0, // movever_v
-		0, // movehor_v
-		0, // movever_r
-		0, // movehor_r
-		0, // jumpflag
-		0, // horacc
-		0, // veracc
-		0, // horacccnt
-		0, // veracccnt
-		0, // damage
-		"def", // name
-		defaultAttack, // attack
-		defaultMove, // move
-		0, // attacking
-		0, // crouching
-		image_kirby, // frame
-		0, // currframe
-		2, // numframes
-		4, // framew
-		4, // frameh
-};
 
 
 // define global platform structure.
@@ -405,7 +368,7 @@ interrupt 5 void HSYNC_XISR( void)
   // and hCnt upper limit plus 1 to be 480. This is
   // becuase we need to display 480 horizontal lines.
   // If this is not so, then the display will scroll.
-if(hCnt > 39 & hCnt < 520){
+if(hCnt > HSYNCLOW & hCnt < HSYNCHIGH){
  //first 80 lines of black
  asm{
  ldx screen_itterator
@@ -542,6 +505,8 @@ await3:
         brclr	ATDSTAT0,$80,await3
         movb	ATDDR0H, joy1ver
 	}
+	// if the game is running, take on extra logic
+	// for jumping and attacking flags.
 	if (selection == 3 && select == 1)
 	{
 		// set jumping flags.
@@ -553,7 +518,79 @@ await3:
 		{
 			player1.jumpflag = 1;
 		}
-	}
+	  // set attacking flags for players
+		// player 0 is attacking
+		if (!player0.attacking)
+		{
+				player0.attacking = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+				if (player0.attacking)
+				{
+						// attack left
+						if (joy0hor < THRESHDO)
+						{
+								player0.attackdirection = ATTACKLEFT;
+						}
+						// attack right
+						else if (joy0hor > THRESHUP)
+						{
+								player0.attackdirection = ATTACKRIGHT;
+						}
+						// attack up
+						else if (joy0ver > THRESHUP)
+						{
+								player0.attackdirection = ATTACKUP;
+						}
+						// attack down
+						else if (joy0ver < THRESHDO)
+						{
+								player0.attackdirection = ATTACKDOWN;
+						}
+						// attack where facing
+						else
+						{
+								// note that the left frame is frame 0 and
+								// the right frame is frame 1
+								player0.attackdirection = player0.currframe + 1;
+						}
+				}
+		}
+		if (!player1.attacking)
+		{
+				// player1 is attacking
+				player1.attacking = checkButtons(P1BUTTON1, P1BUTTON2, &button1player1prev, &button2player1prev);
+				if (player1.attacking)
+				{
+						// attack left
+						if (joy1hor < THRESHDO)
+						{
+								player1.attackdirection = ATTACKLEFT;
+						}
+						// attack right
+						else if (joy1hor > THRESHUP)
+						{
+								player1.attackdirection = ATTACKRIGHT;
+						}
+						// attack up
+						else if (joy1ver > THRESHUP)
+						{
+								player1.attackdirection = ATTACKUP;
+						}
+						// attack down
+						else if (joy1ver < THRESHDO)
+						{
+								player1.attackdirection = ATTACKDOWN;
+						}
+						// attack where facing
+						else
+						{
+								// note that the left frame is frame 0 and
+								// the right frame is frame 1
+								player1.attackdirection = player1.currframe + 1;
+						}
+				}
+		}
+	} // END OF GAME LOOP LOGIC
+
 }
 
 
@@ -690,9 +727,42 @@ interrupt 8 void TIM_ISR(void)
 						player1.vervelcnt = 0;
 				}
 		}
-		
-		//player0.jumpflag = debounceJoystick(joy0hor, &joy0horprev);
-		//player1.jumpflag = debounceJoystick(joy1hor, &joy1horprev);
+
+		// handle player0 attacking mode
+		if (player0.attacking)
+		{
+				player0.attackcount++;
+				if (player0.attackcount > player0.attacklength)
+				{
+						// reset the attack direction.
+						player0.attackdirection = 0;
+						// reset the attack count
+						player0.attackcount = 0;
+						// set attack length back to default
+						player0.attacklength = DEFAULTATTACKLENGTH;
+						// transition out of attacking mode
+						player0.attacking = 0;
+				}
+		}
+
+		// handle player 1 attacking mode
+		if (player1.attacking)
+		{
+				player1.attackcount++;
+				if (player1.attackcount > player1.attacklength)
+				{
+						// reset the attack direction.
+						player1.attackdirection = 0;
+						// reset the attack count
+						player1.attackcount = 0;
+						// set attack length back to default
+						player1.attacklength = DEFAULTATTACKLENGTH;
+						// transition out of attacking mode
+						player1.attacking = 0;
+						player1.frame = image_kirby;
+						display_character(&player1);
+				}
+		}
 		
 	}
 	
@@ -853,32 +923,33 @@ void selectField(void)
 void startMatch(void)
 {
 	char quit = 0;
-	unsigned char button1player0prev = 0;
-	unsigned char button2player0prev = 0;
-	unsigned char button1player1prev = 0;
-	unsigned char button2player1prev = 0;
 
 	writeBackground(selected_field);
 	display_character(&player0);
 
 	while (!quit)
 	{
-		if (hCnt > 520 || hCnt < 32)
+		if (hCnt > HSYNCHIGH || hCnt < HSYNCLOW)
 		{
 			// update horizontal and vertical velocity for player 0
 			updateVelAcc(&player0,joy0hor,joy0ver);
-			// check for jumping and button presses.
-			checkPlayerJump(&player0, joy0ver, &joy0verprev);
-			//joy0verprev = joy0ver; // this may need to be updated in the function above.
-			player0.attacking = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+			updateVelAcc(&player1,joy1hor,joy1ver);
+			// check for jumping.
+			checkPlayerJump(&player0);
+			checkPlayerJump(&player1);
 			// TEMPORARY EXIT CONDITION
-			if (player0.attacking == 2) // pushbutton 2 pressed
-			{
-					quit = 1;
-			}
+			//if (player0.attacking == 2) // pushbutton 2 pressed
+			//{
+			//		quit = 1;
+			//}
+
+			// attack for player
+			player0.attack(&player0);
+			player1.attack(&player1);
 
 			// move player (it can be any function)
 			player0.move(&player0);
+			player1.move(&player1);
 			//  display the character at his location
 			//display_character(&player0);
 		}
@@ -1004,7 +1075,7 @@ void display_character(struct character *self)
 ;								to see if the player is crouching by pressing down on
 ;								the joystick. (down still being implemented.)
 ;***********************************************************************/
-void checkPlayerJump(struct character *self, char joyin, char *joyinprev)
+void checkPlayerJump(struct character *self)
 {
 		char jump = 0;
 
@@ -1016,8 +1087,10 @@ void checkPlayerJump(struct character *self, char joyin, char *joyinprev)
 				{
 						// give initial velocity and constant acceleration.
 						// values may need to be adjusted.
+						//self->veracc = GRAVITY = 10;
+						//self->vervel = 3;
 						self->veracc = GRAVITY;
-						self->vervel = 3;
+						self->vervel = 4;
 				}
 				self->jumpflag = 0;
 		}
@@ -1077,50 +1150,53 @@ char checkButtons(unsigned char button1, unsigned char button2, unsigned char *b
 		char ret = 0; // 0 means no button pressed.
 
 		// DEBOUNCE BUTTON 1
-		if ( (PTAD & button1) == 0 )
+		if ( (PTAD & button1) == button1 )
 		{
-				if (*button1prev == 1)
+				if (*button1prev == 0)
 				{
 						ret = 1;
 				}
-		}
-		else if ( (PTAD & button1) == button1)
-		{
 				*button1prev = 1;
+		}
+		else if ( (PTAD & button1) == 0)
+		{
+				*button1prev = 0;
 		}
 
 		// DEBOUNCE BUTTON 2
-		if ( (PTAD & button2) == 0)
+		if ( (PTAD & button2) == button2)
 		{
-				if ( *button2prev == 1)
+				if ( *button2prev == 0)
 				{
 						ret = 2;
 				}
-				*button2prev = 0;
-		}
-		else if ( (PTAD & button2) == button2)
-		{
 				*button2prev = 1;
+		}
+		else if ( (PTAD & button2) == 0)
+		{
+				*button2prev = 0;
 		}
 		return ret;
 }
 
 /***********************************************************************
 ; Name:         checkCollision
-; Description:  This function detects a collision between a character
-;								and a platform object. A 0 is returned if a collision is
-;								detected. A 1 is returned if no collision detected.
+; Description:  This function detects a collision between two arbitrary
+;								objects and a platform object. A 0 is returned if a 
+;								collision is detected. A 1 is returned if no collision 
+;								detected.
 ;***********************************************************************/
-char checkCollision(struct character *self, struct platform *platform)
+//char checkCollision(struct character *self, struct platform *platform)
+char checkCollision(char x1, char y1, unsigned char w1, unsigned char h1, char x2, char y2, unsigned char w2, unsigned char h2)
 {
 		char ret = 0; // 0 means no collision
-		if ( (self->x + self->framew) > platform->x )
+		if ( (x1 + w1) > x2 )
 		{
-				if ( self->x < ( platform->x + platform->w ) )
+				if ( x1 < ( x2 + w2 ) )
 				{
-						if ( (self->y + self->frameh) > platform->y )
+						if ( (y1 + h1) > y2 )
 						{
-								if ( self->y < (platform->y + platform->h) )
+								if ( y1 < (y2 + h2) )
 								{
 										ret = 1;
 								}
@@ -1132,12 +1208,12 @@ char checkCollision(struct character *self, struct platform *platform)
 
 /***********************************************************************
 ; Name:         checkCollisions
-; Description:  This function checks for collisions between a character
-;								and all platforms that are currently in the list. The
-;								list of platforms is set in the selectField() function.
+; Description:  This function checks for collisions between an arbitrary
+;								object and all platforms that are currently in the list.
+;								The list of platforms is set in the selectField() function.
 ;								Note that the ground is enabled by default.
 ;***********************************************************************/
-char checkCollisions(struct character *self)
+char checkCollisions(char x1, char y1, unsigned char w1, unsigned char h1)
 {
 		char i;
 		char ret = 0; // 0 means no collision detected.
@@ -1150,13 +1226,48 @@ char checkCollisions(struct character *self)
 				{
 						break;
 				}
-				ret = checkCollision(self, all_platforms[i]);
+				ret = checkCollision(x1, y1, w1, h1, all_platforms[i]->x, all_platforms[i]->y, all_platforms[i]->w, all_platforms[i]->h);
 				// if a collison was detected. Don't bother checking for other collisions.
 				// We need to undo our move and set flags appropriately.
 				if (ret)
 				{
 						break;
 				}
+		}
+		return ret;
+}
+
+/***********************************************************************
+; Name:         checkCharCollisions
+; Description:  This function checks for collisions between a character
+;								and all platforms that are currently in the list.
+;								This function serves to wrap the checkCollisions function
+;								for character objects.
+;***********************************************************************/
+char checkCharCollisions(struct character *self)
+{
+    char ret = 0;
+		ret = checkCollisions(self->x, self->y, self->framew, self->frameh);
+		return ret;
+}
+
+/***********************************************************************
+; Name:         checkCharHitChar
+; Description:  This function checks for collisions between the attack
+;								of one character and the position of another character.
+;								It doesn't matter which character calls the	function,
+;								it performs correctly.
+;***********************************************************************/
+char checkCharHitChar(struct character *self, char attackx, char attacky, unsigned char attackw, unsigned char attackh)
+{
+    char ret = 0;
+		if (self->player == 0)
+		{
+				ret = checkCollision(attackx, attacky, attackw, attackh, player1.x, player1.y, player1.framew, player1.frameh);
+		}
+		else
+		{
+				ret = checkCollision(attackx, attacky, attackw, attackh, player0.x, player0.y, player0.framew, player0.frameh);
 		}
 		return ret;
 }
@@ -1176,15 +1287,18 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		if (-ZEROTHRESH < inhor && inhor < ZEROTHRESH)
 		{
 				self->horacc = 0;
-				self->horvel = 0;
+				if ( self->horvel >= MAXVELOCITY || self->horvel <= -MAXVELOCITY)
+				{
+						self->horvel = 0;
+				}
 		}
 		else if (inhor > 0)
 		{
-				self->horacc = 20 + (30 - (inhor *30)/(128 - ZEROTHRESH) );
+				self->horacc = MAXVELOCITY + (30 - (inhor *30)/(128) );
 		}
 		else
 		{
-				self->horacc = -20 + (-30 - (inhor *30)/(128 - ZEROTHRESH) );
+				self->horacc = -MAXVELOCITY + (-30 - (inhor *30)/(128) );
 		}
 		/*
 		// UPDATE VERTICAL ACCELERATION
@@ -1208,7 +1322,7 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		{
 				if (self->vervel != 0)
 				{
-						self->vervel = (self->vervel*self->veracc)/ (self->vervel + self->veracc);
+						self->vervel = (self->vervel*self->veracc) / (self->vervel + self->veracc);
 				}
 				else
 				{
@@ -1223,9 +1337,13 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		{
 				if (self->horvel != 0)
 				{
-						// This needs to be handled in such a way that the user can't accelerate much
-						// unless he's fighting to slow down from a large velocity.
-						self->horvel = (self->horvel*self->horacc)/ (self->horvel + self->horacc);
+				   if ( self->horvel < (MAXVELOCITY) && self->horvel > -(MAXVELOCITY) ) 
+				   {
+				    
+						  // This needs to be handled in such a way that the user can't accelerate much
+						  // unless he's fighting to slow down from a large velocity.
+						  self->horvel = (self->horvel*self->horacc)/ (self->horvel + self->horacc);
+				   }
 				}
 				else
 				{
@@ -1233,6 +1351,29 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 				}
 				//bclr(self->moveflag, VELRI);
 				self->movehor_v = 0;
+		}
+
+		// adjust acceleration and velocity if the player takes damage
+		switch (self->hit)
+		{
+				case ATTACKLEFT:
+				  self->horvel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+					self->hit = 0;
+				  break;
+				case ATTACKRIGHT:
+				  self->horvel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+					self->hit = 0;
+				  break;
+				case ATTACKUP:
+				  self->vervel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+					self->hit = 0;
+				  break;
+				case ATTACKDOWN:
+				  self->vervel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+					self->hit = 0;
+				  break;
+				default:
+				  break;
 		}
 }
 
