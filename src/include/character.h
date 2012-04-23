@@ -37,6 +37,7 @@ struct character
 {
 		char player; // indicates either player0 or player1. Used when figuring out who attacked who.
 		char x,y;
+		char defaultx, defaulty;
 		int horvel, vervel;
 		int horvelcnt, vervelcnt;
 		unsigned char movever_v; // flag for moving up or moving down. bset(MOVEUP,moveflag)
@@ -47,6 +48,7 @@ struct character
 		int horacc, veracc;
 		int horacccnt, veracccnt;
 		unsigned char damage;
+		unsigned char lives;
 		char name[3+1];
 		void (*attack)(struct character *); // type of attack and direction of attack
 		void (*move)(struct character *); // up/down and left/right atd values
@@ -72,6 +74,8 @@ struct character player0 = {
 		0, // player
 		28, // x
 		43, // y
+		28, // defaultx
+		43, // defaulty
 		0, // horvel
 		0, // vervel
 		0, // horvelcnt
@@ -86,6 +90,7 @@ struct character player0 = {
 		0, // horacccnt
 		0, // veracccnt
 		0, // damage
+		5, // lives
 		"def", // name
 		defaultAttack, // attack
 		defaultMove, // move
@@ -105,7 +110,9 @@ struct character player0 = {
 struct character player1 = {
 		1, // player
 		15, // x
-		45, // y
+		43, // y
+		15, // defaultx
+		43, // defaulty
 		0, // horvel
 		0, // vervel
 		0, // horvelcnt
@@ -120,6 +127,7 @@ struct character player1 = {
 		0, // horacccnt
 		0, // veracccnt
 		0, // damage
+		5, // lives
 		"def", // name
 		defaultAttack, // attack
 		defaultMove, // move

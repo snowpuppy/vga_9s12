@@ -118,6 +118,8 @@ void selectCharacter(void);
 void selectField(void);
 void startMatch(void);
 void display_character(struct character *self);
+void display_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h);
+void display_animated_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
 void writeBackground(const unsigned char *image);
 int abs(int value);
 //char checkCollisions(struct character *self);
@@ -131,6 +133,9 @@ char debounceJoystick(char joyin, char *joyinprev);
 void checkPlayerJump(struct character *self);
 void updateVelAcc(struct character *self, char inhor,char inver);
 void clear_character(struct character *self);
+char checkDeath(struct character *self);
+void displayLives(void);
+void displayDamage(void);
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -189,6 +194,15 @@ unsigned char splash_screen_enable = 0;
 
 // define global platform structure.
 struct platform *all_platforms[MAXPLATFORMS] = {NULL};
+
+// define number array
+const unsigned char *numbers[10] =
+{
+	image_zero, image_one, image_two,
+	image_three, image_four, image_five,
+	image_six, image_seven, image_eight,
+	image_nine
+};
 
 // define ground as default platform
 struct platform ground = {
@@ -985,12 +999,12 @@ void clear_character(struct character *self)
 }
 
 /***********************************************************************
-; Name:         display_character
-; Description:  This function draws a character to the screen buffer at
+; Name:         display_animated_image
+; Description:  This function draws an image to the screen buffer at
 ;								their x and y coordinates. Compensation is made for 
-;								characters drawn on odd pixels.
+;								images drawn on odd pixels.
 ;***********************************************************************/
-void display_character(struct character *self)
+void display_animated_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
 {
 	unsigned char r,l;
 	unsigned int location = 0;
@@ -999,7 +1013,7 @@ void display_character(struct character *self)
 
     // 0 or 1 value. If 1, then we're starting on an odd pixel
     // modulus logic needs to be kept out of for looping.
-    odd = self->x % 2;
+    odd = x % 2;
     
     // calculate starting location to draw character
     // Note that each pixel is stored in two bytes. Thus the
@@ -1009,11 +1023,11 @@ void display_character(struct character *self)
     // value to the beginning our line. Thus we calculate the
     // position to display the image in our one-dimensional
     // array.
-    location = self->y*(SCREENW/2) + self->x/2;
+    location = y*(SCREENW/2) + x/2;
 
-		for (r = 0; r < self->frameh; r++)
+		for (r = 0; r < h; r++)
 		{
-				for (l = 0; l < self->framew/2; l++)
+				for (l = 0; l < w/2; l++)
 				{
 				    // do a different process if we start on an odd pixel.
 						if (location >= 0 && location < SCREENSIZE)
@@ -1029,7 +1043,7 @@ void display_character(struct character *self)
 								// a four by four pixel picture's array will
 								// only have 2 columns (2pixels/byte).
 								// We are again masking off the lower nibble [E0]
-								temp3 = self->frame[(self->framew/2)*self->numframes*r + l + self->framew*self->currframe/2];
+								temp3 = image[(w/2)*numframes*r + l + w*currframe/2];
 								temp2 = temp3 & 0xe0;
 								// Shift the upper nibble to the lower nibble [1C]
 								temp2 = temp2 / 0x08;
@@ -1056,7 +1070,7 @@ void display_character(struct character *self)
 							{
 								// We start on an even byte, so just copy our
 								// picture over two pixels at a time.
-								temp1 = self->frame[(self->framew/2)*self->numframes*r + l + self->framew*self->currframe/2];
+								temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
 								screen[location] = temp1;
 							}
 						}
@@ -1064,8 +1078,31 @@ void display_character(struct character *self)
 						location++;
 				}
 				// increment our location by one row
-				location += SCREENW/2 - self->framew/2;
+				location += SCREENW/2 - w/2;
 		}
+}
+
+/***********************************************************************
+; Name:         display_character
+; Description:  This function draws a character to the screen buffer at
+;								their x and y coordinates. Compensation is made for 
+;								images drawn on odd pixels.
+;***********************************************************************/
+void display_character(struct character *self)
+{
+		display_animated_image(self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
+}
+
+/***********************************************************************
+; Name:         display_character
+; Description:  This function draws a character to the screen buffer at
+;								their x and y coordinates. Compensation is made for 
+;								images drawn on odd pixels.
+;***********************************************************************/
+void display_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h)
+{
+		// for images with 1 frame and thus only have frame 0
+		display_animated_image(image, x, y, w, h, 1, 0);
 }
 
 /***********************************************************************
@@ -1405,6 +1442,100 @@ int abs(int value)
 	{
 		return value;
 	}
+}
+
+/***********************************************************************
+; Name:         displayDamage
+; Description:  This function displays the damage for both caracters
+;								to the screen. This will be displayed at the top of the
+;								screen.
+;***********************************************************************/
+void displayDamage(void)
+{
+		// display the damage for this character
+		unsigned char damage = 0;
+		unsigned char digit0 = 0, digit1 = 0, digit2 = 0;
+
+		// get digits for player0 damage
+		damage = player0.damage;
+		digit0 = damage/100;
+		digit2 = damage - digit0*100;
+		digit1 = digit2 / 10;
+		digit2 = digit2 - digit1*10;
+
+		// display player0 damage
+		display_image(numbers[digit0], 9, 1, 4, 4);
+		display_image(numbers[digit1], 13, 1, 4, 4);
+		display_image(numbers[digit2], 17, 1, 4, 4);
+
+		// get digits for player1 damage.
+		damage = player1.damage;
+		digit0 = damage/100;
+		digit2 = damage - digit0*100;
+		digit1 = digit2 / 10;
+		digit2 = digit2 - digit1*10;
+
+		// display player1 damage
+		display_image(numbers[digit0], 31, 1, 4, 4);
+		display_image(numbers[digit1], 36, 1, 4, 4);
+		display_image(numbers[digit2], 40, 1, 4, 4);
+}
+
+/***********************************************************************
+; Name:         displayLives
+; Description:  find absolute value of an integer
+;***********************************************************************/
+void displayLives(void)
+{
+		// display the lives for each character.
+		display_image(numbers[player0.lives], 5, 1, 4, 4);
+		display_image(numbers[player1.lives], 26, 1, 4, 4);
+}
+
+/***********************************************************************
+; Name:         checkDeath
+; Description:  find absolute value of an integer
+;***********************************************************************/
+char checkDeath(struct character *self)
+{
+		char ret = 0;
+		char death = 0;
+		if (self->x + self->framew > SCREENW)
+		{
+				death = 1;
+		}
+		else if (self->x < 0)
+		{
+				death = 1;
+		}
+		if (self->y + self->frameh > SCREENH)
+		{
+				death = 1;
+		}
+		else if(self->y < 0)
+		{
+				death = 1;
+		}
+		if (death)
+		{
+				// lose a life
+				self->lives--;
+				// if less than or equal to zero lives then
+				// return true for quitting the main loop
+				if (self->lives <= 0)
+				{
+						ret = 1;
+				}
+				else // reconstruct the persons default positions
+				{
+						self->x = self->defaultx;
+						self->y = self->defaulty;
+						self->horacc = 0;
+						self->veracc = 0;
+						self->horvel = 0;
+						self->vervel = 0;
+				}
+		}
 }
 
 #if USESCIDEBUGGING
