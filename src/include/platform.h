@@ -5,12 +5,12 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#define MAXPLATFORMS 5
+#define MAXPLATFORMS 7
 
 struct platform {
 	char x, y;
-	char w, h;
-}
+	unsigned char w, h;
+};
 
 
 #endif

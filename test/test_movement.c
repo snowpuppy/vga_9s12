@@ -378,7 +378,7 @@ void startMatch(void)
 				// into this function to avoid typing it for both players.
 				player0.move(&player0);
 				//  display the character at his location
-				display_character(&player0);
+				//display_character(&player0);
 				//printf("PlayerX: %d PlayerY: %d\n", player0.x, player0.y);
 				//print_screen();
 				//system("clear");
