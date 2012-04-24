@@ -103,7 +103,10 @@
 #define SCREENSIZE 1152
 
 // Define Timing specifications
-#define TIMEFORONESECOND 2*100
+#define TIMEFORONESECOND 100
+#define QUART_SEC 25
+#define HALF_SEC 50
+#define THREE_QUART_SEC 75
 
 // Define gravity constant
 #define GRAVITY -20
@@ -191,6 +194,8 @@ char selection = 1;
 // splash screen enable.
 unsigned char splash_screen_enable = 0;
 
+// sound counter
+unsigned char sound_counter = 0;
 
 // define global platform structure.
 struct platform *all_platforms[MAXPLATFORMS] = {NULL};
@@ -274,6 +279,19 @@ void  initializations(void) {
   // 0011 0011 where 0's represent analog inputs and 1's represent
   // digital inputs. Controller 0 is high byte, Controller 1 is low byte.
   ATDDIEN = 0x33; 
+
+  // initialize the PWM output
+  PWME = 0x01;
+  PWMPOL = 0x00;
+  PWMCAE = 0x00;
+  MODRR = 0x01;		//;PT4 connected to PWM ch0
+  PWMPER0 = 0xff;   //;ch4 period: 255
+  PWMPRCLK = 0x01;  //;prescale fbus by 2: 12Mhz
+  PWMCLK = 0x01;    //;select clkA for ch0
+  PWMSCLA = 90;     
+  PWMDTY0 = 80;     
+       
+
 
 }
 
@@ -637,7 +655,7 @@ interrupt 8 void TIM_ISR(void)
 // No need to add anything in the .PRM file, the interrupt number is included above
 
 		// handle splash screen logic
-    if (splash_screen_enable < TIMEFORONESECOND)
+    if (splash_screen_enable < TIMEFORONESECOND*2)
     {
         splash_screen_enable++;
     }
@@ -778,6 +796,32 @@ interrupt 8 void TIM_ISR(void)
 				}
 		}
 		
+	}
+	else // run sound code
+	{
+		if (sound_counter == 0)
+		{
+			PWMSCLA = 90;
+		}
+		else if (sound_counter == QUART_SEC)
+		{
+			PWMSCLA = 48;
+		}
+		else if (sound_counter == HALF_SEC)
+		{
+			PWMSCLA = 30;
+		}
+		else if (sound_counter == THREE_QUART_SEC)
+		{
+			PWMSCLA = 0;
+		}
+		else if (sound_counter == TIMEFORONESECOND)
+		{
+			// reset sound counter
+			sound_counter = 0;
+			PWMSCLA = 90;
+		}
+		sound_counter++;
 	}
 	
 	// END OF TIM ISR
