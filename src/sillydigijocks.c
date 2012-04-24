@@ -87,14 +87,14 @@
 // define maximum damage to be taken by a player
 // This allows me to scale the damage that should
 // be taken.
-#define MAXDAMGE 100
+#define MAXDAMAGE 200
 
 // define button layouts/masks
 #define LEFTPB 0x20
 #define P0BUTTON1 0x20
 #define P0BUTTON2 0x10
-#define P1BUTTON1 0x02
-#define P1BUTTON2 0x01
+#define P1BUTTON1 0x01
+#define P1BUTTON2 0x02
 
 
 // define screen resolution
@@ -112,6 +112,7 @@
 #define GRAVITY -20
 
 // Define Available Characters.
+#define NUMCHARACTERS 9
 #define PIKA 0
 #define FALCON 1
 #define YOSHI 2
@@ -133,8 +134,8 @@ void assignCharacter(struct character *self, char selection);
 void selectField(void);
 void startMatch(void);
 void display_character(struct character *self);
-void display_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h);
-void display_animated_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
+void display_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h);
+void display_animated_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
 void writeBackground(const unsigned char *image);
 int abs(int value);
 //char checkCollisions(struct character *self);
@@ -148,6 +149,8 @@ char debounceJoystick(char joyin, char *joyinprev);
 void checkPlayerJump(struct character *self);
 void updateVelAcc(struct character *self, char inhor,char inver);
 void clear_character(struct character *self);
+void clear_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h);
+void clear_animated_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
 char checkDeath(struct character *self);
 void displayLives(void);
 void displayDamage(void);
@@ -231,7 +234,7 @@ struct platform ground = {
 
 // define coordinates for character selection
 const char xcoordplayer0[] = { 10, 25, 40, 10, 25, 40, 10, 25, 40 };
-const char ycoordpalyer0[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
+const char ycoordplayer0[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
 const char xcoordplayer1[] = {  2, 17, 32,  2, 17, 32,  2, 17, 32 };
 const char ycoordplayer1[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
 
@@ -809,7 +812,6 @@ interrupt 8 void TIM_ISR(void)
 						player1.attacklength = DEFAULTATTACKLENGTH;
 						// transition out of attacking mode
 						player1.attacking = 0;
-						player1.frame = image_kirby;
 						display_character(&player1);
 				}
 		}
@@ -878,7 +880,7 @@ void displaySplash(void)
     */
     writeBackground(image_bitbang_splash);
 
-    while (splash_screen_enable < TIMEFORONESECOND);
+    while (splash_screen_enable < TIMEFORONESECOND*2);
 }
 
 /*
@@ -988,46 +990,53 @@ void selectCharacter(void)
 		// character gets picked.
 		char selection0 = 0, selection1 = 0;
 		char select0 = 0, select1 = 0;
-		char confirm0 = 0; confirm1 = 0;
+		char confirm0 = 0, confirm1 = 0;
 		char temp = 0;
 
 		writeBackground(image_pick_char);
 
-	  while(!confirm0 && !confirm1)
+	  while(!confirm0 || !confirm1)
 	  {
+	  	if (hCnt > HSYNCHIGH || hCnt < HSYNCLOW)
+		{
+	  			
 				// set confirmation variables.
 				confirm0 = select0;
 				confirm1 = select1;
 
 				// get horizontal movement player0
-				temp = selection0 + debounceJoystick(joy0hor, joy0horprev);
+				temp = selection0 + debounceJoystick(joy0hor, &joy0horprev);
 				// validate the movement
-				if (temp < NUMCHARACTERS && temp < 0)
+				if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
 				{
+						clear_image(image_pick_char, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
 						selection0 = temp;
 				}
 
 				// get vertical movement player0
-				temp = selection0 + 3*debounceJoystick(joy0ver, joy0verprev);
+				temp = selection0 - 3*debounceJoystick(joy0ver, &joy0verprev);
 				// validate the movement
-				if (temp < NUMCHARACTERS && temp < 0)
+				if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
 				{
+						clear_image(image_pick_char, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
 						selection0 = temp;
 				}
 				
 				// get horizontal movement player1
-				temp = selection1 + debounceJoystick(joy1hor, joy1horprev);
+				temp = selection1 + debounceJoystick(joy1hor, &joy1horprev);
 				// validate the movement
-				if (temp < NUMCHARACTERS && temp < 0)
+				if (temp != selection1 && temp < NUMCHARACTERS && temp >= 0)
 				{
+						clear_image(image_pick_char, image_bluearrow, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
 						selection1 = temp;
 				}
 
 				// get vertical movement player1
-				temp = selection1 + 3*debounceJoystick(joy1ver, joy1verprev);
+				temp = selection1 - 3*debounceJoystick(joy1ver, &joy1verprev);
 				// validate the movement
-				if (temp < NUMCHARACTERS && temp < 0)
+				if (temp != selection1 && temp < NUMCHARACTERS && temp >= 0)
 				{
+						clear_image(image_pick_char, image_bluearrow, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
 						selection1 = temp;
 				}
 
@@ -1048,26 +1057,27 @@ void selectCharacter(void)
 				}
 				else if (temp == 2)
 				{
-						select1 = 1;
+						select1 = 0;
 				}
 
 				// display character images
 				if ( !select0)
 				{
-						display_image(image_bluearrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+						display_image(image_redarrow, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
 				}
 				else
 				{
-						display_image(image_greenarrow0, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+						display_image(image_greenarrow1, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
 				}
 				if (!select1)
 				{
-						display_image(image_redarrow, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+						display_image(image_bluearrow, 1, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
 				}
 				else
 				{
-						display_image(image_greenarrow1, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+						display_image(image_greenarrow0, 1, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
 				}
+		}
 
 	  }
 
@@ -1086,7 +1096,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_pickachu;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1095,7 +1105,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_falco;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1104,7 +1114,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_yoshi; 
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1113,7 +1123,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_donkeykong;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1122,7 +1132,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_mario;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1131,7 +1141,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_luigi;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1140,7 +1150,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_link;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1149,7 +1159,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_kirby;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1158,7 +1168,7 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_fox;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 6;
+						self->numframes = 7;
 						self->framew = 4;
 						self->frameh = 4;
 						self->currframe = 0;
@@ -1178,6 +1188,14 @@ void selectField(void)
 	all_platforms[5] = &batt1_plat5;
 	all_platforms[6] = &batt1_plat6;
 	selected_field = image_battlefield1;
+	player0.defaultx = 28;
+	player0.x = 28;
+	player0.defaulty = 44;
+	player0.y = 44;
+	player0.defaultx = 15;
+	player0.x = 15;
+	player0.defaulty = 44;
+	player0.y = 44;
 }
 
 /***********************************************************************
@@ -1239,24 +1257,99 @@ void startMatch(void)
 ;***********************************************************************/
 void clear_character(struct character *self)
 {
+	clear_animated_image(selected_field, self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
+}
+
+/***********************************************************************
+; Name:         clear_image
+; Description:  This function clears an image at its given x and y
+;								coordinates by redrawing the selected field behind it.
+;***********************************************************************/
+void clear_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h)
+{
+	clear_animated_image(background, image, x, y, w, h, 1, 0);
+}
+
+/***********************************************************************
+; Name:         clear_animated_image
+; Description:  This function clears an animated image at its given x and y
+;								coordinates by redrawing the selected field behind it.
+;***********************************************************************/
+void clear_animated_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
+{
 	unsigned char r,l;
 	unsigned int location = 0;
+	unsigned char odd = 0; // checks start on odd pixel.
+	unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
 	
-	location = self->y*(SCREENW/2) + self->x/2;
+	odd = x % 2;
+	location = y*(SCREENW/2) + x/2;
 
-	for (r = 0; r < self->frameh; r++)
+	for (r = 0; r < h; r++)
 	{
-		for (l = 0; l < self->framew/2 + 1; l++)
+		for (l = 0; l < w/2; l++)
 		{
 			if ( location >= 0 && location < SCREENSIZE )
 			{
-				screen[location] = selected_field[location];
+				if (odd) // drawn on an odd pixel
+				{
+					temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
+					temp2 = temp1 & 0xe0; // upper nibble
+					temp3 = temp1 & 0x1c; // lower nibble
+					// if pixel one is not white
+					if (temp2 != 0xe0) // would actually be low nibble
+					{
+							temp1 = screen[location] & 0xe0; // high nibble of screen
+							temp2 = background[location] & 0x1c; // low nibble of background
+							temp1 = temp1 + temp2;
+							screen[location] = temp1;
+					}
+					// if pixel two is not white
+					if (temp3 != 0x1c)
+					{
+							if (location < SCREENSIZE - 1)
+							{
+									temp1 = screen[location+1] & 0x1c; // low nibble of screen
+									temp2 = background[location+1] & 0xe0; // high nibble of background
+									temp1 = temp1 + temp2;
+									screen[location+1] = temp1;
+							}
+					}
+				}
+				else // drawn on an even pixel
+				{
+						temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
+						temp2 = temp1 & 0xe0; // upper nibble
+						temp3 = temp1 & 0x1c; // lower nibble
+						if (temp2 != 0xe0 && temp3 != 0x1c)
+						{
+								screen[location] = background[location];
+						}
+						else if (temp2 == 0xe0 && temp3 == 0x1c)
+						{
+								// do nothing
+						}
+						else if (temp2 == 0xe0)
+						{
+								temp1 = screen[location] & 0xe0;
+								temp2 = background[location] & 0x1c;
+								temp1 = temp1 + temp2;
+								screen[location] = temp1;
+						}
+						else if (temp3 == 0x1c)
+						{
+								temp1 = screen[location] & 0x1c;
+								temp2 = background[location] & 0xe0;
+								temp1 = temp1 + temp2;
+								screen[location] = temp1;
+						}
+				}
 			}
 			// increment our location by one column
 			location++;
 		}
 		// increment our location by one row
-		location += SCREENW/2 - self->framew/2 - 1;
+		location += SCREENW/2 - w/2;
 	}
 }
 
@@ -1266,7 +1359,7 @@ void clear_character(struct character *self)
 ;								their x and y coordinates. Compensation is made for 
 ;								images drawn on odd pixels.
 ;***********************************************************************/
-void display_animated_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
+void display_animated_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
 {
 	unsigned char r,l;
 	unsigned int location = 0;
@@ -1309,10 +1402,14 @@ void display_animated_image(const unsigned char *image, char x, char y, unsigned
 								temp2 = temp3 & 0xe0;
 								// Shift the upper nibble to the lower nibble [1C]
 								temp2 = temp2 / 0x08;
-								// add the bytes together [FC]
+								// add the bytes together [FC]	
 								temp1 = temp1 + temp2;
-								// store the result in the screen.
-								screen[location] = temp1;
+								// don't draw white pixels
+								if ( temp2 != 0x1c || !mask)
+								{
+									// store the result in the screen.
+									screen[location] = temp1;
+								}
 
 								// STORE SECOND PIXEL
 
@@ -1324,16 +1421,52 @@ void display_animated_image(const unsigned char *image, char x, char y, unsigned
 								temp2 = temp3 & 0x1c;
 								// shift our low nibble to our high nibble. [E0]
 								temp2 *= 0x08;
-								// add the bytes together [FC]
+								// add the bytes together [FC] if color isn't white	
 								temp1 = temp1 + temp2;
-								screen[location+1] = temp1;
+								// don't draw white pixels
+								if ( temp2 != 0xe0 || !mask)
+								{
+									screen[location+1] = temp1;
+								}
 							}
 							else
 							{
 								// We start on an even byte, so just copy our
 								// picture over two pixels at a time.
 								temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
-								screen[location] = temp1;
+								temp2 = temp1 & 0xe0; // upper nibble
+								temp3 = temp1 & 0x1c; // lower nibble
+								// if neither pixel is white
+								if (temp2 != 0xe0 && temp3 != 0x1c || !mask)
+								{	
+									screen[location] = temp1;
+								}
+								// if both pixels are white
+								else if (temp2 == 0xe0 && temp3 == 0x1c)
+								{
+									// do nothing
+								}
+								// if upper nibble is white (write lower nibble)
+								else if (temp2 == 0xe0)
+								{
+									// mask off lower nibble of screen
+									temp1 = screen[location] & 0xe0;
+									// add with lower nibble of image
+									temp1 = temp1 + temp3;
+									// write modified byte
+									screen[location] = temp1;
+									
+								}
+								// if lower nibble is white (write upper nibble)
+								else if (temp3 == 0x1c)
+								{
+									// mask off upper nibble of screen
+									temp1 = screen[location] & 0x1c;
+									// add with upper nibble of image
+									temp1 = temp1 + temp2;
+									// write modified byte
+									screen[location] = temp1;
+								}
 							}
 						}
 						// increment our location by one column
@@ -1352,7 +1485,7 @@ void display_animated_image(const unsigned char *image, char x, char y, unsigned
 ;***********************************************************************/
 void display_character(struct character *self)
 {
-		display_animated_image(self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
+		display_animated_image(self->frame, 1, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
 }
 
 /***********************************************************************
@@ -1361,10 +1494,10 @@ void display_character(struct character *self)
 ;								their x and y coordinates. Compensation is made for 
 ;								images drawn on odd pixels.
 ;***********************************************************************/
-void display_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h)
+void display_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h)
 {
 		// for images with 1 frame and thus only have frame 0
-		display_animated_image(image, x, y, w, h, 1, 0);
+		display_animated_image(image, mask, x, y, w, h, 1, 0);
 }
 
 /***********************************************************************
@@ -1412,7 +1545,7 @@ char debounceJoystick(char joyin, char *joyinprev)
 {
 		char ret = 0;
 		// check for moving joystick up
-		// transition from up to down
+		// transition from down to up
 		if ( joyin > THRESHUP)
 		{
 				if (*joyinprev < THRESHUP)
@@ -1421,7 +1554,7 @@ char debounceJoystick(char joyin, char *joyinprev)
 				}
 		}
 		// check for moving joystick down
-		// transision from down to up
+		// transision from up to down
 		else if (joyin < THRESHDO )
 		{
 				if (*joyinprev > THRESHDO )
@@ -1656,19 +1789,19 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		switch (self->hit)
 		{
 				case ATTACKLEFT:
-				  self->horvel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->horvel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				case ATTACKRIGHT:
-				  self->horvel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->horvel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				case ATTACKUP:
-				  self->vervel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->vervel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				case ATTACKDOWN:
-				  self->vervel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->vervel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				default:
@@ -1714,10 +1847,10 @@ int abs(int value)
 ;***********************************************************************/
 void displayDamage(void)
 {
-		// display the damage for this character
+    // display the damage for this character
 		unsigned char damage = 0;
-		unsigned char digit0 = 0, digit1 = 0, digit2 = 0;
-
+		static unsigned char digit0 = 0, digit1 = 0, digit2 = 0;
+		
 		// get digits for player0 damage
 		damage = player0.damage;
 		digit0 = damage/100;
@@ -1726,9 +1859,9 @@ void displayDamage(void)
 		digit2 = digit2 - digit1*10;
 
 		// display player0 damage
-		display_image(numbers[digit0], 9, 1, 4, 4);
-		display_image(numbers[digit1], 13, 1, 4, 4);
-		display_image(numbers[digit2], 17, 1, 4, 4);
+		display_image(numbers[digit0], 0, 9, 1, 4, 4);
+		display_image(numbers[digit1], 0, 13, 1, 4, 4);
+		display_image(numbers[digit2], 0, 17, 1, 4, 4);
 
 		// get digits for player1 damage.
 		damage = player1.damage;
@@ -1738,9 +1871,9 @@ void displayDamage(void)
 		digit2 = digit2 - digit1*10;
 
 		// display player1 damage
-		display_image(numbers[digit0], 31, 1, 4, 4);
-		display_image(numbers[digit1], 36, 1, 4, 4);
-		display_image(numbers[digit2], 40, 1, 4, 4);
+		display_image(numbers[digit0], 0, 31, 1, 4, 4);
+		display_image(numbers[digit1], 0, 36, 1, 4, 4);
+		display_image(numbers[digit2], 0, 40, 1, 4, 4);
 }
 
 /***********************************************************************
@@ -1750,8 +1883,8 @@ void displayDamage(void)
 void displayLives(void)
 {
 		// display the lives for each character.
-		display_image(numbers[player0.lives], 5, 1, 4, 4);
-		display_image(numbers[player1.lives], 26, 1, 4, 4);
+		display_image(numbers[player0.lives], 0, 5, 1, 4, 4);
+		display_image(numbers[player1.lives], 0, 26, 1, 4, 4);
 }
 
 /***********************************************************************
@@ -1796,6 +1929,7 @@ char checkDeath(struct character *self)
 						self->veracc = 0;
 						self->horvel = 0;
 						self->vervel = 0;
+						self->damage = 0;
 				}
 		}
 		return ret;
