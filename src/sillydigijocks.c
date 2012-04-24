@@ -111,6 +111,17 @@
 // Define gravity constant
 #define GRAVITY -20
 
+// Define Available Characters.
+#define PIKA 0
+#define FALCON 1
+#define YOSHI 2
+#define DKONG 3
+#define MARIO 4
+#define LUIGI 5
+#define LINK 6
+#define KIRBY 7
+#define FOX 8
+
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
@@ -118,6 +129,7 @@ void displaySplash(void);
 void displayMenu(char selection);
 void checkMenuInputs(char joyin);
 void selectCharacter(void);
+void assignCharacter(struct character *self, char selection);
 void selectField(void);
 void startMatch(void);
 void display_character(struct character *self);
@@ -216,6 +228,12 @@ struct platform ground = {
 		48, // w
 		1, // h
 };
+
+// define coordinates for character selection
+const char xcoordplayer0[] = { 10, 25, 40, 10, 25, 40, 10, 25, 40 };
+const char ycoordpalyer0[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
+const char xcoordplayer1[] = {  2, 17, 32,  2, 17, 32,  2, 17, 32 };
+const char ycoordplayer1[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
 
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
@@ -795,6 +813,13 @@ interrupt 8 void TIM_ISR(void)
 						display_character(&player1);
 				}
 		}
+
+		// Turn the sound off if no attacks are in
+		// progress
+		if (!player0.attacking && !player1.attacking)
+		{
+			PWMSCLA = 0;
+		}
 		
 	}
 	else // run sound code
@@ -851,7 +876,7 @@ void displaySplash(void)
         }
     }
     */
-    writeBackground(image_splash);
+    writeBackground(image_bitbang_splash);
 
     while (splash_screen_enable < TIMEFORONESECOND);
 }
@@ -959,8 +984,190 @@ void checkMenuInputs(char joyin)
 
 void selectCharacter(void)
 {
-	writeBackground(image_character_select);
+		// selection varaibles used to determine which
+		// character gets picked.
+		char selection0 = 0, selection1 = 0;
+		char select0 = 0, select1 = 0;
+		char confirm0 = 0; confirm1 = 0;
+		char temp = 0;
+
+		writeBackground(image_pick_char);
+
+	  while(!confirm0 && !confirm1)
+	  {
+				// set confirmation variables.
+				confirm0 = select0;
+				confirm1 = select1;
+
+				// get horizontal movement player0
+				temp = selection0 + debounceJoystick(joy0hor, joy0horprev);
+				// validate the movement
+				if (temp < NUMCHARACTERS && temp < 0)
+				{
+						selection0 = temp;
+				}
+
+				// get vertical movement player0
+				temp = selection0 + 3*debounceJoystick(joy0ver, joy0verprev);
+				// validate the movement
+				if (temp < NUMCHARACTERS && temp < 0)
+				{
+						selection0 = temp;
+				}
+				
+				// get horizontal movement player1
+				temp = selection1 + debounceJoystick(joy1hor, joy1horprev);
+				// validate the movement
+				if (temp < NUMCHARACTERS && temp < 0)
+				{
+						selection1 = temp;
+				}
+
+				// get vertical movement player1
+				temp = selection1 + 3*debounceJoystick(joy1ver, joy1verprev);
+				// validate the movement
+				if (temp < NUMCHARACTERS && temp < 0)
+				{
+						selection1 = temp;
+				}
+
+				// sample buttons for selection
+				temp = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+				if (temp == 1)
+				{
+						select0 = 1;
+				}
+				else if (temp == 2)
+				{
+						select0 = 0;
+				}
+				temp = checkButtons(P1BUTTON1, P1BUTTON2, &button1player1prev, &button2player1prev);
+				if (temp == 1)
+				{
+						select1 = 1;
+				}
+				else if (temp == 2)
+				{
+						select1 = 1;
+				}
+
+				// display character images
+				if ( !select0)
+				{
+						display_image(image_bluearrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				}
+				else
+				{
+						display_image(image_greenarrow0, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				}
+				if (!select1)
+				{
+						display_image(image_redarrow, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+				}
+				else
+				{
+						display_image(image_greenarrow1, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+				}
+
+	  }
+
+		// assign the correct character values for each player
+		assignCharacter(&player0, selection0);
+		assignCharacter(&player1, selection1);
 }
+
+// Assign character to a player
+void assignCharacter(struct character *self, char selection)
+{
+		// select appropriate values for each character
+		switch(selection)
+		{
+				case PIKA:
+						self->frame = image_pickachu;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case FALCON:
+						self->frame = image_falco;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case YOSHI:
+						self->frame = image_yoshi; 
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case DKONG:
+						self->frame = image_donkeykong;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case MARIO:
+						self->frame = image_mario;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case LUIGI:
+						self->frame = image_luigi;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case LINK:
+						self->frame = image_link;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case KIRBY:
+						self->frame = image_kirby;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				case FOX:
+						self->frame = image_fox;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 4;
+						self->frameh = 4;
+						self->currframe = 0;
+						break;
+				default:
+						break;
+		}
+}
+
 void selectField(void)
 {
 	// set the appropriate ledges
@@ -1242,31 +1449,31 @@ char checkButtons(unsigned char button1, unsigned char button2, unsigned char *b
 		char ret = 0; // 0 means no button pressed.
 
 		// DEBOUNCE BUTTON 1
-		if ( (PTAD & button1) == button1 )
+		if ( (PTAD & button1) == 0 )
 		{
-				if (*button1prev == 0)
+				if (*button1prev == 1)
 				{
 						ret = 1;
 				}
-				*button1prev = 1;
-		}
-		else if ( (PTAD & button1) == 0)
-		{
 				*button1prev = 0;
+		}
+		else if ( (PTAD & button1) == button1)
+		{
+				*button1prev = 1;
 		}
 
 		// DEBOUNCE BUTTON 2
-		if ( (PTAD & button2) == button2)
+		if ( (PTAD & button2) == 0)
 		{
-				if ( *button2prev == 0)
+				if ( *button2prev == 1)
 				{
 						ret = 2;
 				}
-				*button2prev = 1;
-		}
-		else if ( (PTAD & button2) == 0)
-		{
 				*button2prev = 0;
+		}
+		else if ( (PTAD & button2) == button2)
+		{
+				*button2prev = 1;
 		}
 		return ret;
 }
