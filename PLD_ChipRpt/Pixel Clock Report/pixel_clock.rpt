@@ -1,0 +1,229 @@
+
+
+                                                                      Page 1
+ispLEVER 3.0  -  Device Utilization Chart         Tue Apr 17 16:10:23 2012
+
+Pixel_Clock
+
+
+
+--------------------------------------------------------------------------------
+
+Module                   : 'pixel_clock'
+
+--------------------------------------------------------------------------------
+
+Input files:
+
+    ABEL PLA file        : pixel_clock.tt3
+    Device library       : P26CV12.dev
+
+Output files:
+
+    Report file          : pixel_clock.rpt
+    Programmer load file : pixel_clock.jed
+
+--------------------------------------------------------------------------------
+
+
+                                                                      Page 2
+ispLEVER 3.0  -  Device Utilization Chart         Tue Apr 17 16:10:23 2012
+
+Pixel_Clock
+
+P26CV12 Programmed Logic:
+--------------------------------------------------------------------------------
+
+
+
+reset     = (  !sync4.PIN & sync3.PIN & !sync2.PIN & !sync1.PIN & sync0.PIN );
+
+sync0.D   = (  !sync0.PIN & hSync & !reset.PIN ); " ISTYPE 'BUFFER'
+sync0.C   = (  CLK );
+
+sync1.D   = (  !sync1.PIN & sync0.PIN & hSync & !reset.PIN 
+             #   sync1.PIN & !sync0.PIN & hSync & !reset.PIN );
+           " ISTYPE 'BUFFER'
+sync1.C   = (  CLK );
+
+sync2.D   = (  sync2.PIN & !sync1.PIN & hSync & !reset.PIN 
+             #   !sync2.PIN & sync1.PIN & sync0.PIN & hSync & !reset.PIN 
+             #   sync2.PIN & !sync0.PIN & hSync & !reset.PIN );
+           " ISTYPE 'BUFFER'
+sync2.C   = (  CLK );
+
+sync3.D   = (  sync3.PIN & !sync2.PIN & hSync & !reset.PIN 
+             #   sync3.PIN & !sync1.PIN & hSync & !reset.PIN 
+             #   !sync3.PIN & sync2.PIN & sync1.PIN & sync0.PIN & hSync 
+               & !reset.PIN 
+             #   sync3.PIN & !sync0.PIN & hSync & !reset.PIN );
+           " ISTYPE 'BUFFER'
+sync3.C   = (  CLK );
+
+sync4.D   = (  sync4.PIN & !sync3.PIN & hSync & !reset.PIN 
+             #   sync4.PIN & !sync2.PIN & hSync & !reset.PIN 
+             #   sync4.PIN & !sync1.PIN & hSync & !reset.PIN 
+             #   !sync4.PIN & sync3.PIN & sync2.PIN & sync1.PIN & sync0.PIN 
+               & hSync & !reset.PIN 
+             #   sync4.PIN & !sync0.PIN & hSync & !reset.PIN );
+           " ISTYPE 'BUFFER'
+sync4.C   = (  CLK );
+
+SYNC_CLK.D   = (  sync4.PIN & hSync & vSync & SYNC_CLK.PIN 
+                #   sync3.PIN & hSync & vSync & SYNC_CLK.PIN 
+                #   sync2.PIN & hSync & vSync & SYNC_CLK.PIN 
+                #   sync1.PIN & hSync & vSync & SYNC_CLK.PIN 
+                #   !sync0.PIN & hSync & vSync & SYNC_CLK.PIN 
+                #   !sync4.PIN & !sync3.PIN & !sync2.PIN & !sync1.PIN 
+                  & sync0.PIN & hSync & vSync & !SYNC_CLK.PIN ); " ISTYPE 'BUFFER'
+SYNC_CLK.C   = (  CLK );
+
+
+
+                                                                      Page 3
+ispLEVER 3.0  -  Device Utilization Chart         Tue Apr 17 16:10:23 2012
+
+Pixel_Clock
+
+P26CV12 Chip Diagram:
+--------------------------------------------------------------------------------
+
+
+
+
+                                   P26CV12
+
+                         +---------\       /---------+
+                         |          \     /          |
+                         |           -----           |
+                     CLK |  1                    28  |                         
+                         |                           |
+                   hSync |  2                    27  | reset                   
+                         |                           |
+                   vSync |  3                    26  | sync4                   
+                         |                           |
+                         |  4                    25  | sync3                   
+                         |                           |
+                         |  5                    24  | sync2                   
+                         |                           |
+                         |  6                    23  | sync1                   
+                         |                           |
+                     Vcc |  7                    22  | sync0                   
+                         |                           |
+                         |  8                    21  | GND                     
+                         |                           |
+                         |  9                    20  |                         
+                         |                           |
+                         | 10                    19  |                         
+                         |                           |
+                         | 11                    18  | SYNC_CLK                
+                         |                           |
+                         | 12                    17  |                         
+                         |                           |
+                         | 13                    16  |                         
+                         |                           |
+                         | 14                    15  |                         
+                         |                           |
+                         |                           |
+                         `---------------------------'
+
+                        SIGNATURE: N/A
+
+
+                                                                      Page 4
+ispLEVER 3.0  -  Device Utilization Chart         Tue Apr 17 16:10:23 2012
+
+Pixel_Clock
+
+P26CV12 Resource Allocations:
+--------------------------------------------------------------------------------
+
+
+
+        Device        | Resource  |   Design    |
+       Resources      | Available | Requirement | Unused
+======================|===========|=============|==============
+                      |           |             |
+Input Pins:           |           |             |
+                      |           |             |
+          Input:      |     14    |      3      |   11 ( 78 %)
+                      |           |             |
+Output Pins:          |           |             |
+                      |           |             |
+          In/Out:     |     12    |      7      |    5 ( 41 %)
+          Output:     |      -    |      -      |    -
+                      |           |             |
+Buried Nodes:         |           |             |
+                      |           |             |
+          Input Reg:  |      -    |      -      |    -
+          Pin Reg:    |     12    |      6      |    6 ( 50 %)
+          Buried Reg: |      -    |      -      |    -
+
+
+                                                                      Page 5
+ispLEVER 3.0  -  Device Utilization Chart         Tue Apr 17 16:10:23 2012
+
+Pixel_Clock
+
+P26CV12 Product Terms Distribution:
+--------------------------------------------------------------------------------
+
+
+
+            Signal                       |    Pin   | Terms | Terms | Terms
+             Name                        | Assigned | Used  |  Max  | Unused
+=========================================|==========|=======|=======|=======
+reset                                    |   27     |   1   |   8   |   7
+sync0.D                                  |   22     |   1   |  12   |  11
+sync1.D                                  |   23     |   2   |  10   |   8
+sync2.D                                  |   24     |   3   |   8   |   5
+sync3.D                                  |   25     |   4   |   8   |   4
+sync4.D                                  |   26     |   5   |   8   |   3
+SYNC_CLK.D                               |   18     |   6   |   8   |   2
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                              | Pin      | Pin Type
+=========================================|==========|=========
+sync4.PIN                                |   26     | COMB FB
+sync3.PIN                                |   25     | COMB FB
+sync2.PIN                                |   24     | COMB FB
+sync1.PIN                                |   23     | COMB FB
+sync0.PIN                                |   22     | COMB FB
+hSync                                    |    2     | INPUT
+reset.PIN                                |   27     | COMB FB
+vSync                                    |    3     | INPUT
+SYNC_CLK.PIN                             |   18     | COMB FB
+CLK                                      |    1     | CLK/IN
+
+
+                                                                      Page 6
+ispLEVER 3.0  -  Device Utilization Chart         Tue Apr 17 16:10:23 2012
+
+Pixel_Clock
+
+P26CV12 Unused Resources:
+--------------------------------------------------------------------------------
+
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+    4  |  INPUT |      -      |    -   
+    5  |  INPUT |      -      |    -   
+    6  |  INPUT |      -      |    -   
+    8  |  INPUT |      -      |    -   
+    9  |  INPUT |      -      |    -   
+   10  |  INPUT |      -      |    -   
+   11  |  INPUT |      -      |    -   
+   12  |  INPUT |      -      |    -   
+   13  |  INPUT |      -      |    -   
+   14  |  INPUT |      -      |    -   
+   15  |  BIDIR | NORMAL  8   |    D
+   16  |  BIDIR | NORMAL  8   |    D
+   17  |  BIDIR | NORMAL  8   |    D
+   19  |  BIDIR | NORMAL 10   |    D
+   20  |  BIDIR | NORMAL 12   |    D
+   28  |  INPUT |      -      |    -   

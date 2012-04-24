@@ -1,0 +1,3783 @@
+***** START ******
+Mon Apr 23 17:07:33 2012
+CMD_DELETE
+G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName: TitleBlock0 . Object Type: 65
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS490
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS490
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ DM FileSave 
+ Design Name: 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ DM FileSave 
+ Design Name: 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ DM FileSave 
+ Design Name: 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+***** START ******
+Tue Apr 24 09:41:38 2012
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 2 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSDTLine
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 2 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 3 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 4 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 5 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 6 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 7 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 8 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 9 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSDTLine
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::Finalize
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+COrSymbolOleTracker::DoPaste
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 2 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 3 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 4 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 2 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 3 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 4 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 5 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 6 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 7 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 8 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 9 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 10 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 11 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 12 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 13 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 2 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 1 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 2 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 3 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 4 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 5 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 6 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 7 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 8 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 9 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 10 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 11 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 12 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 13 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 14 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+No Page Name in COrCommandDumpInfo::SetPageName(DboPage *aPage)
+Pin Name: GNDNumber: 15 .COrSDTPinCreateTracker::Finalize. 
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: PLACED_INSTANCE. Name: INS1430. Source Part Name: VGA Port.Normal. Library Name: E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\LIBRARY1.OLB
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 39
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS490
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS490
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: Crystal Clock Generator 25.175 MHz
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName: INS490 . Object Type: 13
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: PLACED_INSTANCE. Name: INS1497. Source Part Name: SG615/SM.Normal. Library Name: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: Y1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: 25.175 MHz Oscillator
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: 25.175 MHz Oscillator
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: SG615/SM
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: 25.175 MHz Oscillator
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: GAL26CV12B
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: GAL26CV12B
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: GAL22V10
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: GAL22V10
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: GAL26CV12B
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: PLACED_INSTANCE. Name: INS1556. Source Part Name: VDC.Normal. Library Name: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\PSPICE\SOURCE.OLB
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: 0 Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal Yes.  .IsBus No.  Pos Begin: 3.00, 5.20 Pos End: 2.70, 5.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS409
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS409
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+Object Type: 13. INS409
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+Object Type: 13. INS347
+Object Type: 13. INS409
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS148
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.00, 1.60 Pos End: 3.00, 2.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.10, 0.90 Pos End: 2.10, 2.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.10, 2.00 Pos End: 0.70, 2.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.70, 2.00 Pos End: 0.70, 2.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.70, 2.00 Pos End: 0.70, 2.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+ . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.90, 3.70 Pos End: 0.60, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.60, 3.70 Pos End: 0.60, 1.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.60, 1.80 Pos End: 2.10, 1.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.60, 1.80 Pos End: 2.10, 1.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: V1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.80, 0.90 Pos End: 0.40, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: V2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1949
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName: INS1949 . Object Type: 13
+0 . Object Type: 37
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: sysclk
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.10, 2.60 Pos End: 2.40, 2.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.40, 2.60 Pos End: 2.40, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.40, 2.60 Pos End: 2.40, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.40, 2.60 Pos End: 2.40, 2.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.40, 2.60 Pos End: 2.40, 2.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.60, 3.70 Pos End: 0.60, 6.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.60, 3.70 Pos End: 0.60, 6.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.10, 5.80 Pos End: 2.50, 5.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.50, 5.80 Pos End: 2.50, 6.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.50, 5.80 Pos End: 2.50, 6.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.00, 5.60 Pos End: 4.30, 5.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.00, 5.60 Pos End: 4.30, 5.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.10, 4.50 Pos End: 4.30, 4.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.10, 4.50 Pos End: 4.30, 4.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.10, 4.50 Pos End: 6.40, 4.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: pixel clock
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I02599
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: Hclk
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.00, 5.40 Pos End: 4.20, 5.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.20, 5.40 Pos End: 4.20, 4.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.20, 4.40 Pos End: 6.40, 4.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.20, 5.40 Pos End: 4.20, 6.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.20, 5.40 Pos End: 4.20, 6.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: vSync PLD
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: vSync PLD
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: vSync PLD
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.20, 5.60 Pos End: 4.20, 6.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.20, 5.60 Pos End: 4.20, 6.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: hSync
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: irq
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I03155
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I03155
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I02623
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I03155
+Object Type: 61. I03153
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS347
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.30, 5.40 Pos End: 6.00, 5.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: vSync
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I02599
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I02599
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: V1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: Power Supply
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+ . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: Power Supply
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.80, 1.30 Pos End: 0.80, 1.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 0.80, 1.80 Pos End: 0.60, 1.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: Power Supply
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: DC. Value: 0Vdc
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1497
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Name. Value: VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+Object Type: 13. INS148
+Object Type: 13. INS218
+Object Type: 13. INS347
+Object Type: 13. INS409
+Object Type: 13. INS1497
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02071
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 61. I02623
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I03155
+Object Type: 61. I03153
+Object Type: 37. VCC
+Object Type: 37. VCC
+Object Type: 37. VCC
+Object Type: 37. VCC
+Object Type: 37. VCC
+Object Type: 37. VCC
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1556
+Object Type: 37. 0
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_RESIZE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_RESIZE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I03599
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I03599
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: PLACED_INSTANCE. Name: INS5568. Source Part Name: POT.Normal. Library Name: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: R1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5844
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5844
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5722
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: PLACED_INSTANCE. Name: INS6275. Source Part Name: POT/SM.Normal. Library Name: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName: INS6275 . Object Type: 13
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I02599
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 1.70, 2.60 Pos End: 2.00, 2.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 1.70, 2.60 Pos End: 2.00, 2.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS218
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 61. I02599
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 1.70, 2.60 Pos End: 2.00, 2.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 1.70, 2.60 Pos End: 2.00, 2.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: VGA Port
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: PLACED_INSTANCE. Name: INS7740. Source Part Name: DIODE.Normal. Library Name: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: DIODE
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: D1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: D1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: D1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS8107
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS8107
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS8107
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+Object Type: 13. INS8107
+Object Type: 13. INS8164
+Object Type: 13. INS8221
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: R1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: R2
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: R3
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: R4
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_EDITPROPS
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: R5
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: POT
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: RN
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: RB
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: GN
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: GB
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Part Reference. Value: BN
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS5568
+Object Type: 13. INS5722
+Object Type: 13. INS5783
+Object Type: 13. INS5844
+Object Type: 13. INS5905
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 0.60 Pos End: 4.00, 0.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.00, 0.50 Pos End: 4.00, 0.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.00, 0.50 Pos End: 4.40, 0.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.90, 0.80 Pos End: 4.40, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.40, 0.80 Pos End: 3.80, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.40, 0.80 Pos End: 3.80, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 1.30 Pos End: 4.00, 1.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 1.30 Pos End: 4.00, 1.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.40, 1.10 Pos End: 4.00, 1.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 1.50 Pos End: 4.10, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 1.50 Pos End: 4.10, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 4.40, 1.40 Pos End: 4.10, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 1.70 Pos End: 4.40, 1.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+Object Type: 13. INS8107
+Object Type: 13. INS8164
+Object Type: 13. INS8221
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS7740
+Object Type: 13. INS8107
+Object Type: 13. INS8164
+Object Type: 13. INS8221
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Value. Value: VGA Port
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 1.70 Pos End: 6.50, 1.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.50, 1.70 Pos End: 6.50, 1.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.50, 1.70 Pos End: 6.50, 1.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 1.40 Pos End: 5.30, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 1.40 Pos End: 5.30, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 1.50 Pos End: 5.30, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 1.20 Pos End: 5.20, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 1.20 Pos End: 5.20, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+ . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 1.20 Pos End: 5.20, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 1.20 Pos End: 5.20, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.20, 1.10 Pos End: 5.00, 1.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 0.80 Pos End: 5.30, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.30, 0.90 Pos End: 5.50, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.30, 0.80 Pos End: 5.30, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 0.60 Pos End: 5.20, 0.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.50, 0.60 Pos End: 5.20, 0.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.20, 0.50 Pos End: 5.00, 0.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 1.50 Pos End: 6.30, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 1.50 Pos End: 6.30, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_RESIZE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 1.20 Pos End: 6.30, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.30, 1.10 Pos End: 6.90, 1.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 1.50 Pos End: 6.40, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.40, 0.60 Pos End: 6.40, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.40, 0.60 Pos End: 6.00, 0.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 0.90 Pos End: 6.40, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS1430
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+ . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 0.80 Pos End: 6.40, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 0.80 Pos End: 6.40, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 0.90 Pos End: 6.00, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.40, 0.80 Pos End: 6.00, 0.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.20, 1.20 Pos End: 6.90, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.30, 1.30 Pos End: 6.30, 1.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 1.00 Pos End: 6.30, 1.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 0.70 Pos End: 6.80, 0.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 0.90 Pos End: 6.80, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 0.90 Pos End: 6.80, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 1.10 Pos End: 6.80, 1.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 1.10 Pos End: 6.80, 1.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 1.50 Pos End: 6.80, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.90, 1.50 Pos End: 6.80, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.80, 1.50 Pos End: 6.80, 1.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.80, 1.50 Pos End: 6.80, 1.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: 0 Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 0.90 Pos End: 6.20, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 0.90 Pos End: 6.20, 0.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS941
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.40, 5.40 Pos End: 5.70, 5.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.40, 5.40 Pos End: 5.70, 5.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.70, 2.10 Pos End: 8.80, 2.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 8.80, 2.10 Pos End: 8.80, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 8.80, 2.10 Pos End: 8.80, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.60, 4.50 Pos End: 5.60, 2.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.60, 2.00 Pos End: 8.70, 2.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 8.70, 2.00 Pos End: 8.70, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 8.70, 2.00 Pos End: 8.70, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_DELETE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+InstanceName:  . Object Type: 20
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.30, 4.60 Pos End: 3.30, 3.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.30, 4.60 Pos End: 3.30, 3.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I03155
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I03155
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 5.40 Pos End: 5.00, 4.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 4.60 Pos End: 3.50, 4.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.50, 4.60 Pos End: 3.50, 3.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.50, 3.20 Pos End: 3.80, 3.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: IRQ
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I16265
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: 0 Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ Name: VCC Object Type: ID_POWER/ID_GROUND Library: C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\CAPSYM.OLB GraphicObjectName: VCC
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ROTATE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MIRROR
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. 0
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal Yes.  .IsBus No.  Pos Begin: 3.80, 2.80 Pos End: 3.70, 2.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal Yes.  .IsBus No.  Pos Begin: 3.80, 2.70 Pos End: 3.60, 2.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+Object Type: 20. 
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 37. VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 39. Display Property Name: Name. Value: VCC
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.30 Pos End: 2.50, 3.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.30 Pos End: 2.50, 3.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.50, 1.10 Pos End: 2.60, 1.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.40 Pos End: 2.40, 3.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.40 Pos End: 2.40, 3.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.40, 3.30 Pos End: 2.40, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.40, 3.30 Pos End: 2.40, 1.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.50 Pos End: 2.30, 3.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.30, 1.30 Pos End: 2.30, 3.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.30, 1.30 Pos End: 2.60, 1.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.60 Pos End: 2.20, 3.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.20, 3.60 Pos End: 2.20, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.20, 3.60 Pos End: 2.20, 1.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.70 Pos End: 2.10, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.10, 3.70 Pos End: 2.10, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.10, 3.70 Pos End: 2.10, 1.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.80 Pos End: 2.00, 3.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.00, 1.60 Pos End: 2.00, 3.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 2.00, 1.60 Pos End: 2.60, 1.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: R1
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: R1
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20090
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20090
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+COrSchematicOleTracker::Finalize(BOOL bCreateDBObj)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20451
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20594
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20090
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20451
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_RESIZE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20594
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20737
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20880
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I21023
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20090
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20451
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20451
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20451
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20737
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I20880
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I21023
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 61. I02071
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Schematic::SavePage
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 13. INS78
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_MOVE
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+Object Type: 20. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.10 Pos End: 6.00, 3.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 3.10 Pos End: 5.00, 3.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.00, 3.10 Pos End: 5.00, 3.10
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.20 Pos End: 6.00, 3.20
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.30 Pos End: 6.00, 3.30
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.40 Pos End: 6.00, 3.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.50 Pos End: 6.00, 3.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.60 Pos End: 5.90, 3.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.90, 3.60 Pos End: 6.00, 3.60
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.70 Pos End: 6.00, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.70 Pos End: 6.00, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.70 Pos End: 6.00, 3.70
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 5.00, 3.80 Pos End: 6.00, 3.80
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: ATD Joystick/Buttons
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 3.90 Pos End: 3.60, 3.90
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.60, 3.90 Pos End: 3.60, 4.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 6.70, 4.50 Pos End: 3.60, 4.50
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.80, 4.00 Pos End: 3.70, 4.00
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.70, 4.00 Pos End: 3.70, 4.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ WIRE. Name:  . IsGlobal No.  .IsBus No.  Pos Begin: 3.70, 4.40 Pos End: 6.70, 4.40
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+CMD_ADD
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+ It is a comment text. Name: TIM/PWM pins
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Schematic::SavePage
+E:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN|SCHEMATIC1|PAGE1
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+

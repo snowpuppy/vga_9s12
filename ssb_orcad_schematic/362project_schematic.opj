@@ -1,0 +1,80 @@
+(ExpressProject "362project_schematic"
+  (ProjectVersion "19981106")
+  (ProjectType "Analog or A/D Mixed Mode")
+  (Folder "Design Resources"
+    (Folder "Library"
+      (File ".\library1.olb"
+        (Type "Schematic Library")))
+    (NoModify)
+    (File ".\362project_schematic.dsn"
+      (Type "Schematic Design"))
+    (BuildFileAddedOrDeleted "x")
+    (CompileFileAddedOrDeleted "x")
+    (Board_sim_option "VHDL_flow"))
+  (Folder "Outputs")
+  (Folder "PSpice Resources"
+    (Folder "Simulation Profiles")
+    (Folder "Model Libraries"
+      (Sort User))
+    (Folder "Stimulus Files"
+      (Sort User))
+    (Folder "Include Files"
+      (Sort User)))
+  (DefaultLibraryBrowseDirectory "library\PSpice")
+  (PartMRUSelector
+    (9S12C
+      (FullPartName "9S12C.Normal")
+      (LibraryName
+         "G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\LIBRARY1.OLB")
+      (DeviceIndex "0"))
+    (CRYSTAL14
+      (FullPartName "CRYSTAL14.Normal")
+      (LibraryName "C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\DISCRETE.OLB")
+      (DeviceIndex "0"))
+    (GAL22V10
+      (FullPartName "GAL22V10.Normal")
+      (LibraryName "C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\PLD.OLB")
+      (DeviceIndex "0"))
+    (GAL26CV12B
+      (FullPartName "GAL26CV12B.Normal")
+      (LibraryName "C:\CADENCE\SPB_16.01\TOOLS\CAPTURE\LIBRARY\PLD.OLB")
+      (DeviceIndex "0")))
+  (LastUsedLibraryBrowseDirectory
+     "C:\Cadence\SPB_16.01\tools\capture\library\pspice")
+  (GlobalState
+    (FileView
+      (Path "Design Resources")
+      (Path "Design Resources"
+         "G:\ECE\ECE 362\362 mini project\ssb_orcad_schematic\362project_schematic.dsn")
+      (Path "Design Resources" "Library")
+      (Path "Design Resources" "Library"
+         "G:\ECE\ECE 362\362 mini project\ssb_orcad_schematic\library1.olb"))
+    (HierarchyView)
+    (Doc
+      (Type "COrCapturePMDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -4 -23 0 200 0 447"))
+      (Tab 0))
+    (Doc
+      (Type "COrPartDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -1 -1 162 1152 86 667")
+        (PackageScroll "0 0")
+        (PackageZoom "1")
+        (PartPackage "Part")
+        (Scroll "993 267")
+        (Zoom "232"))
+      (Path "G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\LIBRARY1.OLB")
+      (Package "VGA Port"))
+    (Doc
+      (Type "COrSchematicDoc")
+      (Frame
+        (Placement "44 0 1 -1 -1 -4 -23 -14 1175 218 948")
+        (Scroll "574 337")
+        (Zoom "184")
+        (Occurrence "/"))
+      (Path
+         "G:\ECE\ECE 362\362 MINI PROJECT\SSB_ORCAD_SCHEMATIC\362PROJECT_SCHEMATIC.DSN")
+      (Schematic "SCHEMATIC1")
+      (Page "PAGE1")))
+  (MPSSessionName "dkauer"))

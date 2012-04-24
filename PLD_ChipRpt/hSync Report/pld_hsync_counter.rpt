@@ -1,0 +1,210 @@
+
+
+                                                                      Page 1
+ispLEVER 3.0  -  Device Utilization Chart         Sat Apr 07 18:36:01 2012
+
+pld_hsync_counter
+
+
+
+--------------------------------------------------------------------------------
+
+Module                   : 'pld_hsync_counter'
+
+--------------------------------------------------------------------------------
+
+Input files:
+
+    ABEL PLA file        : pld_hsync_counter.tt3
+    Device library       : P22V10G.dev
+
+Output files:
+
+    Report file          : pld_hsync_counter.rpt
+    Programmer load file : pld_hsync_counter.jed
+
+--------------------------------------------------------------------------------
+
+
+                                                                      Page 2
+ispLEVER 3.0  -  Device Utilization Chart         Sat Apr 07 18:36:01 2012
+
+pld_hsync_counter
+
+P22V10G Programmed Logic:
+--------------------------------------------------------------------------------
+
+
+
+hSync     = !(  reg4.Q & !reg3.Q & !reg2.Q & reg1.Q 
+             #   reg4.Q & !reg3.Q & !reg2.Q & reg0.Q );
+
+irq     = !(  reg4.Q & !reg3.Q & reg2.Q & !reg1.Q & reg0.Q );
+
+reset     = (  reg4.Q & reg3.Q & !reg2.Q & !reg1.Q & reg0.Q );
+
+reg0.D   = (  !reg0.Q ); " ISTYPE 'BUFFER'
+reg0.C   = (  CLK );
+reg0.AR  = (  reset );
+
+reg1.D   = (  !reg1.Q & reg0.Q 
+            #   reg1.Q & !reg0.Q ); " ISTYPE 'BUFFER'
+reg1.C   = (  CLK );
+reg1.AR  = (  reset );
+
+reg2.D   = (  reg2.Q & !reg1.Q 
+            #   !reg2.Q & reg1.Q & reg0.Q 
+            #   reg2.Q & !reg0.Q ); " ISTYPE 'BUFFER'
+reg2.C   = (  CLK );
+reg2.AR  = (  reset );
+
+reg3.D   = (  reg3.Q & !reg2.Q 
+            #   reg3.Q & !reg1.Q 
+            #   !reg3.Q & reg2.Q & reg1.Q & reg0.Q 
+            #   reg3.Q & !reg0.Q ); " ISTYPE 'BUFFER'
+reg3.C   = (  CLK );
+reg3.AR  = (  reset );
+
+reg4.D   = (  reg4.Q & !reg3.Q 
+            #   reg4.Q & !reg2.Q 
+            #   reg4.Q & !reg1.Q 
+            #   !reg4.Q & reg3.Q & reg2.Q & reg1.Q & reg0.Q 
+            #   reg4.Q & !reg0.Q ); " ISTYPE 'BUFFER'
+reg4.C   = (  CLK );
+reg4.AR  = (  reset );
+
+
+
+                                                                      Page 3
+ispLEVER 3.0  -  Device Utilization Chart         Sat Apr 07 18:36:01 2012
+
+pld_hsync_counter
+
+P22V10G Chip Diagram:
+--------------------------------------------------------------------------------
+
+
+
+
+                                   P22V10G
+
+                         +---------\       /---------+
+                         |          \     /          |
+                         |           -----           |
+                     CLK |  1                    24  | Vcc                     
+                         |                           |
+                         |  2                    23  | reset                   
+                         |                           |
+                         |  3                    22  |                         
+                         |                           |
+                         |  4                    21  | !irq                    
+                         |                           |
+                         |  5                    20  |                         
+                         |                           |
+                         |  6                    19  | !hSync                  
+                         |                           |
+                         |  7                    18  | reg4                    
+                         |                           |
+                         |  8                    17  | reg3                    
+                         |                           |
+                         |  9                    16  | reg2                    
+                         |                           |
+                         | 10                    15  | reg1                    
+                         |                           |
+                         | 11                    14  | reg0                    
+                         |                           |
+                     GND | 12                    13  |                         
+                         |                           |
+                         |                           |
+                         `---------------------------'
+
+                        SIGNATURE: N/A
+
+
+                                                                      Page 4
+ispLEVER 3.0  -  Device Utilization Chart         Sat Apr 07 18:36:01 2012
+
+pld_hsync_counter
+
+P22V10G Resource Allocations:
+--------------------------------------------------------------------------------
+
+
+
+        Device        | Resource  |   Design    |
+       Resources      | Available | Requirement | Unused
+======================|===========|=============|==============
+                      |           |             |
+Input Pins:           |           |             |
+                      |           |             |
+          Input:      |     12    |      1      |   11 ( 91 %)
+                      |           |             |
+Output Pins:          |           |             |
+                      |           |             |
+          In/Out:     |     10    |      8      |    2 ( 20 %)
+          Output:     |      -    |      -      |    -
+                      |           |             |
+Buried Nodes:         |           |             |
+                      |           |             |
+          Input Reg:  |      -    |      -      |    -
+          Pin Reg:    |     10    |      5      |    5 ( 50 %)
+          Buried Reg: |      -    |      -      |    -
+
+
+                                                                      Page 5
+ispLEVER 3.0  -  Device Utilization Chart         Sat Apr 07 18:36:01 2012
+
+pld_hsync_counter
+
+P22V10G Product Terms Distribution:
+--------------------------------------------------------------------------------
+
+
+
+            Signal                       |    Pin   | Terms | Terms | Terms
+             Name                        | Assigned | Used  |  Max  | Unused
+=========================================|==========|=======|=======|=======
+hSync                                    |   19     |   2   |  16   |  14
+irq                                      |   21     |   1   |  12   |  11
+reset                                    |   23     |   1   |   8   |   7
+reg0.D                                   |   14     |   1   |   8   |   7
+reg1.D                                   |   15     |   2   |  10   |   8
+reg2.D                                   |   16     |   3   |  12   |   9
+reg3.D                                   |   17     |   4   |  14   |  10
+reg4.D                                   |   18     |   5   |  16   |  11
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                              | Pin      | Pin Type
+=========================================|==========|=========
+CLK                                      |    1     | CLK/IN
+reset                                    |   23     | BIDIR
+
+
+                                                                      Page 6
+ispLEVER 3.0  -  Device Utilization Chart         Sat Apr 07 18:36:01 2012
+
+pld_hsync_counter
+
+P22V10G Unused Resources:
+--------------------------------------------------------------------------------
+
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+    2  |  INPUT |      -      |    -   
+    3  |  INPUT |      -      |    -   
+    4  |  INPUT |      -      |    -   
+    5  |  INPUT |      -      |    -   
+    6  |  INPUT |      -      |    -   
+    7  |  INPUT |      -      |    -   
+    8  |  INPUT |      -      |    -   
+    9  |  INPUT |      -      |    -   
+   10  |  INPUT |      -      |    -   
+   11  |  INPUT |      -      |    -   
+   13  |  INPUT |      -      |    -   
+   20  |  BIDIR | NORMAL 14   |    D
+   22  |  BIDIR | NORMAL 10   |    D

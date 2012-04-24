@@ -1,0 +1,223 @@
+
+
+                                                                      Page 1
+ispLEVER 3.0  -  Device Utilization Chart         Thu Apr 19 00:46:59 2012
+
+pixel_shiftreg
+
+
+
+--------------------------------------------------------------------------------
+
+Module                   : 'pixel_shiftreg'
+
+--------------------------------------------------------------------------------
+
+Input files:
+
+    ABEL PLA file        : pixel_shiftreg.tt3
+    Device library       : P26CV12.dev
+
+Output files:
+
+    Report file          : pixel_shiftreg.rpt
+    Programmer load file : pixel_shiftreg.jed
+
+--------------------------------------------------------------------------------
+
+
+                                                                      Page 2
+ispLEVER 3.0  -  Device Utilization Chart         Thu Apr 19 00:46:59 2012
+
+pixel_shiftreg
+
+P26CV12 Programmed Logic:
+--------------------------------------------------------------------------------
+
+
+
+RN     = (  CLK_DIV & regR1.PIN 
+          #   !CLK_DIV & regR2.PIN );
+
+GN     = (  CLK_DIV & regR1.PIN & regG1.PIN 
+          #   CLK_DIV & regG1.PIN & !regB1.PIN 
+          #   !CLK_DIV & regR2.PIN & regG2.PIN 
+          #   !CLK_DIV & regG2.PIN & !regB2.PIN );
+
+BN     = (  CLK_DIV & regR1.PIN & regB1.PIN 
+          #   CLK_DIV & !regG1.PIN & regB1.PIN 
+          #   !CLK_DIV & regR2.PIN & regB2.PIN 
+          #   !CLK_DIV & !regG2.PIN & regB2.PIN );
+
+RB     = (  CLK_DIV & !regR1.PIN & regG1.PIN & regB1.PIN 
+          #   !CLK_DIV & !regR2.PIN & regG2.PIN & regB2.PIN );
+
+GB     = (  CLK_DIV & !regR1.PIN & regG1.PIN & regB1.PIN 
+          #   !CLK_DIV & !regR2.PIN & regG2.PIN & regB2.PIN );
+
+regR1.D   = (  R1 ); " ISTYPE 'BUFFER'
+regR1.C   = (  CLK );
+
+regG1.D   = (  G1 ); " ISTYPE 'BUFFER'
+regG1.C   = (  CLK );
+
+regB1.D   = (  B1 ); " ISTYPE 'BUFFER'
+regB1.C   = (  CLK );
+
+regR2.D   = (  R2 ); " ISTYPE 'BUFFER'
+regR2.C   = (  CLK );
+
+regG2.D   = (  G2 ); " ISTYPE 'BUFFER'
+regG2.C   = (  CLK );
+
+regB2.D   = (  B2 ); " ISTYPE 'BUFFER'
+regB2.C   = (  CLK );
+
+
+
+                                                                      Page 3
+ispLEVER 3.0  -  Device Utilization Chart         Thu Apr 19 00:46:59 2012
+
+pixel_shiftreg
+
+P26CV12 Chip Diagram:
+--------------------------------------------------------------------------------
+
+
+
+
+                                   P26CV12
+
+                         +---------\       /---------+
+                         |          \     /          |
+                         |           -----           |
+                     CLK |  1                    28  |                         
+                         |                           |
+                 CLK_DIV |  2                    27  | BN                      
+                         |                           |
+                         |  3                    26  | regB2                   
+                         |                           |
+                         |  4                    25  | GB                      
+                         |                           |
+                         |  5                    24  | regG2                   
+                         |                           |
+                         |  6                    23  | GN                      
+                         |                           |
+                     Vcc |  7                    22  | regR2                   
+                         |                           |
+                      R1 |  8                    21  | GND                     
+                         |                           |
+                      G1 |  9                    20  | regB1                   
+                         |                           |
+                      B1 | 10                    19  | regG1                   
+                         |                           |
+                      R2 | 11                    18  | regR1                   
+                         |                           |
+                      G2 | 12                    17  | RB                      
+                         |                           |
+                      B2 | 13                    16  |                         
+                         |                           |
+                         | 14                    15  | RN                      
+                         |                           |
+                         |                           |
+                         `---------------------------'
+
+                        SIGNATURE: N/A
+
+
+                                                                      Page 4
+ispLEVER 3.0  -  Device Utilization Chart         Thu Apr 19 00:46:59 2012
+
+pixel_shiftreg
+
+P26CV12 Resource Allocations:
+--------------------------------------------------------------------------------
+
+
+
+        Device        | Resource  |   Design    |
+       Resources      | Available | Requirement | Unused
+======================|===========|=============|==============
+                      |           |             |
+Input Pins:           |           |             |
+                      |           |             |
+          Input:      |     14    |      8      |    6 ( 42 %)
+                      |           |             |
+Output Pins:          |           |             |
+                      |           |             |
+          In/Out:     |     12    |     11      |    1 (  8 %)
+          Output:     |      -    |      -      |    -
+                      |           |             |
+Buried Nodes:         |           |             |
+                      |           |             |
+          Input Reg:  |      -    |      -      |    -
+          Pin Reg:    |     12    |      6      |    6 ( 50 %)
+          Buried Reg: |      -    |      -      |    -
+
+
+                                                                      Page 5
+ispLEVER 3.0  -  Device Utilization Chart         Thu Apr 19 00:46:59 2012
+
+pixel_shiftreg
+
+P26CV12 Product Terms Distribution:
+--------------------------------------------------------------------------------
+
+
+
+            Signal                       |    Pin   | Terms | Terms | Terms
+             Name                        | Assigned | Used  |  Max  | Unused
+=========================================|==========|=======|=======|=======
+RN                                       |   15     |   2   |   8   |   6
+GN                                       |   23     |   4   |  10   |   6
+BN                                       |   27     |   4   |   8   |   4
+RB                                       |   17     |   2   |   8   |   6
+GB                                       |   25     |   2   |   8   |   6
+regR1.D                                  |   18     |   1   |   8   |   7
+regG1.D                                  |   19     |   1   |  10   |   9
+regB1.D                                  |   20     |   1   |  12   |  11
+regR2.D                                  |   22     |   1   |  12   |  11
+regG2.D                                  |   24     |   1   |   8   |   7
+regB2.D                                  |   26     |   1   |   8   |   7
+
+
+     ==== List of Inputs/Feedbacks ====
+
+Signal Name                              | Pin      | Pin Type
+=========================================|==========|=========
+R1                                       |    8     | INPUT
+G1                                       |    9     | INPUT
+B1                                       |   10     | INPUT
+R2                                       |   11     | INPUT
+G2                                       |   12     | INPUT
+B2                                       |   13     | INPUT
+CLK_DIV                                  |    2     | INPUT
+regR1.PIN                                |   18     | COMB FB
+regG1.PIN                                |   19     | COMB FB
+regB1.PIN                                |   20     | COMB FB
+regR2.PIN                                |   22     | COMB FB
+regG2.PIN                                |   24     | COMB FB
+regB2.PIN                                |   26     | COMB FB
+CLK                                      |    1     | CLK/IN
+
+
+                                                                      Page 6
+ispLEVER 3.0  -  Device Utilization Chart         Thu Apr 19 00:47:00 2012
+
+pixel_shiftreg
+
+P26CV12 Unused Resources:
+--------------------------------------------------------------------------------
+
+
+
+ Pin   |  Pin   |   Product   | Flip-flop
+Number |  Type  |   Terms     |   Type
+=======|========|=============|==========
+    3  |  INPUT |      -      |    -   
+    4  |  INPUT |      -      |    -   
+    5  |  INPUT |      -      |    -   
+    6  |  INPUT |      -      |    -   
+   14  |  INPUT |      -      |    -   
+   16  |  BIDIR | NORMAL  8   |    D
+   28  |  INPUT |      -      |    -   
