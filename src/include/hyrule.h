@@ -4,7 +4,84 @@
 #ifndef HYRULE_H
 
 #define HYRULE_H
-
+const struct platform hyrule_plat1 = {
+    36,
+    35,
+    12,
+    13
+};
+const struct platform hyrule_plat2 = {
+    0,
+    43,
+    48,
+    1
+};
+const struct platform hyrule_plat3 = {
+    0,
+    30,
+    10,
+    18
+};
+const struct platform hyrule_plat4 = {
+    1,
+    29,
+    8,
+    1
+};
+const struct platform hyrule_plat5 = {
+    2,
+    38,
+    6,
+    1
+};
+const struct platform hyrule_plat6 = {
+    3,
+    27,
+    4,
+    1
+};
+const struct platform hyrule_plat7 = {
+    4,
+    26,
+    2,
+    1
+};
+const struct platform hyrule_plat8 = {
+    18,
+    27,
+    12,
+    20
+};
+const struct platform hyrule_plat9 = {
+    19,
+    26,
+    10,
+    1
+};
+const struct platform hyrule_plat10 = {
+    20,
+    25,
+    8,
+    1
+};
+const struct platform hyrule_plat11 = {
+    21,
+    24,
+    6,
+    1
+};
+const struct platform hyrule_plat12 = {
+    22,
+    23,
+    4,
+    1
+};
+const struct platform hyrule_plat13 = {
+    23,
+    22,
+    2,
+    1
+};
 const unsigned char image_hyrule[1152] = {
 0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,
 0xbc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xfc,0xf4,
