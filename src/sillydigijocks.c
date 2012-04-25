@@ -124,6 +124,17 @@
 #define KIRBY 7
 #define FOX 8
 
+// define available stages.
+#define FINALDEST 0
+#define CORNERIA 1
+#define POKEMON 2
+#define YOSHISISLAND 3
+#define PARADISE 4
+#define MARIOLEVEL 5
+#define SAFFRON 6
+#define HYRULE 7
+#define BRINSTAR2 8
+
 // All funtions after main should be initialiezed here
 char inchar(void);
 void outchar(char x);
@@ -133,6 +144,7 @@ void checkMenuInputs(char joyin);
 void selectCharacter(void);
 void assignCharacter(struct character *self, char selection);
 void selectField(void);
+void setFieldValues(char selection0);
 void startMatch(void);
 void display_character(struct character *self);
 void display_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h);
@@ -184,7 +196,7 @@ unsigned char screen[SCREENSIZE];
 unsigned char *screen_itterator = screen;
 
 // Define Field that is selected.
-const unsigned char *selected_field = image_corneria;
+const unsigned char *selected_field = NULL; //image_pokemon_stadium;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 char joy0hor = 0;
@@ -844,6 +856,10 @@ interrupt 8 void TIM_ISR(void)
 	}
 	else // run sound code
 	{
+	  if (PWMDTY0 == 0)
+	  {
+	    PWMDTY0 = 80;
+	  }
 		if (sound_counter == 0)
 		{
 			PWMSCLA = 90;
@@ -1181,50 +1197,246 @@ void assignCharacter(struct character *self, char selection)
 
 void selectField(void)
 {
-	// set the appropriate ledges
-	/*
-	all_platforms[1] = &batt1_plat1;
-	all_platforms[2] = &batt1_plat2;
-	all_platforms[3] = &batt1_plat3;
-	all_platforms[4] = &batt1_plat4;
-	all_platforms[5] = &batt1_plat5;
-	all_platforms[6] = &batt1_plat6;
-	selected_field = image_battlefield1;
-	player0.defaultx = 28;
-	player0.x = 28;
-	player0.defaulty = 41;
-	player0.y = 41;
-	player0.defaultx = 15;
-	player0.x = 15;
-	player0.defaulty = 41;
-	player0.y = 41;
-	player0.lives = 5;
-	player1.lives = 5;
-	*/
-	/*
-	all_platforms[1] = &pokemon_stadium_plat1;
-	all_platforms[2] = &pokemon_stadium_plat2;
-	all_platforms[3] = &pokemon_stadium_plat3;
-	selected_field = image_pokemon_stadium;
-	*/
-	all_platforms[0] = &corneria_plat1;
-	all_platforms[1] = &corneria_plat2;
-	all_platforms[2] = &corneria_plat3;
-	all_platforms[3] = &corneria_plat4;
-	all_platforms[4] = &corneria_plat5;
-	all_platforms[5] = &corneria_plat6;
-	all_platforms[6] = &corneria_plat7;
-	all_platforms[7] = &corneria_plat8;
-	all_platforms[8] = &corneria_plat9;
-	selected_field = image_corneria;
-	player0.defaultx = 28;
-	player0.x = 28;
-	player0.defaulty = 22;
-	player0.y = 22;
-	player1.defaultx = 15;
-	player1.x = 15;
-	player1.defaulty = 22;
-	player1.y = 22;
+	// selection varaibles used to determine which
+	// character gets picked.
+	char selection0 = 0;
+	char select0 = 0;
+	char confirm0 = 0;
+	char temp = 0;
+
+	writeBackground(image_pick_stage);
+
+	while(!confirm0)
+	{
+		if (hCnt > HSYNCHIGH || hCnt < HSYNCLOW)
+		{
+
+			// set confirmation variables.
+			confirm0 = select0;
+
+			// get horizontal movement player0
+			temp = selection0 + debounceJoystick(joy0hor, &joy0horprev);
+			// validate the movement
+			if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
+			{
+				clear_image(image_pick_stage, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				selection0 = temp;
+			}
+
+			// get vertical movement player0
+			temp = selection0 - 3*debounceJoystick(joy0ver, &joy0verprev);
+			// validate the movement
+			if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
+			{
+				clear_image(image_pick_stage, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				selection0 = temp;
+			}
+
+			// sample buttons for selection
+			temp = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+			if (temp == 1)
+			{
+				select0 = 1;
+			}
+			else if (temp == 2)
+			{
+				select0 = 0;
+			}
+
+			// display arrow images
+			if ( !select0)
+			{
+				display_image(image_redarrow, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+			}
+			else
+			{
+				display_image(image_greenarrow1, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+			}
+		}
+
+	}
+
+	// assign the correct character values for each player
+	setFieldValues(selection0);
+}
+
+void setFieldValues(char selection)
+{
+	switch (selection)
+	{
+		case POKEMON:
+		selected_field = image_pokemon_stadium;
+	    all_platforms[0] = &pokemon_stadium_plat1;
+	    all_platforms[1] = &pokemon_stadium_plat2;
+	    all_platforms[2] = &pokemon_stadium_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			
+		case CORNERIA:
+		all_platforms[0] = &corneria_plat1;
+		all_platforms[1] = &corneria_plat2;
+		all_platforms[2] = &corneria_plat3;
+		all_platforms[3] = &corneria_plat4;
+		all_platforms[4] = &corneria_plat5;
+		all_platforms[5] = &corneria_plat6;
+		all_platforms[6] = &corneria_plat7;
+		all_platforms[7] = &corneria_plat8;
+		all_platforms[8] = &corneria_plat9;
+		all_platforms[9] = NULL;
+		selected_field = image_corneria;
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+		player0.lives = 5;
+		player1.lives = 5;
+			break;
+			
+		case BRINSTAR2:
+		selected_field = image_brinstar2;
+		all_platforms[0] = &brinstar2_plat1;
+		all_platforms[1] = &brinstar2_plat2;
+		all_platforms[2] = &brinstar2_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			
+		case FINALDEST:
+		selected_field = image_final_destination;
+		all_platforms[0] = &final_destination_plat1;
+		all_platforms[1] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			
+		case HYRULE:
+		selected_field = image_hyrule;
+		all_platforms[0] = &hyrule_plat1;
+		all_platforms[1] = &hyrule_plat2;
+		all_platforms[2] = &hyrule_plat3;
+		all_platforms[3] = &hyrule_plat4;
+		all_platforms[4] = &hyrule_plat5;
+		all_platforms[5] = &hyrule_plat6;
+		all_platforms[6] = &hyrule_plat7;
+		all_platforms[7] = &hyrule_plat8;
+		all_platforms[8] = &hyrule_plat9;
+		all_platforms[9] = &hyrule_plat10;
+		all_platforms[10] = &hyrule_plat11;
+		all_platforms[11] = &hyrule_plat12;
+		all_platforms[12] = &hyrule_plat13;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case MARIOLEVEL:
+		selected_field = image_mario_level;
+		all_platforms[0] = &mario_level_plat1;
+		all_platforms[1] = &mario_level_plat2;
+		all_platforms[2] = &mario_level_plat3;
+		all_platforms[3] = &mario_level_plat4;
+		all_platforms[4] = &mario_level_plat5;
+		all_platforms[5] = &mario_level_plat6;
+		all_platforms[6] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case PARADISE:
+		selected_field = image_paradise;
+		all_platforms[0] = &paradise_plat1;
+		all_platforms[1] = &paradise_plat2;
+		all_platforms[2] = &paradise_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case SAFFRON:
+		selected_field = image_saffron;
+		all_platforms[0] = &saffron_plat1;
+		all_platforms[1] = &saffron_plat2;
+		all_platforms[2] = &saffron_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case YOSHISISLAND:
+		selected_field = image_yoshis_island;
+		all_platforms[0] = &yoshis_island_plat1;
+		all_platforms[1] = &yoshis_island_plat2;
+		all_platforms[2] = &yoshis_island_plat3;
+		all_platforms[3] = &yoshis_island_plat4;
+		all_platforms[4] = &yoshis_island_plat5;
+		all_platforms[5] = &yoshis_island_plat6;
+		all_platforms[6] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			 
+		default:
+			break;
+	}
+	// initialize player settings
 	player0.lives = 5;
 	player1.lives = 5;
 }
@@ -1274,6 +1486,20 @@ void startMatch(void)
 		}
 	}
 	
+	// display winner screen
+	if (player0.lives == 0)
+	{
+    //writeBackground(image_player1_win);
+	}
+	else
+	{
+	  //writeBackground(image_player0_win);
+	}
+	// reset splash screen enable so
+  // that the players can see this screen
+	//splash_screen_enable = 0;
+  //while (splash_screen_enable < TIMEFORONESECOND*2);
+	
 	// reset player lives and other values
 	player0.lives = 5;
 	player1.lives = 5;
@@ -1288,19 +1514,6 @@ void startMatch(void)
 	player1.x = player1.defaultx;
 	player1.y = player1.defaulty;
 	
-	// display winner screen
-	if (player0.lives == 0)
-	{
-    writeBackground(image_player1_win);
-	}
-	else
-	{
-	  writeBackground(image_player0_win);
-	}
-	// reset splash screen enable so
-  // that the players can see this screen
-	splash_screen_enable = 0;
-  while (splash_screen_enable < TIMEFORONESECOND*2);
 }
 
 /***********************************************************************

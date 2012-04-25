@@ -16,7 +16,7 @@ const struct platform paradise_plat2 = {
     14,
     2
 };
-const struct platform paradise_plat1 = {
+const struct platform paradise_plat3 = {
     0,
     20,
     1,
