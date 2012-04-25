@@ -4,6 +4,42 @@
 #ifndef MARIO_LEVEL_H
 
 #define MARIO_LEVEL_H
+const struct platform mario_level_plat1 = {
+    0,
+    41,
+    48,
+    1
+};
+const struct platform mario_level_plat2 = {
+    0,
+    32,
+    4,
+    9
+};
+const struct platform mario_level_plat3 = {
+    44,
+    32,
+    4,
+    9
+};
+const struct platform mario_level_plat4 = {
+    4,
+    32,
+    1,
+    4
+};
+const struct platform mario_level_plat5 = {
+    44,
+    32,
+    1,
+    4
+};
+const struct platform mario_level_plat6 = {
+    13,
+    20,
+    21,
+    6
+};
 
 const unsigned char image_mario_level[1152] = {
 0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,
