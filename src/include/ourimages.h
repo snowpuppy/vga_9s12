@@ -24,6 +24,7 @@
 
 // field images
 #include "battlefield1.h"
+#include "pokemon_stadium.h"
 
 // character images.
 #include "yoshi.h"

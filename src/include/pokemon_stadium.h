@@ -5,27 +5,27 @@
 
 #define POKEMON_STADIUM_H
 
-const struct pokemon_stadium_plat1=
+const struct platform pokemon_stadium_plat1=
 {
     0,
     34,
     48,
     1
-}
-const struct pokemon_stadium_plat2=
+};
+const struct platform pokemon_stadium_plat2=
 {
     7,
     24,
-    7,
+    1,
     1
-}
-const struct pokemon_stadium_plat2=
+};
+const struct platform pokemon_stadium_plat3=
 {
     29,
     24,
-    7,
+    0,
     1
-}
+};
 
 const unsigned char image_pokemon_stadium[1152] = {
 0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,0xb4,

@@ -209,6 +209,10 @@ char selection = 1;
 // splash screen enable.
 unsigned char splash_screen_enable = 0;
 
+// display_character counter
+unsigned char display_moving_objects = 0;
+unsigned char display_moving_objects_count = 0;
+
 // sound counter
 unsigned char sound_counter = 0;
 
@@ -607,6 +611,10 @@ await3:
 								// the right frame is frame 1
 								player0.attackdirection = player0.currframe + 1;
 						}
+						// turn on the sound
+						PWMDTY0 = 80;
+						// set frequency for attack sound
+						PWMSCLA = 30;
 				}
 		}
 		if (!player1.attacking)
@@ -644,6 +652,10 @@ await3:
 								// the right frame is frame 1
 								player1.attackdirection = player1.currframe + 1;
 						}
+						// turn on the sound
+						PWMDTY0 = 80;
+						// set frequency for attack sound
+						PWMSCLA = 220;
 				}
 		}
 	} // END OF GAME LOOP LOGIC
@@ -802,8 +814,8 @@ interrupt 8 void TIM_ISR(void)
 						player0.currframe = player0.returnframe;
 						// transition out of attacking mode
 						player0.attacking = 0;
-						clear_character(&player1);
-						display_character(&player1);
+						// disable sound
+						PWMDTY0 = 80;
 				}
 		}
 
@@ -824,7 +836,8 @@ interrupt 8 void TIM_ISR(void)
 						player1.currframe = player1.returnframe;
 						// transition out of attacking mode
 						player1.attacking = 0;
-						display_character(&player1);
+						// disable sound
+						PWMDTY0 = 80;
 				}
 		}
 
@@ -832,7 +845,7 @@ interrupt 8 void TIM_ISR(void)
 		// progress
 		if (!player0.attacking && !player1.attacking)
 		{
-			PWMSCLA = 0;
+			PWMDTY0 = 0;
 		}
 		
 	}
@@ -1193,6 +1206,7 @@ void assignCharacter(struct character *self, char selection)
 void selectField(void)
 {
 	// set the appropriate ledges
+	/*
 	all_platforms[1] = &batt1_plat1;
 	all_platforms[2] = &batt1_plat2;
 	all_platforms[3] = &batt1_plat3;
@@ -1208,6 +1222,21 @@ void selectField(void)
 	player0.x = 15;
 	player0.defaulty = 41;
 	player0.y = 41;
+	player0.lives = 5;
+	player1.lives = 5;
+	*/
+	all_platforms[1] = &pokemon_stadium_plat1;
+	all_platforms[2] = &pokemon_stadium_plat2;
+	all_platforms[3] = &pokemon_stadium_plat3;
+	selected_field = image_pokemon_stadium;
+	player0.defaultx = 28;
+	player0.x = 28;
+	player0.defaulty = 12;
+	player0.y = 12;
+	player1.defaultx = 15;
+	player1.x = 15;
+	player1.defaulty = 12;
+	player1.y = 12;
 	player0.lives = 5;
 	player1.lives = 5;
 }
