@@ -2,55 +2,55 @@
 // This file is generated for corneria.png by convert.py
 
 #ifndef CORNERIA_H
-const struct platform corneria_plat1{
+const struct platform corneria_plat1 = {
     0,
     30,
     10,
     18
 };
-const struct platform corneria_plat2{
+const struct platform corneria_plat2 = {
     10,
     31,
     17,
     17
 };
-const struct platform corneria_plat3{
+const struct platform corneria_plat3 = {
     26,
     30,
     7,
     18
 };
-const struct platform corneria_plat4{
+const struct platform corneria_plat4 = {
     27,
     29,
     7,
     1
 };
-const struct platform corneria_plat5{
+const struct platform corneria_plat5 = {
     28,
     28,
     7,
     1
 };
-const struct platform corneria_plat6{
+const struct platform corneria_plat6 = {
     29,
     27,
     7,
     2
 };
-const struct platform corneria_plat7{
+const struct platform corneria_plat7 = {
     33,
     40,
     1,
     8
 };
-const struct platform corneria_plat8{
+const struct platform corneria_plat8 = {
     34,
     41,
     6,
     7
 };
-const struct platform corneria_plat9{
+const struct platform corneria_plat9 = {
     40,
     40,
     9,

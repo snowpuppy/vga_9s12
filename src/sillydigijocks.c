@@ -184,7 +184,7 @@ unsigned char screen[SCREENSIZE];
 unsigned char *screen_itterator = screen;
 
 // Define Field that is selected.
-const unsigned char *selected_field = image_battlefield1;
+const unsigned char *selected_field = image_corneria;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 char joy0hor = 0;
