@@ -18,7 +18,7 @@ const struct platform yoshis_island_plat2 = {
 };
 const struct platform yoshis_island_plat3 = {
     38,
-    35,
+    34,
     10,
     2
 };

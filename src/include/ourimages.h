@@ -1,6 +1,5 @@
 #include "platform.h"
 #include "pick_char.h"
-#include "gameplay.h"
 #include "menu_select1.h"
 #include "menu_select2.h"
 #include "menu_select3.h"
@@ -9,6 +8,9 @@
 #include "bluearrow.h"
 #include "greenarrow0.h"
 #include "greenarrow1.h"
+#include "player1_win.h"
+#include "player0_win.h"
+#include "pick_stage.h"
 
 // number images
 #include "zero.h"
