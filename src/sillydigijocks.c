@@ -82,19 +82,19 @@
 
 // define maximum player horizontal velocity under normal
 // circumstances. i.e. (not hit by another player)
-#define MAXVELOCITY 20
+#define MAXVELOCITY 15
 
 // define maximum damage to be taken by a player
 // This allows me to scale the damage that should
 // be taken.
-#define MAXDAMGE 100
+#define MAXDAMAGE 200
 
 // define button layouts/masks
 #define LEFTPB 0x20
 #define P0BUTTON1 0x20
 #define P0BUTTON2 0x10
-#define P1BUTTON1 0x02
-#define P1BUTTON2 0x01
+#define P1BUTTON1 0x01
+#define P1BUTTON2 0x02
 
 
 // define screen resolution
@@ -103,10 +103,37 @@
 #define SCREENSIZE 1152
 
 // Define Timing specifications
-#define TIMEFORONESECOND 2*100
+#define TIMEFORONESECOND 100
+#define QUART_SEC 25
+#define HALF_SEC 50
+#define THREE_QUART_SEC 75
+#define TENTH_SEC 10
 
 // Define gravity constant
 #define GRAVITY -20
+
+// Define Available Characters.
+#define NUMCHARACTERS 9
+#define PIKA 0
+#define FALCON 1
+#define YOSHI 2
+#define DKONG 3
+#define MARIO 4
+#define LUIGI 5
+#define LINK 6
+#define KIRBY 7
+#define FOX 8
+
+// define available stages.
+#define FINALDEST 0
+#define CORNERIA 1
+#define POKEMON 2
+#define YOSHISISLAND 3
+#define PARADISE 4
+#define MARIOLEVEL 5
+#define SAFFRON 6
+#define HYRULE 7
+#define BRINSTAR2 8
 
 // All funtions after main should be initialiezed here
 char inchar(void);
@@ -115,11 +142,13 @@ void displaySplash(void);
 void displayMenu(char selection);
 void checkMenuInputs(char joyin);
 void selectCharacter(void);
+void assignCharacter(struct character *self, char selection);
 void selectField(void);
+void setFieldValues(char selection0);
 void startMatch(void);
 void display_character(struct character *self);
-void display_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h);
-void display_animated_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
+void display_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h);
+void display_animated_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
 void writeBackground(const unsigned char *image);
 int abs(int value);
 //char checkCollisions(struct character *self);
@@ -133,9 +162,12 @@ char debounceJoystick(char joyin, char *joyinprev);
 void checkPlayerJump(struct character *self);
 void updateVelAcc(struct character *self, char inhor,char inver);
 void clear_character(struct character *self);
+void clear_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h);
+void clear_animated_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe);
 char checkDeath(struct character *self);
 void displayLives(void);
 void displayDamage(void);
+void display_moving_objects(void);
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -164,7 +196,7 @@ unsigned char screen[SCREENSIZE];
 unsigned char *screen_itterator = screen;
 
 // Define Field that is selected.
-const unsigned char *selected_field = image_battlefield1;
+const unsigned char *selected_field = image_pokemon_stadium;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 char joy0hor = 0;
@@ -191,9 +223,15 @@ char selection = 1;
 // splash screen enable.
 unsigned char splash_screen_enable = 0;
 
+// display_character counter
+unsigned char display_moving_objects_flag = 0;
+unsigned char display_moving_objects_count = 0;
+
+// sound counter
+unsigned char sound_counter = 0;
 
 // define global platform structure.
-struct platform *all_platforms[MAXPLATFORMS] = {NULL};
+const struct platform *all_platforms[MAXPLATFORMS] = {NULL};
 
 // define number array
 const unsigned char *numbers[10] =
@@ -211,6 +249,12 @@ struct platform ground = {
 		48, // w
 		1, // h
 };
+
+// define coordinates for character selection
+const char xcoordplayer0[] = { 10, 25, 40, 10, 25, 40, 10, 25, 40 };
+const char ycoordplayer0[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
+const char xcoordplayer1[] = {  2, 17, 32,  2, 17, 32,  2, 17, 32 };
+const char ycoordplayer1[] = { 14, 14, 14, 28, 28, 28, 42, 42, 42 };
 
 // ASCII character definitions
 //int CR = 0x0D;//Return       ***** Use '\r' instead and use '\n' for newline
@@ -275,6 +319,19 @@ void  initializations(void) {
   // digital inputs. Controller 0 is high byte, Controller 1 is low byte.
   ATDDIEN = 0x33; 
 
+  // initialize the PWM output
+  PWME = 0x01;
+  PWMPOL = 0x00;
+  PWMCAE = 0x00;
+  MODRR = 0x01;		//;PT4 connected to PWM ch0
+  PWMPER0 = 0xff;   //;ch4 period: 255
+  PWMPRCLK = 0x01;  //;prescale fbus by 2: 12Mhz
+  PWMCLK = 0x01;    //;select clkA for ch0
+  PWMSCLA = 90;     
+  PWMDTY0 = 80;     
+       
+
+
 }
 
 	 		  			 		  		
@@ -335,20 +392,6 @@ void main(void) {
 			select = 0;
 			displayMenu(selection);
 	}
-    //startMatch();
-    /*
-    player0.x += 1;
-    player0.y += 1;
-    if (player0.x + player0.framew > 48) 
-    {
-      player0.x = 0;
-    }
-    if (player0.y + player0.frameh > 48) 
-    {
-      player0.y = 0;
-    }
-    */
-    //display_character(&player0);
 	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
 	 // The watchdog was disabled in the initialization code.
     _FEED_COP(); /* feeds the dog */
@@ -539,6 +582,8 @@ await3:
 				player0.attacking = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
 				if (player0.attacking)
 				{
+						// set the return frame so that we can finish an attack.
+						player0.returnframe = player0.currframe;
 						// attack left
 						if (joy0hor < THRESHDO)
 						{
@@ -566,6 +611,10 @@ await3:
 								// the right frame is frame 1
 								player0.attackdirection = player0.currframe + 1;
 						}
+						// turn on the sound
+						PWMDTY0 = 80;
+						// set frequency for attack sound
+						PWMSCLA = 30;
 				}
 		}
 		if (!player1.attacking)
@@ -574,6 +623,8 @@ await3:
 				player1.attacking = checkButtons(P1BUTTON1, P1BUTTON2, &button1player1prev, &button2player1prev);
 				if (player1.attacking)
 				{
+				    // set the return frame so that we can finish an attack.
+						player1.returnframe = player1.currframe;
 						// attack left
 						if (joy1hor < THRESHDO)
 						{
@@ -601,6 +652,10 @@ await3:
 								// the right frame is frame 1
 								player1.attackdirection = player1.currframe + 1;
 						}
+						// turn on the sound
+						PWMDTY0 = 80;
+						// set frequency for attack sound
+						PWMSCLA = 220;
 				}
 		}
 	} // END OF GAME LOOP LOGIC
@@ -637,7 +692,7 @@ interrupt 8 void TIM_ISR(void)
 // No need to add anything in the .PRM file, the interrupt number is included above
 
 		// handle splash screen logic
-    if (splash_screen_enable < TIMEFORONESECOND)
+    if (splash_screen_enable < TIMEFORONESECOND*2)
     {
         splash_screen_enable++;
     }
@@ -754,8 +809,12 @@ interrupt 8 void TIM_ISR(void)
 						player0.attackcount = 0;
 						// set attack length back to default
 						player0.attacklength = DEFAULTATTACKLENGTH;
+						// reset the original frame from before attacking
+						player0.currframe = player0.returnframe;
 						// transition out of attacking mode
 						player0.attacking = 0;
+						// disable sound
+						PWMDTY0 = 80;
 				}
 		}
 
@@ -771,13 +830,59 @@ interrupt 8 void TIM_ISR(void)
 						player1.attackcount = 0;
 						// set attack length back to default
 						player1.attacklength = DEFAULTATTACKLENGTH;
+						// reset the original frame from before attacking
+						player1.currframe = player1.returnframe;
 						// transition out of attacking mode
 						player1.attacking = 0;
-						player1.frame = image_kirby;
-						display_character(&player1);
+						// disable sound
+						PWMDTY0 = 80;
 				}
 		}
+
+		// Turn the sound off if no attacks are in
+		// progress
+		if (!player0.attacking && !player1.attacking)
+		{
+			PWMDTY0 = 0;
+		}
 		
+		// Check if moving objects need to be displayed.
+		display_moving_objects_count++;
+		if (display_moving_objects_count > TENTH_SEC )
+		{
+		    display_moving_objects_flag = 1;
+		}
+		
+	}
+	else // run sound code
+	{
+	  if (PWMDTY0 == 0)
+	  {
+	    PWMDTY0 = 80;
+	  }
+		if (sound_counter == 0)
+		{
+			PWMSCLA = 90;
+		}
+		else if (sound_counter == QUART_SEC)
+		{
+			PWMSCLA = 48;
+		}
+		else if (sound_counter == HALF_SEC)
+		{
+			PWMSCLA = 30;
+		}
+		else if (sound_counter == THREE_QUART_SEC)
+		{
+			PWMSCLA = 0;
+		}
+		else if (sound_counter == TIMEFORONESECOND)
+		{
+			// reset sound counter
+			sound_counter = 0;
+			PWMSCLA = 90;
+		}
+		sound_counter++;
 	}
 	
 	// END OF TIM ISR
@@ -792,24 +897,9 @@ interrupt 8 void TIM_ISR(void)
 ;***********************************************************************/
 void displaySplash(void)
 {
-    //int r,l;
+    writeBackground(image_bitbang_splash);
 
-    // copy the splash screen to the screen
-    // note that the screen now needs to be 
-    // output to the monitor using the non-maskable
-    // interrupt service routine (IRQ)
-    /*
-    for (r = 0; r < SCREENH; r++)
-    {
-        for (l = 0; l < SCREENW/2; l++)
-        {
-            screen[r*(SCREENW/2) + l] = image_splash[r][l];
-        }
-    }
-    */
-    writeBackground(image_splash);
-
-    while (splash_screen_enable < TIMEFORONESECOND);
+    while (splash_screen_enable < TIMEFORONESECOND*2);
 }
 
 /*
@@ -821,8 +911,6 @@ void displaySplash(void)
 ;***********************************************************************/
 void displayMenu(char selection)
 {
-	//int r,l;
-	//unsigned char **menu_image = NULL;
 	// pick image to draw
 	switch(selection)
 	{
@@ -915,18 +1003,442 @@ void checkMenuInputs(char joyin)
 
 void selectCharacter(void)
 {
-	writeBackground(image_character_select);
+		// selection varaibles used to determine which
+		// character gets picked.
+		char selection0 = 0, selection1 = 0;
+		char select0 = 0, select1 = 0;
+		char confirm0 = 0, confirm1 = 0;
+		char temp = 0;
+
+		writeBackground(image_pick_char);
+
+	  while(!confirm0 || !confirm1)
+	  {
+	  	if (hCnt > HSYNCHIGH || hCnt < HSYNCLOW)
+		{
+	  			
+				// set confirmation variables.
+				confirm0 = select0;
+				confirm1 = select1;
+
+				// get horizontal movement player0
+				temp = selection0 + debounceJoystick(joy0hor, &joy0horprev);
+				// validate the movement
+				if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
+				{
+						clear_image(image_pick_char, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+						selection0 = temp;
+				}
+
+				// get vertical movement player0
+				temp = selection0 - 3*debounceJoystick(joy0ver, &joy0verprev);
+				// validate the movement
+				if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
+				{
+						clear_image(image_pick_char, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+						selection0 = temp;
+				}
+				
+				// get horizontal movement player1
+				temp = selection1 + debounceJoystick(joy1hor, &joy1horprev);
+				// validate the movement
+				if (temp != selection1 && temp < NUMCHARACTERS && temp >= 0)
+				{
+						clear_image(image_pick_char, image_bluearrow, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+						selection1 = temp;
+				}
+
+				// get vertical movement player1
+				temp = selection1 - 3*debounceJoystick(joy1ver, &joy1verprev);
+				// validate the movement
+				if (temp != selection1 && temp < NUMCHARACTERS && temp >= 0)
+				{
+						clear_image(image_pick_char, image_bluearrow, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+						selection1 = temp;
+				}
+
+				// sample buttons for selection
+				temp = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+				if (temp == 1)
+				{
+						select0 = 1;
+				}
+				else if (temp == 2)
+				{
+						select0 = 0;
+				}
+				temp = checkButtons(P1BUTTON1, P1BUTTON2, &button1player1prev, &button2player1prev);
+				if (temp == 1)
+				{
+						select1 = 1;
+				}
+				else if (temp == 2)
+				{
+						select1 = 0;
+				}
+
+				// display character images
+				if ( !select0)
+				{
+						display_image(image_redarrow, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				}
+				else
+				{
+						display_image(image_greenarrow1, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				}
+				if (!select1)
+				{
+						display_image(image_bluearrow, 1, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+				}
+				else
+				{
+						display_image(image_greenarrow0, 1, xcoordplayer1[selection1], ycoordplayer1[selection1], 4, 4);
+				}
+		}
+
+	  }
+
+		// assign the correct character values for each player
+		assignCharacter(&player0, selection0);
+		assignCharacter(&player1, selection1);
 }
+
+// Assign character to a player
+void assignCharacter(struct character *self, char selection)
+{
+		// select appropriate values for each character
+		switch(selection)
+		{
+				case PIKA:
+						self->frame = image_pickachu;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case FALCON:
+						self->frame = image_falco;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case YOSHI:
+						self->frame = image_yoshi; 
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case DKONG:
+						self->frame = image_donkeykong;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case MARIO:
+						self->frame = image_mario;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case LUIGI:
+						self->frame = image_luigi;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case LINK:
+						self->frame = image_link;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case KIRBY:
+						self->frame = image_kirby;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				case FOX:
+						self->frame = image_fox;
+						self->attack = defaultAttack;
+						self->move = defaultMove;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
+						self->currframe = 0;
+						break;
+				default:
+						break;
+		}
+}
+
 void selectField(void)
 {
-	// set the appropriate ledges
-	all_platforms[1] = &batt1_plat1;
-	all_platforms[2] = &batt1_plat2;
-	all_platforms[3] = &batt1_plat3;
-	all_platforms[4] = &batt1_plat4;
-	all_platforms[5] = &batt1_plat5;
-	all_platforms[6] = &batt1_plat6;
-	selected_field = image_battlefield1;
+	// selection varaibles used to determine which
+	// character gets picked.
+	char selection0 = 0;
+	char select0 = 0;
+	char confirm0 = 0;
+	char temp = 0;
+
+	writeBackground(image_pick_stage);
+
+	while(!confirm0)
+	{
+		if (hCnt > HSYNCHIGH || hCnt < HSYNCLOW)
+		{
+
+			// set confirmation variables.
+			confirm0 = select0;
+
+			// get horizontal movement player0
+			temp = selection0 + debounceJoystick(joy0hor, &joy0horprev);
+			// validate the movement
+			if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
+			{
+				clear_image(image_pick_stage, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				selection0 = temp;
+			}
+
+			// get vertical movement player0
+			temp = selection0 - 3*debounceJoystick(joy0ver, &joy0verprev);
+			// validate the movement
+			if (temp != selection0 && temp < NUMCHARACTERS && temp >= 0)
+			{
+				clear_image(image_pick_stage, image_redarrow, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+				selection0 = temp;
+			}
+
+			// sample buttons for selection
+			temp = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
+			if (temp == 1)
+			{
+				select0 = 1;
+			}
+			else if (temp == 2)
+			{
+				select0 = 0;
+			}
+
+			// display arrow images
+			if ( !select0)
+			{
+				display_image(image_redarrow, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+			}
+			else
+			{
+				display_image(image_greenarrow1, 1, xcoordplayer0[selection0], ycoordplayer0[selection0], 4, 4);
+			}
+		}
+
+	}
+
+	// assign the correct character values for each player
+	setFieldValues(selection0);
+}
+
+void setFieldValues(char selection)
+{
+	switch (selection)
+	{
+		case POKEMON:
+		selected_field = image_pokemon_stadium;
+	    all_platforms[0] = &pokemon_stadium_plat1;
+	    all_platforms[1] = &pokemon_stadium_plat2;
+	    all_platforms[2] = &pokemon_stadium_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			
+		case CORNERIA:
+		all_platforms[0] = &corneria_plat1;
+		all_platforms[1] = &corneria_plat2;
+		all_platforms[2] = &corneria_plat3;
+		all_platforms[3] = &corneria_plat4;
+		all_platforms[4] = &corneria_plat5;
+		all_platforms[5] = &corneria_plat6;
+		all_platforms[6] = &corneria_plat7;
+		all_platforms[7] = &corneria_plat8;
+		all_platforms[8] = &corneria_plat9;
+		all_platforms[9] = NULL;
+		selected_field = image_corneria;
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+		player0.lives = 5;
+		player1.lives = 5;
+			break;
+			
+		case BRINSTAR2:
+		selected_field = image_brinstar2;
+		all_platforms[0] = &brinstar2_plat1;
+		all_platforms[1] = &brinstar2_plat2;
+		all_platforms[2] = &brinstar2_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			
+		case FINALDEST:
+		selected_field = image_final_destination;
+		all_platforms[0] = &final_destination_plat1;
+		all_platforms[1] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			
+		case HYRULE:
+		selected_field = image_hyrule;
+		all_platforms[0] = &hyrule_plat1;
+		all_platforms[1] = &hyrule_plat2;
+		all_platforms[2] = &hyrule_plat3;
+		all_platforms[3] = &hyrule_plat4;
+		all_platforms[4] = &hyrule_plat5;
+		all_platforms[5] = &hyrule_plat6;
+		all_platforms[6] = &hyrule_plat7;
+		all_platforms[7] = &hyrule_plat8;
+		all_platforms[8] = &hyrule_plat9;
+		all_platforms[9] = &hyrule_plat10;
+		all_platforms[10] = &hyrule_plat11;
+		all_platforms[11] = &hyrule_plat12;
+		all_platforms[12] = &hyrule_plat13;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case MARIOLEVEL:
+		selected_field = image_mario_level;
+		all_platforms[0] = &mario_level_plat1;
+		all_platforms[1] = &mario_level_plat2;
+		all_platforms[2] = &mario_level_plat3;
+		all_platforms[3] = &mario_level_plat4;
+		all_platforms[4] = &mario_level_plat5;
+		all_platforms[5] = &mario_level_plat6;
+		all_platforms[6] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case PARADISE:
+		selected_field = image_paradise;
+		all_platforms[0] = &paradise_plat1;
+		all_platforms[1] = &paradise_plat2;
+		all_platforms[2] = &paradise_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case SAFFRON:
+		selected_field = image_saffron;
+		all_platforms[0] = &saffron_plat1;
+		all_platforms[1] = &saffron_plat2;
+		all_platforms[2] = &saffron_plat3;
+		all_platforms[3] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+		case YOSHISISLAND:
+		selected_field = image_yoshis_island;
+		all_platforms[0] = &yoshis_island_plat1;
+		all_platforms[1] = &yoshis_island_plat2;
+		all_platforms[2] = &yoshis_island_plat3;
+		all_platforms[3] = &yoshis_island_plat4;
+		all_platforms[4] = &yoshis_island_plat5;
+		all_platforms[5] = &yoshis_island_plat6;
+		all_platforms[6] = NULL;
+		// player defaults
+		player0.defaultx = 28;
+		player0.x = 28;
+		player0.defaulty = 22;
+		player0.y = 22;
+		player1.defaultx = 15;
+		player1.x = 15;
+		player1.defaulty = 22;
+		player1.y = 22;
+			break;
+			 
+		default:
+			break;
+	}
+	// initialize player settings
+	player0.lives = 5;
+	player1.lives = 5;
 }
 
 /***********************************************************************
@@ -966,7 +1478,7 @@ void startMatch(void)
 			player0.move(&player0);
 			player1.move(&player1);
 			//  display the character at his location
-			//display_character(&player0);
+			display_moving_objects();
       displayLives();
       displayDamage();
       quit = quit || checkDeath(&player0);
@@ -974,11 +1486,64 @@ void startMatch(void)
 		}
 	}
 	
+	// display winner screen
+	if (player0.lives == 0)
+	{
+    writeBackground(image_player1_win);
+	}
+	else
+	{
+	  writeBackground(image_player0_win);
+	}
+	// reset splash screen enable so
+  // that the players can see this screen
+	splash_screen_enable = 0;
+  while (splash_screen_enable < TIMEFORONESECOND*2);
+	
 	// reset player lives and other values
 	player0.lives = 5;
 	player1.lives = 5;
 	player0.damage = 0;
 	player1.damage = 0;
+	player0.vervel = 0;
+	player0.veracc = 0;
+	player1.vervel = 0;
+	player1.veracc = 0;
+	player0.x = player0.defaultx;
+	player0.y = player0.defaulty;
+	player1.x = player1.defaultx;
+	player1.y = player1.defaulty;
+	
+}
+
+/***********************************************************************
+; Name:         display_moving_objects
+; Description:  This function clears and displays all moving objects
+;               in the game at a regular refresh time determined by
+;               by the TIM_ISR
+;               
+;***********************************************************************/
+void display_moving_objects(void)
+{
+  if (display_moving_objects_flag)
+  {
+    // clear display flag
+    display_moving_objects_flag = 0;
+    
+    // clear the characters from their last drawn locations
+    // then redraw them.
+    clear_character(&player0);
+	  clear_character(&player1);
+    display_character(&player0);
+    display_character(&player1);
+	// keep track of where we last drew the characters.
+	player0.prevx = player0.x;
+	player0.prevy = player0.y;
+	player0.prevframe = player0.currframe;
+	player1.prevx = player1.x;
+	player1.prevy = player1.y;
+	player1.prevframe = player1.currframe;
+  }
 }
 
 /***********************************************************************
@@ -988,24 +1553,99 @@ void startMatch(void)
 ;***********************************************************************/
 void clear_character(struct character *self)
 {
+	clear_animated_image(selected_field, self->frame, self->prevx, self->prevy, self->framew, self->frameh, self->numframes, self->prevframe);
+}
+
+/***********************************************************************
+; Name:         clear_image
+; Description:  This function clears an image at its given x and y
+;								coordinates by redrawing the selected field behind it.
+;***********************************************************************/
+void clear_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h)
+{
+	clear_animated_image(background, image, x, y, w, h, 1, 0);
+}
+
+/***********************************************************************
+; Name:         clear_animated_image
+; Description:  This function clears an animated image at its given x and y
+;								coordinates by redrawing the selected field behind it.
+;***********************************************************************/
+void clear_animated_image(const unsigned char *background, const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
+{
 	unsigned char r,l;
 	unsigned int location = 0;
+	unsigned char odd = 0; // checks start on odd pixel.
+	unsigned char temp1 = 0,temp2 = 0, temp3 = 0;
 	
-	location = self->y*(SCREENW/2) + self->x/2;
+	odd = x % 2;
+	location = y*(SCREENW/2) + x/2;
 
-	for (r = 0; r < self->frameh; r++)
+	for (r = 0; r < h; r++)
 	{
-		for (l = 0; l < self->framew/2 + 1; l++)
+		for (l = 0; l < w/2; l++)
 		{
 			if ( location >= 0 && location < SCREENSIZE )
 			{
-				screen[location] = selected_field[location];
+				if (odd) // drawn on an odd pixel
+				{
+					temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
+					temp2 = temp1 & 0xe0; // upper nibble
+					temp3 = temp1 & 0x1c; // lower nibble
+					// if pixel one is not white
+					if (temp2 != 0xe0) // would actually be low nibble
+					{
+							temp1 = screen[location] & 0xe0; // high nibble of screen
+							temp2 = background[location] & 0x1c; // low nibble of background
+							temp1 = temp1 + temp2;
+							screen[location] = temp1;
+					}
+					// if pixel two is not white
+					if (temp3 != 0x1c)
+					{
+							if (location < SCREENSIZE - 1)
+							{
+									temp1 = screen[location+1] & 0x1c; // low nibble of screen
+									temp2 = background[location+1] & 0xe0; // high nibble of background
+									temp1 = temp1 + temp2;
+									screen[location+1] = temp1;
+							}
+					}
+				}
+				else // drawn on an even pixel
+				{
+						temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
+						temp2 = temp1 & 0xe0; // upper nibble
+						temp3 = temp1 & 0x1c; // lower nibble
+						if (temp2 != 0xe0 && temp3 != 0x1c)
+						{
+								screen[location] = background[location];
+						}
+						else if (temp2 == 0xe0 && temp3 == 0x1c)
+						{
+								// do nothing
+						}
+						else if (temp2 == 0xe0)
+						{
+								temp1 = screen[location] & 0xe0;
+								temp2 = background[location] & 0x1c;
+								temp1 = temp1 + temp2;
+								screen[location] = temp1;
+						}
+						else if (temp3 == 0x1c)
+						{
+								temp1 = screen[location] & 0x1c;
+								temp2 = background[location] & 0xe0;
+								temp1 = temp1 + temp2;
+								screen[location] = temp1;
+						}
+				}
 			}
 			// increment our location by one column
 			location++;
 		}
 		// increment our location by one row
-		location += SCREENW/2 - self->framew/2 - 1;
+		location += SCREENW/2 - w/2;
 	}
 }
 
@@ -1015,7 +1655,7 @@ void clear_character(struct character *self)
 ;								their x and y coordinates. Compensation is made for 
 ;								images drawn on odd pixels.
 ;***********************************************************************/
-void display_animated_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
+void display_animated_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h, unsigned char numframes, unsigned char currframe)
 {
 	unsigned char r,l;
 	unsigned int location = 0;
@@ -1058,10 +1698,14 @@ void display_animated_image(const unsigned char *image, char x, char y, unsigned
 								temp2 = temp3 & 0xe0;
 								// Shift the upper nibble to the lower nibble [1C]
 								temp2 = temp2 / 0x08;
-								// add the bytes together [FC]
+								// add the bytes together [FC]	
 								temp1 = temp1 + temp2;
-								// store the result in the screen.
-								screen[location] = temp1;
+								// don't draw white pixels
+								if ( temp2 != 0x1c || !mask)
+								{
+									// store the result in the screen.
+									screen[location] = temp1;
+								}
 
 								// STORE SECOND PIXEL
 
@@ -1073,16 +1717,52 @@ void display_animated_image(const unsigned char *image, char x, char y, unsigned
 								temp2 = temp3 & 0x1c;
 								// shift our low nibble to our high nibble. [E0]
 								temp2 *= 0x08;
-								// add the bytes together [FC]
+								// add the bytes together [FC] if color isn't white	
 								temp1 = temp1 + temp2;
-								screen[location+1] = temp1;
+								// don't draw white pixels
+								if ( temp2 != 0xe0 || !mask)
+								{
+									screen[location+1] = temp1;
+								}
 							}
 							else
 							{
 								// We start on an even byte, so just copy our
 								// picture over two pixels at a time.
 								temp1 = image[(w/2)*numframes*r + l + w*currframe/2];
-								screen[location] = temp1;
+								temp2 = temp1 & 0xe0; // upper nibble
+								temp3 = temp1 & 0x1c; // lower nibble
+								// if neither pixel is white
+								if (temp2 != 0xe0 && temp3 != 0x1c || !mask)
+								{	
+									screen[location] = temp1;
+								}
+								// if both pixels are white
+								else if (temp2 == 0xe0 && temp3 == 0x1c)
+								{
+									// do nothing
+								}
+								// if upper nibble is white (write lower nibble)
+								else if (temp2 == 0xe0)
+								{
+									// mask off lower nibble of screen
+									temp1 = screen[location] & 0xe0;
+									// add with lower nibble of image
+									temp1 = temp1 + temp3;
+									// write modified byte
+									screen[location] = temp1;
+									
+								}
+								// if lower nibble is white (write upper nibble)
+								else if (temp3 == 0x1c)
+								{
+									// mask off upper nibble of screen
+									temp1 = screen[location] & 0x1c;
+									// add with upper nibble of image
+									temp1 = temp1 + temp2;
+									// write modified byte
+									screen[location] = temp1;
+								}
 							}
 						}
 						// increment our location by one column
@@ -1101,7 +1781,7 @@ void display_animated_image(const unsigned char *image, char x, char y, unsigned
 ;***********************************************************************/
 void display_character(struct character *self)
 {
-		display_animated_image(self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
+		display_animated_image(self->frame, 1, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
 }
 
 /***********************************************************************
@@ -1110,10 +1790,10 @@ void display_character(struct character *self)
 ;								their x and y coordinates. Compensation is made for 
 ;								images drawn on odd pixels.
 ;***********************************************************************/
-void display_image(const unsigned char *image, char x, char y, unsigned char w, unsigned char h)
+void display_image(const unsigned char *image, char mask, char x, char y, unsigned char w, unsigned char h)
 {
 		// for images with 1 frame and thus only have frame 0
-		display_animated_image(image, x, y, w, h, 1, 0);
+		display_animated_image(image, mask, x, y, w, h, 1, 0);
 }
 
 /***********************************************************************
@@ -1161,7 +1841,7 @@ char debounceJoystick(char joyin, char *joyinprev)
 {
 		char ret = 0;
 		// check for moving joystick up
-		// transition from up to down
+		// transition from down to up
 		if ( joyin > THRESHUP)
 		{
 				if (*joyinprev < THRESHUP)
@@ -1170,7 +1850,7 @@ char debounceJoystick(char joyin, char *joyinprev)
 				}
 		}
 		// check for moving joystick down
-		// transision from down to up
+		// transision from up to down
 		else if (joyin < THRESHDO )
 		{
 				if (*joyinprev > THRESHDO )
@@ -1198,31 +1878,31 @@ char checkButtons(unsigned char button1, unsigned char button2, unsigned char *b
 		char ret = 0; // 0 means no button pressed.
 
 		// DEBOUNCE BUTTON 1
-		if ( (PTAD & button1) == button1 )
+		if ( (PTAD & button1) == 0 )
 		{
-				if (*button1prev == 0)
+				if (*button1prev == 1)
 				{
 						ret = 1;
 				}
-				*button1prev = 1;
-		}
-		else if ( (PTAD & button1) == 0)
-		{
 				*button1prev = 0;
+		}
+		else if ( (PTAD & button1) == button1)
+		{
+				*button1prev = 1;
 		}
 
 		// DEBOUNCE BUTTON 2
-		if ( (PTAD & button2) == button2)
+		if ( (PTAD & button2) == 0)
 		{
-				if ( *button2prev == 0)
+				if ( *button2prev == 1)
 				{
 						ret = 2;
 				}
-				*button2prev = 1;
-		}
-		else if ( (PTAD & button2) == 0)
-		{
 				*button2prev = 0;
+		}
+		else if ( (PTAD & button2) == button2)
+		{
+				*button2prev = 1;
 		}
 		return ret;
 }
@@ -1295,7 +1975,7 @@ char checkCollisions(char x1, char y1, unsigned char w1, unsigned char h1)
 char checkCharCollisions(struct character *self)
 {
     char ret = 0;
-		ret = checkCollisions(self->x, self->y, self->framew, self->frameh);
+		ret = checkCollisions(self->x, self->y, self->collisionw, self->collisionh);
 		return ret;
 }
 
@@ -1311,11 +1991,11 @@ char checkCharHitChar(struct character *self, char attackx, char attacky, unsign
     char ret = 0;
 		if (self->player == 0)
 		{
-				ret = checkCollision(attackx, attacky, attackw, attackh, player1.x, player1.y, player1.framew, player1.frameh);
+				ret = checkCollision(attackx, attacky, attackw, attackh, player1.x, player1.y, player1.collisionw, player1.collisionh);
 		}
 		else
 		{
-				ret = checkCollision(attackx, attacky, attackw, attackh, player0.x, player0.y, player0.framew, player0.frameh);
+				ret = checkCollision(attackx, attacky, attackw, attackh, player0.x, player0.y, player0.collisionw, player0.collisionh);
 		}
 		return ret;
 }
@@ -1342,11 +2022,11 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		}
 		else if (inhor > 0)
 		{
-				self->horacc = MAXVELOCITY + (30 - (inhor *30)/(128) );
+				self->horacc = MAXVELOCITY + (20 - (inhor *20)/(128) );
 		}
 		else
 		{
-				self->horacc = -MAXVELOCITY + (-30 - (inhor *30)/(128) );
+				self->horacc = -MAXVELOCITY + (-20 - (inhor *20)/(128) );
 		}
 		/*
 		// UPDATE VERTICAL ACCELERATION
@@ -1405,19 +2085,19 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		switch (self->hit)
 		{
 				case ATTACKLEFT:
-				  self->horvel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->horvel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				case ATTACKRIGHT:
-				  self->horvel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->horvel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				case ATTACKUP:
-				  self->vervel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->vervel = MAXVELOCITY - ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				case ATTACKDOWN:
-				  self->vervel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMGE;
+				  self->vervel = -MAXVELOCITY + ((MAXVELOCITY - 1)*self->damage)/MAXDAMAGE;
 					self->hit = 0;
 				  break;
 				default:
@@ -1463,10 +2143,10 @@ int abs(int value)
 ;***********************************************************************/
 void displayDamage(void)
 {
-		// display the damage for this character
+    // display the damage for this character
 		unsigned char damage = 0;
-		unsigned char digit0 = 0, digit1 = 0, digit2 = 0;
-
+		static unsigned char digit0 = 0, digit1 = 0, digit2 = 0;
+		
 		// get digits for player0 damage
 		damage = player0.damage;
 		digit0 = damage/100;
@@ -1475,9 +2155,9 @@ void displayDamage(void)
 		digit2 = digit2 - digit1*10;
 
 		// display player0 damage
-		display_image(numbers[digit0], 9, 1, 4, 4);
-		display_image(numbers[digit1], 13, 1, 4, 4);
-		display_image(numbers[digit2], 17, 1, 4, 4);
+		display_image(numbers[digit0], 0, 9, 1, 4, 4);
+		display_image(numbers[digit1], 0, 13, 1, 4, 4);
+		display_image(numbers[digit2], 0, 17, 1, 4, 4);
 
 		// get digits for player1 damage.
 		damage = player1.damage;
@@ -1487,9 +2167,9 @@ void displayDamage(void)
 		digit2 = digit2 - digit1*10;
 
 		// display player1 damage
-		display_image(numbers[digit0], 31, 1, 4, 4);
-		display_image(numbers[digit1], 36, 1, 4, 4);
-		display_image(numbers[digit2], 40, 1, 4, 4);
+		display_image(numbers[digit0], 0, 31, 1, 4, 4);
+		display_image(numbers[digit1], 0, 36, 1, 4, 4);
+		display_image(numbers[digit2], 0, 40, 1, 4, 4);
 }
 
 /***********************************************************************
@@ -1499,8 +2179,8 @@ void displayDamage(void)
 void displayLives(void)
 {
 		// display the lives for each character.
-		display_image(numbers[player0.lives], 5, 1, 4, 4);
-		display_image(numbers[player1.lives], 26, 1, 4, 4);
+		display_image(numbers[player0.lives], 0, 5, 1, 4, 4);
+		display_image(numbers[player1.lives], 0, 26, 1, 4, 4);
 }
 
 /***********************************************************************
@@ -1511,7 +2191,7 @@ char checkDeath(struct character *self)
 {
 		char ret = 0;
 		char death = 0;
-		if (self->x + self->framew > SCREENW)
+		if (self->x + self->collisionw > SCREENW)
 		{
 				death = 1;
 		}
@@ -1519,7 +2199,7 @@ char checkDeath(struct character *self)
 		{
 				death = 1;
 		}
-		if (self->y + self->frameh > SCREENH)
+		if (self->y + self->collisionh > SCREENH)
 		{
 				death = 1;
 		}
@@ -1545,6 +2225,7 @@ char checkDeath(struct character *self)
 						self->veracc = 0;
 						self->horvel = 0;
 						self->vervel = 0;
+						self->damage = 0;
 				}
 		}
 		return ret;

@@ -37,6 +37,7 @@ struct character
 {
 		char player; // indicates either player0 or player1. Used when figuring out who attacked who.
 		char x,y;
+		char prevx,prevy; // used to keep track of where to erase a character
 		char defaultx, defaulty;
 		int horvel, vervel;
 		int horvelcnt, vervelcnt;
@@ -59,9 +60,10 @@ struct character
 		char hit;
 		char crouching;
 		const unsigned char *frame;
-		unsigned char currframe;
+		unsigned char currframe, prevframe, returnframe; // returnframe for after finishing an attack
 		unsigned char numframes;
 		unsigned char framew, frameh;
+		unsigned char collisionw, collisionh; // window of frame used to determine collisions
 };
 
 // DEFUALT FUNCTIONS
@@ -74,6 +76,8 @@ struct character player0 = {
 		0, // player
 		28, // x
 		43, // y
+		28, // prevx
+		43, // prevy
 		28, // defaultx
 		43, // defaulty
 		0, // horvel
@@ -102,15 +106,21 @@ struct character player0 = {
 		0, // crouching
 		image_yoshi, // frame
 		0, // currframe
-		2, // numframes
-		4, // framew
-		4, // frameh
+		0, // prevframe
+		0, // returnframe
+		6, // numframes
+		6, // framew
+		6, // frameh
+		4, // collisionw
+		4, // collisionh
 };
 
 struct character player1 = {
 		1, // player
 		15, // x
 		43, // y
+		15, // prevx
+		43, // prevy
 		15, // defaultx
 		43, // defaulty
 		0, // horvel
@@ -139,9 +149,13 @@ struct character player1 = {
 		0, // crouching
 		image_kirby, // frame
 		0, // currframe
-		2, // numframes
-		4, // framew
-		4, // frameh
+		0, // prevframe
+		0, // returnframe
+		6, // numframes
+		6, // framew
+		6, // frameh
+		4, // collisionw
+		4, // collisionh
 };
 
 /*
@@ -158,36 +172,45 @@ void defaultAttack(struct character *self)
 				switch (self->attackdirection) // determine where collision detected.
 				{
 						case ATTACKLEFT:
+						  // animate attack
+						  self->currframe = 2;
+						  //self->collisionw = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x - 2, self->y, 3, self->frameh);
+							coll = checkCharHitChar(self, self->x - 2, self->y, 3, self->collisionw);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKLEFT);
 							}
 						  break;
 						case ATTACKRIGHT:
+						  self->currframe = 3;
+						  //self->collisionw = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x + self->framew - 2, self->y, 3, self->frameh);
+							coll = checkCharHitChar(self, self->x + self->collisionw - 2, self->y, 3, self->collisionh);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKRIGHT);
 							}
 						  break;
 						case ATTACKUP:
+						  self->currframe = 5;
+						  //self->collisionh = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x, self->y + 2, self->framew, 3);
+							coll = checkCharHitChar(self, self->x, self->y + 2, self->collisionw, 3);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKUP);
 							}
 						  break;
 						case ATTACKDOWN:
+						  self->currframe = 4;
+						  //self->collisionh = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x, self->y + self->frameh + 2, self->framew, 3);
+							coll = checkCharHitChar(self, self->x, self->y + self->collisionh + 2, self->collisionw, 3);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKDOWN);
@@ -196,9 +219,8 @@ void defaultAttack(struct character *self)
 						default:
 						  break;
 				}
-				self->frame = image_link;
-				display_character(self);
 		}
+
 }
 
 void defaultAttackImpl(struct character *self, char attackdir)
@@ -207,7 +229,10 @@ void defaultAttackImpl(struct character *self, char attackdir)
 		// attacking player1
 		{
 				// increase the players damage
-				player1.damage += 3; // arbitrary damage
+				if (player1.damage < MAXDAMAGE - 2)
+				{	
+					player1.damage += 3; // arbitrary damage
+				}
 				// notify the main loop to adjust the players velocity
 				// and what direction to adjust it.
 				player1.hit = attackdir;
@@ -215,7 +240,10 @@ void defaultAttackImpl(struct character *self, char attackdir)
 		else // same thing except attacking player0
 		{
 				// increase the players damage
-				player0.damage += 3; // arbitrary damage
+				if (player0.damage < MAXDAMAGE - 2)
+				{
+					player0.damage += 3; // arbitrary damage
+				}
 				// notify the main loop to adjust the players velocity
 				// and what direction to adjust it.
 				player0.hit = attackdir;
@@ -231,12 +259,10 @@ void defaultAttackImpl(struct character *self, char attackdir)
 void defaultMove(struct character *self)
 {
     int coll = 0;
-    clear_character(self);
 		//if ( (self->moveflag & MOVEUP == MOVEUP) && (self->vervel > 0 ) )
 		if ( self->movever_r && self->vervel > 0 )
 		{
 				// clear character
-				//clear_character(self);
 				// move up one pixel.
 				self->y -= 1;
 				// check for collisions
@@ -245,20 +271,18 @@ void defaultMove(struct character *self)
 				{
 						self->vervel = 0;
 						self->y += 1;
-						if (self->veracc > 0)
+						if (self->veracc >= 0)
 						{
 								// gravity adjusted above
 								self->veracc = GRAVITY;
 						}
 				}
 				self->movever_r = 0;
-				//display_character(self);
 		}
 		//else if ( (self->moveflag & MOVEUP == MOVEUP ) && ( self->vervel < 0) )
 		else if ( self->movever_r && self->vervel < 0)
 		{
 				// clear character
-				//clear_character(self);
 				// move down one pixel.
 				self->y += 1;
 				// check for collisions
@@ -270,13 +294,11 @@ void defaultMove(struct character *self)
 						self->y -= 1;
 				}
 				self->movever_r = 0;
-				//display_character(self);
 		}
 		//if ( ( (self->moveflag & MOVERI) == MOVERI) && (self->horvel > 0) )
 		if ( self->movehor_r && self->horvel > 0 )
 		{
 				// clear character
-				//clear_character(self);
 				// move right one pixel.
 				self->x += 1;
 				self->currframe = 1;
@@ -284,19 +306,18 @@ void defaultMove(struct character *self)
 				coll = checkCharCollisions(self);
 				if (coll)
 				{
-						self->vervel = 0;
-						self->veracc = 0;
+						self->horvel = 0;
+						self->horacc = 0;
 						self->x -= 1;
 				}
 				self->movehor_r = 0;
-				//display_character(self);
 
 				// check for gravity
 				self->y += 1;
 				coll = checkCharCollisions(self);
 				if (!coll)
 				{
-						self->veracc = -20;
+						self->veracc = GRAVITY;
 				}
 				self->y -= 1;
 		}
@@ -304,7 +325,6 @@ void defaultMove(struct character *self)
 		else if (self->movehor_r && self->horvel < 0 )
 		{
 				// clear character
-				//clear_character(self);
 				// move left one pixel.
 				self->x -= 1;
 				self->currframe = 0;
@@ -317,18 +337,16 @@ void defaultMove(struct character *self)
 						self->x += 1;
 				}
 				self->movehor_r = 0;
-				//display_character(self);
 
 				// check for gravity
 				self->y += 1;
 				coll = checkCharCollisions(self);
 				if (!coll)
 				{
-						self->veracc = -20;
+						self->veracc = GRAVITY;
 				}
 				self->y -= 1;
 		}
-		display_character(self);
 }
 
 #endif
