@@ -9,6 +9,9 @@
 #include "bluearrow.h"
 #include "greenarrow0.h"
 #include "greenarrow1.h"
+#include "player1_win.h"
+#include "player0_win.h"
+#include "pick
 
 // number images
 #include "zero.h"

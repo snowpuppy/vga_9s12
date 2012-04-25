@@ -1289,18 +1289,18 @@ void startMatch(void)
 	player1.y = player1.defaulty;
 	
 	// display winner screen
-	//if (player0.lives == 0)
-	//{
-	//  writeBackground(image_player1wins);
-	//}
-	//else
-	//{
-	//  writeBackground(image_player0wins);
-	//}
+	if (player0.lives == 0)
+	{
+    writeBackground(image_player1_win);
+	}
+	else
+	{
+	  writeBackground(image_player0_win);
+	}
 	// reset splash screen enable so
-	// that the players can see this screen
-	//splash_screen_enable = 0;
-	//while (splash_screen_enable < TIMEFORONESECOND*2);
+  // that the players can see this screen
+	splash_screen_enable = 0;
+  while (splash_screen_enable < TIMEFORONESECOND*2);
 }
 
 /***********************************************************************
