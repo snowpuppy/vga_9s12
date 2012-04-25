@@ -82,7 +82,7 @@
 
 // define maximum player horizontal velocity under normal
 // circumstances. i.e. (not hit by another player)
-#define MAXVELOCITY 20
+#define MAXVELOCITY 15
 
 // define maximum damage to be taken by a player
 // This allows me to scale the damage that should
@@ -196,7 +196,7 @@ unsigned char screen[SCREENSIZE];
 unsigned char *screen_itterator = screen;
 
 // Define Field that is selected.
-const unsigned char *selected_field = NULL; //image_pokemon_stadium;
+const unsigned char *selected_field = image_pokemon_stadium;
 
 // GLOBAL ANALOG INPUTS   --- 0 is for player 0; 1 is for player 1
 char joy0hor = 0;
@@ -1489,16 +1489,16 @@ void startMatch(void)
 	// display winner screen
 	if (player0.lives == 0)
 	{
-    //writeBackground(image_player1_win);
+    writeBackground(image_player1_win);
 	}
 	else
 	{
-	  //writeBackground(image_player0_win);
+	  writeBackground(image_player0_win);
 	}
 	// reset splash screen enable so
   // that the players can see this screen
-	//splash_screen_enable = 0;
-  //while (splash_screen_enable < TIMEFORONESECOND*2);
+	splash_screen_enable = 0;
+  while (splash_screen_enable < TIMEFORONESECOND*2);
 	
 	// reset player lives and other values
 	player0.lives = 5;
@@ -2022,11 +2022,11 @@ void updateVelAcc(struct character *self, char inhor, char inver)
 		}
 		else if (inhor > 0)
 		{
-				self->horacc = MAXVELOCITY + (30 - (inhor *30)/(128) );
+				self->horacc = MAXVELOCITY + (20 - (inhor *20)/(128) );
 		}
 		else
 		{
-				self->horacc = -MAXVELOCITY + (-30 - (inhor *30)/(128) );
+				self->horacc = -MAXVELOCITY + (-20 - (inhor *20)/(128) );
 		}
 		/*
 		// UPDATE VERTICAL ACCELERATION
