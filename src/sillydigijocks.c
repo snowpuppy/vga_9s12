@@ -578,6 +578,8 @@ await3:
 				player0.attacking = checkButtons(P0BUTTON1, P0BUTTON2, &button1player0prev, &button2player0prev);
 				if (player0.attacking)
 				{
+						// set the return frame so that we can finish an attack.
+						player0.returnframe = player0.currframe;
 						// attack left
 						if (joy0hor < THRESHDO)
 						{
@@ -613,6 +615,8 @@ await3:
 				player1.attacking = checkButtons(P1BUTTON1, P1BUTTON2, &button1player1prev, &button2player1prev);
 				if (player1.attacking)
 				{
+				    // set the return frame so that we can finish an attack.
+						player0.returnframe = player0.currframe;
 						// attack left
 						if (joy1hor < THRESHDO)
 						{
@@ -793,8 +797,13 @@ interrupt 8 void TIM_ISR(void)
 						player0.attackcount = 0;
 						// set attack length back to default
 						player0.attacklength = DEFAULTATTACKLENGTH;
+						// reset the original frame from before attacking
+						player0.prevframe = player0.currframe;
+						player0.currframe = player0.returnframe;
 						// transition out of attacking mode
 						player0.attacking = 0;
+						clear_character(&player1);
+						display_character(&player1);
 				}
 		}
 
@@ -810,6 +819,9 @@ interrupt 8 void TIM_ISR(void)
 						player1.attackcount = 0;
 						// set attack length back to default
 						player1.attacklength = DEFAULTATTACKLENGTH;
+						// reset the original frame from before attacking
+						player1.prevframe = player1.currframe;
+						player1.currframe = player1.returnframe;
 						// transition out of attacking mode
 						player1.attacking = 0;
 						display_character(&player1);
@@ -1096,81 +1108,81 @@ void assignCharacter(struct character *self, char selection)
 						self->frame = image_pickachu;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case FALCON:
 						self->frame = image_falco;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case YOSHI:
 						self->frame = image_yoshi; 
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case DKONG:
 						self->frame = image_donkeykong;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case MARIO:
 						self->frame = image_mario;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case LUIGI:
 						self->frame = image_luigi;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case LINK:
 						self->frame = image_link;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case KIRBY:
 						self->frame = image_kirby;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				case FOX:
 						self->frame = image_fox;
 						self->attack = defaultAttack;
 						self->move = defaultMove;
-						self->numframes = 7;
-						self->framew = 4;
-						self->frameh = 4;
+						self->numframes = 6;
+						self->framew = 6;
+						self->frameh = 6;
 						self->currframe = 0;
 						break;
 				default:
@@ -1190,12 +1202,14 @@ void selectField(void)
 	selected_field = image_battlefield1;
 	player0.defaultx = 28;
 	player0.x = 28;
-	player0.defaulty = 44;
-	player0.y = 44;
+	player0.defaulty = 41;
+	player0.y = 41;
 	player0.defaultx = 15;
 	player0.x = 15;
-	player0.defaulty = 44;
-	player0.y = 44;
+	player0.defaulty = 41;
+	player0.y = 41;
+	player0.lives = 5;
+	player1.lives = 5;
 }
 
 /***********************************************************************
@@ -1257,7 +1271,7 @@ void startMatch(void)
 ;***********************************************************************/
 void clear_character(struct character *self)
 {
-	clear_animated_image(selected_field, self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->currframe);
+	clear_animated_image(selected_field, self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->prevframe);
 }
 
 /***********************************************************************
@@ -1679,7 +1693,7 @@ char checkCollisions(char x1, char y1, unsigned char w1, unsigned char h1)
 char checkCharCollisions(struct character *self)
 {
     char ret = 0;
-		ret = checkCollisions(self->x, self->y, self->framew, self->frameh);
+		ret = checkCollisions(self->x, self->y, self->collisionw, self->collisionh);
 		return ret;
 }
 
@@ -1695,11 +1709,11 @@ char checkCharHitChar(struct character *self, char attackx, char attacky, unsign
     char ret = 0;
 		if (self->player == 0)
 		{
-				ret = checkCollision(attackx, attacky, attackw, attackh, player1.x, player1.y, player1.framew, player1.frameh);
+				ret = checkCollision(attackx, attacky, attackw, attackh, player1.x, player1.y, player1.collisionw, player1.collisionh);
 		}
 		else
 		{
-				ret = checkCollision(attackx, attacky, attackw, attackh, player0.x, player0.y, player0.framew, player0.frameh);
+				ret = checkCollision(attackx, attacky, attackw, attackh, player0.x, player0.y, player0.collisionw, player0.collisionh);
 		}
 		return ret;
 }
@@ -1895,7 +1909,7 @@ char checkDeath(struct character *self)
 {
 		char ret = 0;
 		char death = 0;
-		if (self->x + self->framew > SCREENW)
+		if (self->x + self->collisionw > SCREENW)
 		{
 				death = 1;
 		}
@@ -1903,7 +1917,7 @@ char checkDeath(struct character *self)
 		{
 				death = 1;
 		}
-		if (self->y + self->frameh > SCREENH)
+		if (self->y + self->collisionh > SCREENH)
 		{
 				death = 1;
 		}

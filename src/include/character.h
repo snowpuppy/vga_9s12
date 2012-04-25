@@ -59,9 +59,10 @@ struct character
 		char hit;
 		char crouching;
 		const unsigned char *frame;
-		unsigned char currframe;
+		unsigned char currframe, prevframe, returnframe; // returnframe for after finishing an attack
 		unsigned char numframes;
 		unsigned char framew, frameh;
+		unsigned char collisionw, collisionh; // window of frame used to determine collisions
 };
 
 // DEFUALT FUNCTIONS
@@ -102,9 +103,13 @@ struct character player0 = {
 		0, // crouching
 		image_yoshi, // frame
 		0, // currframe
-		2, // numframes
-		4, // framew
-		4, // frameh
+		0, // prevframe
+		0, // returnframe
+		6, // numframes
+		6, // framew
+		6, // frameh
+		4, // collisionw
+		4, // collisionh
 };
 
 struct character player1 = {
@@ -139,9 +144,13 @@ struct character player1 = {
 		0, // crouching
 		image_kirby, // frame
 		0, // currframe
-		2, // numframes
-		4, // framew
-		4, // frameh
+		0, // prevframe
+		0, // returnframe
+		6, // numframes
+		6, // framew
+		6, // frameh
+		4, // collisionw
+		4, // collisionh
 };
 
 /*
@@ -159,40 +168,44 @@ void defaultAttack(struct character *self)
 				{
 						case ATTACKLEFT:
 						  // animate attack
-						  self->currframe = 3;
+						  self->currframe = 2;
+						  //self->collisionw = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x - 2, self->y, 3, self->frameh);
+							coll = checkCharHitChar(self, self->x - 2, self->y, 3, self->collisionw);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKLEFT);
 							}
 						  break;
 						case ATTACKRIGHT:
-						  self->currframe = 4;
+						  self->currframe = 3;
+						  //self->collisionw = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x + self->framew - 2, self->y, 3, self->frameh);
+							coll = checkCharHitChar(self, self->x + self->collisionw - 2, self->y, 3, self->collisionh);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKRIGHT);
 							}
 						  break;
 						case ATTACKUP:
-						  self->currframe = 6;
+						  self->currframe = 5;
+						  //self->collisionh = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x, self->y + 2, self->framew, 3);
+							coll = checkCharHitChar(self, self->x, self->y + 2, self->collisionw, 3);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKUP);
 							}
 						  break;
 						case ATTACKDOWN:
-						  self->currframe = 5;
+						  self->currframe = 4;
+						  //self->collisionh = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
-							coll = checkCharHitChar(self, self->x, self->y + self->frameh + 2, self->framew, 3);
+							coll = checkCharHitChar(self, self->x, self->y + self->collisionh + 2, self->collisionw, 3);
 							if (coll)
 							{
 									defaultAttackImpl(self, ATTACKDOWN);
@@ -201,8 +214,8 @@ void defaultAttack(struct character *self)
 						default:
 						  break;
 				}
-				display_character(self);
 		}
+
 }
 
 void defaultAttackImpl(struct character *self, char attackdir)
@@ -339,6 +352,7 @@ void defaultMove(struct character *self)
 				self->y -= 1;
 		}
 		display_character(self);
+		self->prevframe = self->currframe;
 }
 
 #endif
