@@ -158,6 +158,8 @@ void defaultAttack(struct character *self)
 				switch (self->attackdirection) // determine where collision detected.
 				{
 						case ATTACKLEFT:
+						  // animate attack
+						  self->currframe = 3;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
 							coll = checkCharHitChar(self, self->x - 2, self->y, 3, self->frameh);
@@ -167,6 +169,7 @@ void defaultAttack(struct character *self)
 							}
 						  break;
 						case ATTACKRIGHT:
+						  self->currframe = 4;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
 							coll = checkCharHitChar(self, self->x + self->framew - 2, self->y, 3, self->frameh);
@@ -176,6 +179,7 @@ void defaultAttack(struct character *self)
 							}
 						  break;
 						case ATTACKUP:
+						  self->currframe = 6;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
 							coll = checkCharHitChar(self, self->x, self->y + 2, self->framew, 3);
@@ -185,6 +189,7 @@ void defaultAttack(struct character *self)
 							}
 						  break;
 						case ATTACKDOWN:
+						  self->currframe = 5;
 							// check for collision starting two pixels to the left of the
 							// player and moving to the right by three positions
 							coll = checkCharHitChar(self, self->x, self->y + self->frameh + 2, self->framew, 3);
@@ -196,7 +201,6 @@ void defaultAttack(struct character *self)
 						default:
 						  break;
 				}
-				self->frame = image_link;
 				display_character(self);
 		}
 }
@@ -207,7 +211,10 @@ void defaultAttackImpl(struct character *self, char attackdir)
 		// attacking player1
 		{
 				// increase the players damage
-				player1.damage += 3; // arbitrary damage
+				if (player1.damage < MAXDAMAGE - 2)
+				{	
+					player1.damage += 3; // arbitrary damage
+				}
 				// notify the main loop to adjust the players velocity
 				// and what direction to adjust it.
 				player1.hit = attackdir;
@@ -215,7 +222,10 @@ void defaultAttackImpl(struct character *self, char attackdir)
 		else // same thing except attacking player0
 		{
 				// increase the players damage
-				player0.damage += 3; // arbitrary damage
+				if (player0.damage < MAXDAMAGE - 2)
+				{
+					player0.damage += 3; // arbitrary damage
+				}
 				// notify the main loop to adjust the players velocity
 				// and what direction to adjust it.
 				player0.hit = attackdir;
@@ -245,7 +255,7 @@ void defaultMove(struct character *self)
 				{
 						self->vervel = 0;
 						self->y += 1;
-						if (self->veracc > 0)
+						if (self->veracc >= 0)
 						{
 								// gravity adjusted above
 								self->veracc = GRAVITY;
@@ -284,8 +294,8 @@ void defaultMove(struct character *self)
 				coll = checkCharCollisions(self);
 				if (coll)
 				{
-						self->vervel = 0;
-						self->veracc = 0;
+						self->horvel = 0;
+						self->horacc = 0;
 						self->x -= 1;
 				}
 				self->movehor_r = 0;
@@ -296,7 +306,7 @@ void defaultMove(struct character *self)
 				coll = checkCharCollisions(self);
 				if (!coll)
 				{
-						self->veracc = -20;
+						self->veracc = GRAVITY;
 				}
 				self->y -= 1;
 		}
@@ -324,7 +334,7 @@ void defaultMove(struct character *self)
 				coll = checkCharCollisions(self);
 				if (!coll)
 				{
-						self->veracc = -20;
+						self->veracc = GRAVITY;
 				}
 				self->y -= 1;
 		}
