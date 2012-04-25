@@ -5,7 +5,7 @@
 
 #define BATTLEFIELD1_H
 
-struct platform batt1_plat1=
+const struct platform batt1_plat1=
 {
 //		17, // x
 //		11, // y
@@ -17,7 +17,7 @@ struct platform batt1_plat1=
       48
 };
 
-struct platform batt1_plat2 =
+const struct platform batt1_plat2 =
 {
 //		2, // x
 //		19, // y
@@ -29,7 +29,7 @@ struct platform batt1_plat2 =
       48
 };
 
-struct platform batt1_plat3 =
+const struct platform batt1_plat3 =
 {
 		32, // x
 		19, // y
@@ -37,7 +37,7 @@ struct platform batt1_plat3 =
 		2, // h
 };
 
-struct platform batt1_plat4 =
+const struct platform batt1_plat4 =
 {
 		16, // x
 		30, // y
@@ -45,7 +45,7 @@ struct platform batt1_plat4 =
 		2, // h
 };
 
-struct platform batt1_plat5 =
+const struct platform batt1_plat5 =
 {
 		3, // x
 		40, // y
@@ -54,7 +54,7 @@ struct platform batt1_plat5 =
 };
 
 
-struct platform batt1_plat6 =
+const struct platform batt1_plat6 =
 {
 		32, // x
 		40, // y

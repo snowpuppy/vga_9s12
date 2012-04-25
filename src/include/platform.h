@@ -5,7 +5,7 @@
 #ifndef PLATFORM_H
 #define PLATFORM_H
 
-#define MAXPLATFORMS 7
+#define MAXPLATFORMS 10
 
 struct platform {
 	char x, y;

@@ -23,7 +23,15 @@
 #include "nine.h"
 
 // field images
-#include "battlefield1.h"
+#include "pokemon_stadium.h"
+#include "corneria.h"
+#include "brinstar2.h"
+#include "paradise.h"
+#include "mario_level.h"
+#include "saffron.h"
+#include "yoshis_island.h"
+#include "hyrule.h"
+#include "final_destination.h"
 
 // character images.
 #include "yoshi.h"
