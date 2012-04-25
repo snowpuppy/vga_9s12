@@ -107,6 +107,7 @@
 #define QUART_SEC 25
 #define HALF_SEC 50
 #define THREE_QUART_SEC 75
+#define TENTH_SEC 10
 
 // Define gravity constant
 #define GRAVITY -20
@@ -154,6 +155,7 @@ void clear_animated_image(const unsigned char *background, const unsigned char *
 char checkDeath(struct character *self);
 void displayLives(void);
 void displayDamage(void);
+void display_moving_objects(void);
 
 // include images. These are in a separate file
 // because they're dynamically generated.
@@ -210,14 +212,14 @@ char selection = 1;
 unsigned char splash_screen_enable = 0;
 
 // display_character counter
-unsigned char display_moving_objects = 0;
+unsigned char display_moving_objects_flag = 0;
 unsigned char display_moving_objects_count = 0;
 
 // sound counter
 unsigned char sound_counter = 0;
 
 // define global platform structure.
-struct platform *all_platforms[MAXPLATFORMS] = {NULL};
+const struct platform *all_platforms[MAXPLATFORMS] = {NULL};
 
 // define number array
 const unsigned char *numbers[10] =
@@ -378,20 +380,6 @@ void main(void) {
 			select = 0;
 			displayMenu(selection);
 	}
-    //startMatch();
-    /*
-    player0.x += 1;
-    player0.y += 1;
-    if (player0.x + player0.framew > 48) 
-    {
-      player0.x = 0;
-    }
-    if (player0.y + player0.frameh > 48) 
-    {
-      player0.y = 0;
-    }
-    */
-    //display_character(&player0);
 	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
 	 // The watchdog was disabled in the initialization code.
     _FEED_COP(); /* feeds the dog */
@@ -624,7 +612,7 @@ await3:
 				if (player1.attacking)
 				{
 				    // set the return frame so that we can finish an attack.
-						player0.returnframe = player0.currframe;
+						player1.returnframe = player1.currframe;
 						// attack left
 						if (joy1hor < THRESHDO)
 						{
@@ -810,7 +798,6 @@ interrupt 8 void TIM_ISR(void)
 						// set attack length back to default
 						player0.attacklength = DEFAULTATTACKLENGTH;
 						// reset the original frame from before attacking
-						player0.prevframe = player0.currframe;
 						player0.currframe = player0.returnframe;
 						// transition out of attacking mode
 						player0.attacking = 0;
@@ -832,7 +819,6 @@ interrupt 8 void TIM_ISR(void)
 						// set attack length back to default
 						player1.attacklength = DEFAULTATTACKLENGTH;
 						// reset the original frame from before attacking
-						player1.prevframe = player1.currframe;
 						player1.currframe = player1.returnframe;
 						// transition out of attacking mode
 						player1.attacking = 0;
@@ -846,6 +832,13 @@ interrupt 8 void TIM_ISR(void)
 		if (!player0.attacking && !player1.attacking)
 		{
 			PWMDTY0 = 0;
+		}
+		
+		// Check if moving objects need to be displayed.
+		display_moving_objects_count++;
+		if (display_moving_objects_count > TENTH_SEC )
+		{
+		    display_moving_objects_flag = 1;
 		}
 		
 	}
@@ -888,21 +881,6 @@ interrupt 8 void TIM_ISR(void)
 ;***********************************************************************/
 void displaySplash(void)
 {
-    //int r,l;
-
-    // copy the splash screen to the screen
-    // note that the screen now needs to be 
-    // output to the monitor using the non-maskable
-    // interrupt service routine (IRQ)
-    /*
-    for (r = 0; r < SCREENH; r++)
-    {
-        for (l = 0; l < SCREENW/2; l++)
-        {
-            screen[r*(SCREENW/2) + l] = image_splash[r][l];
-        }
-    }
-    */
     writeBackground(image_bitbang_splash);
 
     while (splash_screen_enable < TIMEFORONESECOND*2);
@@ -917,8 +895,6 @@ void displaySplash(void)
 ;***********************************************************************/
 void displayMenu(char selection)
 {
-	//int r,l;
-	//unsigned char **menu_image = NULL;
 	// pick image to draw
 	switch(selection)
 	{
@@ -1225,18 +1201,30 @@ void selectField(void)
 	player0.lives = 5;
 	player1.lives = 5;
 	*/
+	/*
 	all_platforms[1] = &pokemon_stadium_plat1;
 	all_platforms[2] = &pokemon_stadium_plat2;
 	all_platforms[3] = &pokemon_stadium_plat3;
 	selected_field = image_pokemon_stadium;
+	*/
+	all_platforms[0] = &corneria_plat1;
+	all_platforms[1] = &corneria_plat2;
+	all_platforms[2] = &corneria_plat3;
+	all_platforms[3] = &corneria_plat4;
+	all_platforms[4] = &corneria_plat5;
+	all_platforms[5] = &corneria_plat6;
+	all_platforms[6] = &corneria_plat7;
+	all_platforms[7] = &corneria_plat8;
+	all_platforms[8] = &corneria_plat9;
+	selected_field = image_corneria;
 	player0.defaultx = 28;
 	player0.x = 28;
-	player0.defaulty = 12;
-	player0.y = 12;
+	player0.defaulty = 22;
+	player0.y = 22;
 	player1.defaultx = 15;
 	player1.x = 15;
-	player1.defaulty = 12;
-	player1.y = 12;
+	player1.defaulty = 22;
+	player1.y = 22;
 	player0.lives = 5;
 	player1.lives = 5;
 }
@@ -1278,7 +1266,7 @@ void startMatch(void)
 			player0.move(&player0);
 			player1.move(&player1);
 			//  display the character at his location
-			//display_character(&player0);
+			display_moving_objects();
       displayLives();
       displayDamage();
       quit = quit || checkDeath(&player0);
@@ -1291,6 +1279,58 @@ void startMatch(void)
 	player1.lives = 5;
 	player0.damage = 0;
 	player1.damage = 0;
+	player0.vervel = 0;
+	player0.veracc = 0;
+	player1.vervel = 0;
+	player1.veracc = 0;
+	player0.x = player0.defaultx;
+	player0.y = player0.defaulty;
+	player1.x = player1.defaultx;
+	player1.y = player1.defaulty;
+	
+	// display winner screen
+	//if (player0.lives == 0)
+	//{
+	//  writeBackground(image_player1wins);
+	//}
+	//else
+	//{
+	//  writeBackground(image_player0wins);
+	//}
+	// reset splash screen enable so
+	// that the players can see this screen
+	//splash_screen_enable = 0;
+	//while (splash_screen_enable < TIMEFORONESECOND*2);
+}
+
+/***********************************************************************
+; Name:         display_moving_objects
+; Description:  This function clears and displays all moving objects
+;               in the game at a regular refresh time determined by
+;               by the TIM_ISR
+;               
+;***********************************************************************/
+void display_moving_objects(void)
+{
+  if (display_moving_objects_flag)
+  {
+    // clear display flag
+    display_moving_objects_flag = 0;
+    
+    // clear the characters from their last drawn locations
+    // then redraw them.
+    clear_character(&player0);
+	  clear_character(&player1);
+    display_character(&player0);
+    display_character(&player1);
+	// keep track of where we last drew the characters.
+	player0.prevx = player0.x;
+	player0.prevy = player0.y;
+	player0.prevframe = player0.currframe;
+	player1.prevx = player1.x;
+	player1.prevy = player1.y;
+	player1.prevframe = player1.currframe;
+  }
 }
 
 /***********************************************************************
@@ -1300,7 +1340,7 @@ void startMatch(void)
 ;***********************************************************************/
 void clear_character(struct character *self)
 {
-	clear_animated_image(selected_field, self->frame, self->x, self->y, self->framew, self->frameh, self->numframes, self->prevframe);
+	clear_animated_image(selected_field, self->frame, self->prevx, self->prevy, self->framew, self->frameh, self->numframes, self->prevframe);
 }
 
 /***********************************************************************
