@@ -16,14 +16,14 @@ const struct platform pokemon_stadium_plat2=
 {
     7,
     24,
-    1,
+    12,
     1
 };
 const struct platform pokemon_stadium_plat3=
 {
     29,
     24,
-    0,
+    12,
     1
 };
 

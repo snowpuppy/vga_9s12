@@ -2,19 +2,19 @@
 ; ECE 362 - Mini-Project ASM Source File - Spring 2012                     
 ;***********************************************************************
 ;	 	   			 		  			 		  		
-; Team ID: < ? >
+; Team ID: 7
 ;
-; Project Name: < ? >
+; Project Name: Super Smash
 ;
 ; Team Members:
 ;
-;   - Team/Doc Leader: < ? >      Signature: ______________________
+;   - Team/Doc Leader: Vipul Bhat      Signature: ______________________
 ;   
-;   - Software Leader: < ? >      Signature: ______________________
+;   - Software Leader: Thor Smith      Signature: ______________________
 ;
-;   - Interface Leader: < ? >     Signature: ______________________
+;   - Interface Leader: David Kauer     Signature: ______________________
 ;
-;   - Peripheral Leader: < ? >    Signature: ______________________
+;   - Peripheral Leader: Kyle Brown    Signature: ______________________
 ;
 ;
 ; Academic Honesty Statement:  In signing above, we hereby certify that we 
@@ -33,15 +33,15 @@
 ; List of project-specific success criteria (functionality that will be
 ; demonstrated):
 ;
-; 1.
+; 1. The ability for the ATD module to sample analog joysticks and pushbuttons
 ;
-; 2.
+; 2. The ability for the TIM module to perform physics related operations and perform precise delays.
 ;
-; 3.
+; 3. The ability to have a working VGA that displays images on a monitor.
 ;
-; 4.
+; 4. The ability to have a working VGA that displays images on a monitor.
 ;
-; 5.
+; 5. The ability to perform meaningful sounds through the PWM module.
 ;
 ;***********************************************************************
 ;
@@ -58,6 +58,7 @@
 ;
 ;  Date: 4/21/2012  Name: Thor Smith   Update: Added jumping, collision detection,
 ;		frame cycling, and character erasing.
+;	 Date: 4/23/2012  Name: Thor Smith   Update: Added all fields and characters.
 ;
 ;
 ;***********************************************************************/
@@ -1271,14 +1272,14 @@ void setFieldValues(char selection)
 	    all_platforms[2] = &pokemon_stadium_plat3;
 		all_platforms[3] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 13;
+		player0.x = 13;
+		player0.defaulty = 20;
+		player0.y = 20;
+		player1.defaultx = 34;
+		player1.x = 34;
+		player1.defaulty = 20;
+		player1.y = 20;
 			break;
 			
 		case CORNERIA:
@@ -1293,16 +1294,14 @@ void setFieldValues(char selection)
 		all_platforms[8] = &corneria_plat9;
 		all_platforms[9] = NULL;
 		selected_field = image_corneria;
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
-		player0.lives = 5;
-		player1.lives = 5;
+		player0.defaultx = 6;
+		player0.x = 6;
+		player0.defaulty = 26;
+		player0.y = 26;
+		player1.defaultx = 31;
+		player1.x = 31;
+		player1.defaulty = 23;
+		player1.y = 23;
 			break;
 			
 		case BRINSTAR2:
@@ -1312,14 +1311,14 @@ void setFieldValues(char selection)
 		all_platforms[2] = &brinstar2_plat3;
 		all_platforms[3] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 4;
+		player0.x = 4;
+		player0.defaulty = 20;
+		player0.y = 20;
+		player1.defaultx = 40;
+		player1.x = 40;
+		player1.defaulty = 20;
+		player1.y = 20;
 			break;
 			
 		case FINALDEST:
@@ -1327,14 +1326,14 @@ void setFieldValues(char selection)
 		all_platforms[0] = &final_destination_plat1;
 		all_platforms[1] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 6;
+		player0.x = 6;
+		player0.defaulty = 32;
+		player0.y = 32;
+		player1.defaultx = 33;
+		player1.x = 33;
+		player1.defaulty = 32;
+		player1.y = 32;
 			break;
 			
 		case HYRULE:
@@ -1353,14 +1352,14 @@ void setFieldValues(char selection)
 		all_platforms[11] = &hyrule_plat12;
 		all_platforms[12] = &hyrule_plat13;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 4;
+		player0.x = 4;
+		player0.defaulty = 20;
+		player0.y = 20;
+		player1.defaultx = 37;
+		player1.x = 37;
+		player1.defaulty = 25;
+		player1.y = 25;
 			break;
 		case MARIOLEVEL:
 		selected_field = image_mario_level;
@@ -1372,14 +1371,14 @@ void setFieldValues(char selection)
 		all_platforms[5] = &mario_level_plat6;
 		all_platforms[6] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 13;
+		player0.x = 13;
+		player0.defaulty = 11;
+		player0.y = 11;
+		player1.defaultx = 27;
+		player1.x = 27;
+		player1.defaulty = 11;
+		player1.y = 11;
 			break;
 		case PARADISE:
 		selected_field = image_paradise;
@@ -1388,14 +1387,14 @@ void setFieldValues(char selection)
 		all_platforms[2] = &paradise_plat3;
 		all_platforms[3] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 8;
+		player0.x = 8;
+		player0.defaulty = 27;
+		player0.y = 27;
+		player1.defaultx = 36;
+		player1.x = 36;
+		player1.defaulty = 32;
+		player1.y = 32;
 			break;
 		case SAFFRON:
 		selected_field = image_saffron;
@@ -1404,14 +1403,14 @@ void setFieldValues(char selection)
 		all_platforms[2] = &saffron_plat3;
 		all_platforms[3] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 1;
+		player0.x = 1;
+		player0.defaulty = 29;
+		player0.y = 29;
+		player1.defaultx = 34;
+		player1.x = 34;
+		player1.defaulty = 15;
+		player1.y = 15;
 			break;
 		case YOSHISISLAND:
 		selected_field = image_yoshis_island;
@@ -1423,14 +1422,14 @@ void setFieldValues(char selection)
 		all_platforms[5] = &yoshis_island_plat6;
 		all_platforms[6] = NULL;
 		// player defaults
-		player0.defaultx = 28;
-		player0.x = 28;
-		player0.defaulty = 22;
-		player0.y = 22;
-		player1.defaultx = 15;
-		player1.x = 15;
-		player1.defaulty = 22;
-		player1.y = 22;
+		player0.defaultx = 1;
+		player0.x = 1;
+		player0.defaulty = 27;
+		player0.y = 27;
+		player1.defaultx = 38;
+		player1.x = 38;
+		player1.defaulty = 27;
+		player1.y = 27;
 			break;
 			 
 		default:
@@ -1507,8 +1506,12 @@ void startMatch(void)
 	player1.damage = 0;
 	player0.vervel = 0;
 	player0.veracc = 0;
+	player0.horvel = 0;
+	player0.horacc = 0;
 	player1.vervel = 0;
 	player1.veracc = 0;
+	player1.horvel = 0;
+	player1.horacc = 0;
 	player0.x = player0.defaultx;
 	player0.y = player0.defaulty;
 	player1.x = player1.defaultx;
