@@ -223,6 +223,7 @@ char selection = 1;
 
 // splash screen enable.
 unsigned char splash_screen_enable = 0;
+unsigned char button_wait = QUART_SEC;
 
 // display_character counter
 unsigned char display_moving_objects_flag = 0;
@@ -370,6 +371,11 @@ void main(void) {
 	// Don't branch unless the user has triggered the 'select' button.
 	if (select == 1)
 	{
+			// wait for the user to let go of the button.
+			button_wait = 0;
+			while (button_wait < QUART_SEC);
+
+			
 			switch (selection)
 			{
 			// Sub Function
@@ -391,6 +397,10 @@ void main(void) {
 					break;
 			}
 			select = 0;
+			
+			// wait for the user to let go of the button.
+			button_wait = 0;
+			while (button_wait < QUART_SEC);
 			displayMenu(selection);
 	}
 	 // We don't need the watchdog timer, but I don't think it can hurt to feed it anyway.
@@ -697,6 +707,11 @@ interrupt 8 void TIM_ISR(void)
     {
         splash_screen_enable++;
     }
+
+	if (button_wait < QUART_SEC)
+	{
+		button_wait++;
+	}
 
 	// If game is in progress....
 	if (selection == 3 && select == 1)
@@ -1102,6 +1117,7 @@ void selectCharacter(void)
 		// assign the correct character values for each player
 		assignCharacter(&player0, selection0);
 		assignCharacter(&player1, selection1);
+		
 }
 
 // Assign character to a player
