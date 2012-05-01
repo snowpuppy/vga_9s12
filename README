@@ -1,2 +1,144 @@
-hey,yo, what's up?
+Welcome to Super Smash Bros. Bitbang!
 
+In this README we attempt to briefly explain some of the more
+interesting concepts of the project in an organized manner.
+Info on the VGA has yet to be added. If you have any ideas
+you would like to contribute, feel free to fork and send a pull request. 
+
+Contents:
+    1. Directory Structure
+    2. Screen Buffer
+    3. Image Generation
+    4. Physics Explained
+
+
+#################################
+# Directory Structure
+#################################
+
+The vga_9s12 directory is organized into (currently) eight
+directories:
+
+    doc     src     test       controller   images  ssb_orcad_schematic
+    
+    PLD_ChipRpt     xirq_hsync
+
+## src:
+
+The src directory contains the main source file, named
+"smashbitbang.c". This file includes many of the .h files in the
+"include" subdirectory. Most of the .h files are actually images.
+The only non-image headers are the "character.h", "platform.h",
+and "ourimages.h" files. The "character.h" file defines the
+character structure and member functions and instantiates the players.
+The "platform.h" file defines the platform structure used for
+collision detection. The "ourimages.h" file includes all of the images
+that are used in the game.
+
+## doc:
+
+The doc directory contains the report written for our project and
+submitted for the class. It also contains a mapping of the 9s12
+pin connections.
+
+## images:
+
+The images file contains many images. The character, level, and number
+images are split into their own directories. Photos of our project are
+in the photos subdirectory. There are three important scripts in this
+directory that do the work of converting the images into hex values
+that can be stored in flash on the target microcontroller. The
+"convert.py" is a python script that converts one image given as an
+argument to a ".h" file. The runall.sh bash script runs the python
+script on all png files in the current directory. The update.sh
+bash script only works from the directory it is currently in. It copies
+all ".h" files in the current directory to the src/include folder.
+
+## test
+
+The test directory contains the "test_movement.c" file that was
+written to run on a standard PC. It was used to test displaying
+images to the screen and character movement while the VGA was
+still under development.
+
+
+#################################
+# Screen Buffer
+#################################
+
+In the src/smashbitban.c file, there is a global variable named
+"screen". This screen variable is 1152 bytes. The bytes correspond
+to 48x48 pixels where every byte contains two pixels. Thus
+48*24=1152. Storing two pixels in every byte saved us space and made
+pushing pixels out on the port pins pretty fast, but also added
+complexity to the image drawing and image erasing functions. When
+drawing the menu, the character select screen, or the field select
+screen, the screen buffer is only updated when a change is made.
+During gameplay, the screen is update every tenth of a second. Each
+character is first erased at their previous location and frame. Next,
+each character is drawn at their new location and frame. Note that
+when a character is erased, the background is simply drawn on top
+of them.
+
+
+
+#################################
+# Image Generation
+#################################
+
+Most of the images were drawn using kolourpaint. Every image was
+saved as a png to add compression, but avoid the image smudging
+that a jpeg introduces. The PIL library in Python was used to
+open the image and extract all of the pixels at once into a
+giant 2-dimensional array of pixels. Each pixel is traversed
+using a double for loop, and the hex data is assigned corresponding
+to the color of the pixel. Valid C code is generated, and the
+image information is written in hex. The color mappings are
+as follows:
+
+       rgb
+white: 111
+black: 000
+blue:  001
+green: 010
+red:   100
+pink:  101
+yellow:110
+brown: 011  // This would be cyan, but we remapped it in our circuit
+
+
+
+#################################
+# Physics Explained
+#################################
+
+Acceleration, velocity, and position are tracked for both characters
+in the game. The acceleration and velocity are stored as 1/v and 1/a,
+where "v" is velocity and "a" is acceleration. The reason for this
+is that floating point arithmetic is ineffecient to implement on an
+embedded device. This choice in storing velocity and acceleration also
+worked well with the Timer interrupt. Each velocity and acceleration
+value comes paired with a counter that keeps track of when the
+velocity and position values should be updated. For example, if my
+velocity is 500 miliseconds, then I update the players position by
+one pixel every 500 miliseconds. In the case of the code implemented,
+the Timer interrupt occurs every 10 milliseconds, so the corresponding
+velocity value would not be 500, but 50. Every time the velocity counter
+(incremented each time the timer is called) reaches 50, then the position
+is updated. In the same manner, the velocity is affected by the
+acceleration. The position is still stored in x and y coordinates (in
+case you wondered).
+While the position is updated by one every time, the velocity is updated
+as a function of the acceleration value. The formula is as follows:
+
+vnext = (vprev*acurr)/(vprev + acurr)
+
+vnext: The updated velocity value
+acurr: The current acceleration value (controlled by the analog joystick)
+vprev: The previous/current velocity value
+
+This formula works well on the microcontroller, because the division,
+where round off errors occur, can be done last.
+
+Given the above system, jumping was easy to implement. The player
+is given an initial velocity "up", and a constant acceleration "down".
